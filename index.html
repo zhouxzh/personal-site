@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="周先中 · 个人网站" />
+    <meta name="theme-color" content="#f5f7f4" />
+    <title>周先中 | 个人网站</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="返回首页">ZXZ<span>.</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">打开导航</span>
+        <span></span><span></span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="主导航">
+        <a href="#about">关于</a>
+        <a href="#now">现在</a>
+        <a href="#contact">联系</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> zhouxianzhong.cn</p>
+          <h1 id="hero-title">周先中<br /><em>个人网站</em></h1>
+          <p class="intro">记录正在做的事，也为下一次相遇留一扇门。</p>
+          <a class="text-link" href="#about">向下了解 <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-visual">
+          <img
+            src="assets/hero.png"
+            alt="ZXZ 几何图形视觉标识"
+          />
+          <div class="image-note">A quiet place to make things.</div>
+        </div>
+      </section>
+
+      <section id="about" class="section about-section" aria-labelledby="about-title">
+        <div class="section-label">01 / ABOUT</div>
+        <div>
+          <h2 id="about-title">保持好奇，<br />持续构建。</h2>
+          <p class="body-copy">
+            这里是周先中的个人站点。它会逐步沉淀项目、笔记与实践中的思考；现在，先从一个清晰而可靠的起点开始。
+          </p>
+        </div>
+      </section>
+
+      <section id="now" class="section current-section" aria-labelledby="now-title">
+        <div class="section-label">02 / NOW</div>
+        <div class="current-content">
+          <h2 id="now-title">当前页面已上线。</h2>
+          <div class="status-grid">
+            <article>
+              <p class="status-number">01</p>
+              <h3>个人主页</h3>
+              <p>域名入口与个人信息的长期归档地。</p>
+            </article>
+            <article>
+              <p class="status-number">02</p>
+              <h3>Cloudflare Pages</h3>
+              <p>由 Git 仓库自动构建、发布与分发。</p>
+            </article>
+            <article>
+              <p class="status-number">03</p>
+              <h3>持续更新</h3>
+              <p>下一步会在这里添加真实项目与文章。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-section" aria-labelledby="contact-title">
+        <p class="eyebrow"><span></span> SAY HELLO</p>
+        <h2 id="contact-title">让想法在这里<br />留下联系。</h2>
+        <button id="copy-domain" class="domain-button" type="button" data-domain="zhouxianzhong.cn">
+          <span>zhouxianzhong.cn</span>
+          <span class="copy-icon" aria-hidden="true">↗</span>
+        </button>
+        <p id="copy-feedback" class="copy-feedback" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> Zhou Xianzhong</p>
+      <p>Built for the web.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
