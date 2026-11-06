@@ -1,0 +1,4 @@
+User-agent:*
+Disallow:
+
+Sitemap: https://zhouxianzhong.cn/courses/microelectronic-device-modeling/sitemap.xml

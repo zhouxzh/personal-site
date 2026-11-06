@@ -1,0 +1,1085 @@
+<!DOCTYPE html><html lang="en-US"><head><title>器件结构与物理模型</title><meta property="og:title" content="器件结构与物理模型"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=overview] button.bespoke-marp-overview-close,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page-area .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{appearance:none;background-color:initial;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear;-webkit-tap-highlight-color:transparent}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=overview] button.bespoke-marp-overview-close:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page-area .bespoke-marp-presenter-info-page:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=overview] button.bespoke-marp-overview-close:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page-area .bespoke-marp-presenter-info-page:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=overview] button.bespoke-marp-overview-close:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page-area .bespoke-marp-presenter-info-page:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=overview] button.bespoke-marp-overview-close:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page-area .bespoke-marp-presenter-info-page:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNNDAgNzBIMjBWNTBtMjAgMEwyMCA3MG00MC00MGgyMHYyMG0tMjAgMCAyMC0yMCIgY2xhc3M9ImEiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNMjAgNTBoMjB2MjBtLTIwIDAgMjAtMjBtNDAgMEg2MFYzMG0yMCAwTDYwIDUwIiBjbGFzcz0iYSIvPjwvc3ZnPg==")}:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=overview] button.bespoke-marp-overview-close,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODBNNTIgOTBWMTAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=overview]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4O3J4OjVweDtyeTo1cHg7d2lkdGg6MjVweDtoZWlnaHQ6MjVweH08L3N0eWxlPjwvZGVmcz48cmVjdCB4PSIyMCIgeT0iMjAiIGNsYXNzPSJhIi8+PHJlY3QgeD0iNTUiIHk9IjIwIiBjbGFzcz0iYSIvPjxyZWN0IHg9IjIwIiB5PSI1NSIgY2xhc3M9ImEiLz48cmVjdCB4PSI1NSIgeT0iNTUiIGNsYXNzPSJhIi8+PC9zdmc+") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}@keyframes __bespoke_marp_transition_reduced_outgoing__{0%{opacity:1}to{opacity:0}}@keyframes __bespoke_marp_transition_reduced_incoming__{0%{mix-blend-mode:plus-lighter;opacity:0}to{mix-blend-mode:plus-lighter;opacity:1}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{::view-transition-group(*){animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-timing-function:ease}::view-transition-new(*),::view-transition-old(*){animation-delay:0s;animation-direction:var(--marp-bespoke-transition-animation-direction,normal);animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-fill-mode:both;animation-name:var(--marp-bespoke-transition-animation-name,var(--marp-bespoke-transition-animation-name-fallback,__bespoke_marp_transition_no_animation__));mix-blend-mode:normal}::view-transition-old(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_outgoing__;animation-timing-function:ease}::view-transition-new(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_incoming__;animation-timing-function:ease}::view-transition-new(root),::view-transition-old(root){animation-timing-function:linear}::view-transition-new(__bespoke_marp_transition_osc__),::view-transition-old(__bespoke_marp_transition_osc__){animation-duration:0s!important;animation-name:__bespoke_marp_transition_osc__!important}::view-transition-new(__bespoke_marp_transition_osc__){opacity:0!important}.bespoke-marp-transition-warming-up::view-transition-group(*),.bespoke-marp-transition-warming-up::view-transition-new(*),.bespoke-marp-transition-warming-up::view-transition-old(*){animation-play-state:paused!important}body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;interactivity:inert;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide:not(.bespoke-marp-active) *{view-transition-name:none!important}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;interactivity:auto;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}}@media screen and (prefers-reduced-motion:reduce){svg.bespoke-marp-slide *{view-transition-name:none!important}}@media screen{[data-bespoke-marp-fragment=inactive]{visibility:hidden}:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent{inset:0;position:absolute}:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent>.bespoke-marp-osc{background:#000000a6;border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;user-select:none;view-transition-name:__bespoke_marp_transition_osc__;white-space:nowrap;will-change:transform;z-index:1}:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent>.bespoke-marp-osc>:where(*){margin-left:6px}:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent>.bespoke-marp-osc>:where(*):where(:first-child){margin-left:0}:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=overview],:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}:is(body[data-bespoke-view=""],body[data-bespoke-view=next]) svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+:where(.bespoke-marp-parent){top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:#0000}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container :where(.bespoke-marp-parent){grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container :where(.bespoke-marp-parent) :where(svg.bespoke-marp-slide){height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container :where(.bespoke-marp-parent) :where(svg.bespoke-marp-slide).bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:#0000;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;interactivity:inert;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{display:block;inset:0;position:absolute}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:#000000a6;border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;white-space:pre-wrap;width:calc(100% - 40px);word-wrap:break-word;scrollbar-color:#eeeeee80 #0000;scrollbar-width:thin}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:#0000}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:#eeeeee80;border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container :is(.bespoke-marp-presenter-info-page-area,.bespoke-marp-presenter-info-time,.bespoke-marp-presenter-info-timer){box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page-area{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page-area .bespoke-marp-presenter-info-page{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}body[data-bespoke-view=overview]{background:#161616;overflow:auto}body[data-bespoke-view=overview] [data-bespoke-marp-fragment=inactive]{visibility:visible}body[data-bespoke-view=overview] .bespoke-marp-overview-header{backdrop-filter:blur(4px);background:#222222d9;box-shadow:0 3px 10px #00000080;box-sizing:border-box;display:flex;height:48px;inset:0 0 auto;justify-content:flex-end;padding:10px;position:fixed;z-index:1}body[data-bespoke-view=overview] button.bespoke-marp-overview-close{height:28px;line-height:28px;transform:rotate(45deg);width:28px}body[data-bespoke-view=overview] .bespoke-marp-parent{display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(0,240px));justify-content:space-around;padding:30px}body[data-bespoke-view=overview] .bespoke-marp-parent svg.bespoke-marp-slide{--bov-selected:#0000;--bov-focus:#161616;--bov-focus-outline:#0000;background-image:conic-gradient(#161616 0 0),conic-gradient(var(--bov-focus) 0 0),conic-gradient(var(--bov-focus-outline) 0 0),conic-gradient(var(--bov-selected) 0 0);background-position:5px 5px,3px 3px,2px 2px,0 0;background-repeat:no-repeat;background-size:calc(100% - 10px) calc(100% - 10px),calc(100% - 6px) calc(100% - 6px),calc(100% - 4px) calc(100% - 4px),100% 100%;content-visibility:visible;cursor:pointer;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));margin:-6px;padding:6px;interactivity:auto;opacity:1;outline:0;pointer-events:auto;scroll-margin-block:30px;width:100%;z-index:0}body[data-bespoke-view=overview] .bespoke-marp-parent svg.bespoke-marp-slide *,body[data-bespoke-view=overview] .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active *{pointer-events:none;interactivity:inert}body[data-bespoke-view=overview] .bespoke-marp-parent :is(svg.bespoke-marp-slide:active,svg.bespoke-marp-slide:focus-visible,svg.bespoke-marp-slide:hover){--bov-focus-outline:#161616}body[data-bespoke-view=overview] .bespoke-marp-parent svg.bespoke-marp-slide:focus-visible,body[data-bespoke-view=overview] .bespoke-marp-parent svg.bespoke-marp-slide:hover{--bov-focus:#999}body[data-bespoke-view=overview] .bespoke-marp-parent svg.bespoke-marp-slide:active{--bov-focus:#eee}body[data-bespoke-view=overview] .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{--bov-selected:#0288d1}body[data-bespoke-view=overview]:has(.bespoke-marp-overview-header) .bespoke-marp-parent{padding-top:78px}body[data-bespoke-view=overview]:has(.bespoke-marp-overview-header) .bespoke-marp-parent svg.bespoke-marp-slide{scroll-margin-top:78px}.bespoke-marp-overview{background:#000000a6;inset:0;opacity:0;pointer-events:none;position:fixed;transition:opacity .1s ease;z-index:10}.bespoke-marp-overview iframe{background:#222;border:0;display:block;height:100%;left:0;position:absolute;top:0;width:100%}.bespoke-marp-overview[data-open="1"]{opacity:1;pointer-events:auto}}@media print{.bespoke-marp-overview,.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>div#\:\$p > svg > foreignObject > section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center;-webkit-text-size-adjust:100%;text-size-adjust:100%}div#\:\$p > svg > foreignObject > section::after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#\:\$p > svg > foreignObject > section:not([data-marpit-pagination])::after{display:none}div#\:\$p > svg > foreignObject > section :where(:is(h1, marp-h1)){font-size:2em;margin-block:0.67em}div#\:\$p > svg > foreignObject > section section:where(:is(h1, marp-h1)){--marpit-root-font-size: 2em}div#\:\$p > svg > foreignObject > section video::-webkit-media-controls{will-change:transform}@page {size:1280px 720px;margin:0}@media print{html, body{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#\:\$p > svg > foreignObject > section{page-break-before:always;break-before:page}div#\:\$p > svg > foreignObject > section, div#\:\$p > svg > foreignObject > section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;print-color-adjust:exact!important;transition:none!important}div#\:\$p > svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#\:\$p > svg > foreignObject > section{--fgColor-danger:light-dark(#d1242f, #f85149);--bgColor-attention-muted:light-dark(#fff8c5, #bb800926);--bgColor-muted:light-dark(#f6f8fa, #151b23);--bgColor-neutral-muted:light-dark(#818b981f, #656c7633);--borderColor-accent-emphasis:light-dark(#0969da, #1f6feb);--borderColor-attention-emphasis:light-dark(#9a6700, #9e6a03);--borderColor-danger-emphasis:light-dark(#cf222e, #da3633);--borderColor-default:light-dark(#d1d9e0, #3d444d);--borderColor-done-emphasis:light-dark(#8250df, #8957e5);--borderColor-success-emphasis:light-dark(#1a7f37, #238636);--color-prettylights-syntax-brackethighlighter-angle:light-dark(#59636e, #9198a1);--color-prettylights-syntax-brackethighlighter-unmatched:light-dark(#82071e, #f85149);--color-prettylights-syntax-carriage-return-bg:light-dark(#cf222e, #b62324);--color-prettylights-syntax-carriage-return-text:light-dark(#f6f8fa, #f0f6fc);--color-prettylights-syntax-comment:light-dark(#59636e, #9198a1);--color-prettylights-syntax-constant:light-dark(#0550ae, #79c0ff);--color-prettylights-syntax-constant-other-reference-link:light-dark(#0a3069, #a5d6ff);--color-prettylights-syntax-entity:light-dark(#6639ba, #d2a8ff);--color-prettylights-syntax-entity-tag:light-dark(#0550ae, #7ee787);--color-prettylights-syntax-invalid-illegal-text:light-dark(var(--fgColor-danger), var(--fgColor-danger));--color-prettylights-syntax-keyword:light-dark(#cf222e, #ff7b72);--color-prettylights-syntax-markup-changed-bg:light-dark(#ffd8b5, #5a1e02);--color-prettylights-syntax-markup-changed-text:light-dark(#953800, #ffdfb6);--color-prettylights-syntax-markup-deleted-bg:light-dark(#ffebe9, #67060c);--color-prettylights-syntax-markup-deleted-text:light-dark(#82071e, #ffdcd7);--color-prettylights-syntax-markup-heading:light-dark(#0550ae, #1f6feb);--color-prettylights-syntax-markup-ignored-bg:light-dark(#0550ae, #1158c7);--color-prettylights-syntax-markup-ignored-text:light-dark(#d1d9e0, #f0f6fc);--color-prettylights-syntax-markup-inserted-bg:light-dark(#dafbe1, #033a16);--color-prettylights-syntax-markup-inserted-text:light-dark(#116329, #aff5b4);--color-prettylights-syntax-markup-list:light-dark(#3b2300, #f2cc60);--color-prettylights-syntax-meta-diff-range:light-dark(#8250df, #d2a8ff);--color-prettylights-syntax-string:light-dark(#0a3069, #a5d6ff);--color-prettylights-syntax-string-regexp:light-dark(#116329, #7ee787);--color-prettylights-syntax-sublimelinter-gutter-mark:light-dark(#818b98, #3d444d);--color-prettylights-syntax-variable:light-dark(#953800, #ffa657);--fgColor-accent:light-dark(#0969da, #4493f8);--fgColor-attention:light-dark(#9a6700, #d29922);--fgColor-done:light-dark(#8250df, #ab7df8);--fgColor-muted:light-dark(#59636e, #9198a1);--fgColor-success:light-dark(#1a7f37, #3fb950);--bgColor-default:light-dark(#fff, #0d1117);--borderColor-muted:light-dark(#d1d9e0b3, #3d444db3);--color-prettylights-syntax-invalid-illegal-bg:light-dark(var(--bgColor-danger-muted), var(--bgColor-danger-muted));--color-prettylights-syntax-markup-bold:light-dark(#1f2328, #f0f6fc);--color-prettylights-syntax-markup-italic:light-dark(#1f2328, #f0f6fc);--color-prettylights-syntax-storage-modifier-import:light-dark(#1f2328, #f0f6fc);--fgColor-default:light-dark(#1f2328, #f0f6fc);--focus-outlineColor:light-dark(var(--borderColor-accent-emphasis), var(--borderColor-accent-emphasis));--borderColor-neutral-muted:light-dark(var(--borderColor-muted), var(--borderColor-muted));--base-size-16:calc(var(--marpit-root-font-size, 1rem) * 1);--base-size-24:calc(var(--marpit-root-font-size, 1rem) * 1.5);--base-size-4:calc(var(--marpit-root-font-size, 1rem) * 0.25);--base-size-40:calc(var(--marpit-root-font-size, 1rem) * 2.5);--base-size-8:calc(var(--marpit-root-font-size, 1rem) * 0.5);--base-text-weight-medium:500;--base-text-weight-normal:400;--base-text-weight-semibold:600;--fontStack-monospace:ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;--fontStack-sansSerif:-apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";}/*!
+ * Marp default theme.
+ *
+ * @theme default
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ */div#\:\$p > svg > foreignObject > section [data-theme=light],div#\:\$p > svg > foreignObject > section{color-scheme:light}div#\:\$p > svg > foreignObject > section [data-theme=dark],div#\:\$p > svg > foreignObject > section:where(.invert){color-scheme:dark}div#\:\$p > svg > foreignObject > section{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;margin:0;font-weight:var(--base-text-weight-normal, 400);color:var(--fgColor-default);background-color:var(--bgColor-default);font-family:var(--fontStack-sansSerif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji");font-size:16px;line-height:1.5;word-wrap:break-word}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size:16px}div#\:\$p > svg > foreignObject > section a{text-decoration:underline;text-underline-offset:calc(var(--marpit-root-font-size, 1rem) * .2)}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1):hover .anchor .octicon-link:before,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2):hover .anchor .octicon-link:before,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3):hover .anchor .octicon-link:before,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4):hover .anchor .octicon-link:before,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5):hover .anchor .octicon-link:before,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6):hover .anchor .octicon-link:before{width:16px;height:16px;content:" ";display:inline-block;background-color:currentColor;-webkit-mask-image:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0"/></svg>');mask-image:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0"/></svg>')}div#\:\$p > svg > foreignObject > section details,div#\:\$p > svg > foreignObject > section figcaption,div#\:\$p > svg > foreignObject > section figure{display:block}div#\:\$p > svg > foreignObject > section summary{display:list-item}div#\:\$p > svg > foreignObject > section [hidden]{display:none!important}div#\:\$p > svg > foreignObject > section a{background-color:transparent;color:var(--fgColor-accent);text-decoration:none}div#\:\$p > svg > foreignObject > section abbr[title]{border-bottom:none;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}div#\:\$p > svg > foreignObject > section b,div#\:\$p > svg > foreignObject > section strong{font-weight:var(--base-text-weight-semibold, 600)}div#\:\$p > svg > foreignObject > section dfn{font-style:italic}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){margin:.67em 0;font-weight:var(--base-text-weight-semibold, 600);padding-bottom:.3em;font-size:2em;border-bottom:1px solid var(--borderColor-muted)}div#\:\$p > svg > foreignObject > section mark{background-color:var(--bgColor-attention-muted);color:var(--fgColor-default)}div#\:\$p > svg > foreignObject > section small{font-size:90%}div#\:\$p > svg > foreignObject > section sub,div#\:\$p > svg > foreignObject > section sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}div#\:\$p > svg > foreignObject > section sub{bottom:-.25em}div#\:\$p > svg > foreignObject > section sup{top:-.5em}div#\:\$p > svg > foreignObject > section img{border-style:none;max-width:100%;box-sizing:content-box}div#\:\$p > svg > foreignObject > section code,div#\:\$p > svg > foreignObject > section kbd,div#\:\$p > svg > foreignObject > section :is(pre, marp-pre),div#\:\$p > svg > foreignObject > section samp{font-family:monospace;font-size:1em}div#\:\$p > svg > foreignObject > section figure{margin:1em var(--base-size-40)}div#\:\$p > svg > foreignObject > section hr{box-sizing:content-box;overflow:hidden;background:transparent;height:.25em;padding:0;margin:var(--base-size-24) 0;background-color:var(--borderColor-default);border:0}div#\:\$p > svg > foreignObject > section input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}div#\:\$p > svg > foreignObject > section [type=button],div#\:\$p > svg > foreignObject > section [type=reset],div#\:\$p > svg > foreignObject > section [type=submit]{-webkit-appearance:button;-moz-appearance:button;appearance:button}div#\:\$p > svg > foreignObject > section [type=checkbox],div#\:\$p > svg > foreignObject > section [type=radio]{box-sizing:border-box;padding:0}div#\:\$p > svg > foreignObject > section [type=number]::-webkit-inner-spin-button,div#\:\$p > svg > foreignObject > section [type=number]::-webkit-outer-spin-button{height:auto}div#\:\$p > svg > foreignObject > section [type=search]::-webkit-search-cancel-button,div#\:\$p > svg > foreignObject > section [type=search]::-webkit-search-decoration{-webkit-appearance:none;appearance:none}div#\:\$p > svg > foreignObject > section ::-webkit-input-placeholder{color:inherit;opacity:.54}div#\:\$p > svg > foreignObject > section ::-webkit-file-upload-button{-webkit-appearance:button;appearance:button;font:inherit}div#\:\$p > svg > foreignObject > section a:hover{text-decoration:underline}div#\:\$p > svg > foreignObject > section ::-moz-placeholder{color:var(--fgColor-muted);opacity:1}div#\:\$p > svg > foreignObject > section ::placeholder{color:var(--fgColor-muted);opacity:1}div#\:\$p > svg > foreignObject > section hr:after,div#\:\$p > svg > foreignObject > section hr:before{display:table;content:""}div#\:\$p > svg > foreignObject > section hr:after{clear:both}div#\:\$p > svg > foreignObject > section table{border-spacing:0;border-collapse:collapse;display:block;width:-moz-max-content;width:max-content;max-width:100%;overflow:auto;font-variant:tabular-nums}div#\:\$p > svg > foreignObject > section td,div#\:\$p > svg > foreignObject > section th{padding:0}div#\:\$p > svg > foreignObject > section details summary{cursor:pointer}div#\:\$p > svg > foreignObject > section [role=button]:focus,div#\:\$p > svg > foreignObject > section a:focus,div#\:\$p > svg > foreignObject > section input[type=checkbox]:focus,div#\:\$p > svg > foreignObject > section input[type=radio]:focus{outline:2px solid var(--focus-outlineColor);outline-offset:-2px;box-shadow:none}div#\:\$p > svg > foreignObject > section [role=button]:focus:not(:focus-visible),div#\:\$p > svg > foreignObject > section a:focus:not(:focus-visible),div#\:\$p > svg > foreignObject > section input[type=checkbox]:focus:not(:focus-visible),div#\:\$p > svg > foreignObject > section input[type=radio]:focus:not(:focus-visible){outline:1px solid transparent}div#\:\$p > svg > foreignObject > section [role=button]:focus-visible,div#\:\$p > svg > foreignObject > section a:focus-visible,div#\:\$p > svg > foreignObject > section input[type=checkbox]:focus-visible,div#\:\$p > svg > foreignObject > section input[type=radio]:focus-visible{outline:2px solid var(--focus-outlineColor);outline-offset:-2px;box-shadow:none}div#\:\$p > svg > foreignObject > section a:not([class]):focus,div#\:\$p > svg > foreignObject > section a:not([class]):focus-visible,div#\:\$p > svg > foreignObject > section input[type=checkbox]:focus,div#\:\$p > svg > foreignObject > section input[type=checkbox]:focus-visible,div#\:\$p > svg > foreignObject > section input[type=radio]:focus,div#\:\$p > svg > foreignObject > section input[type=radio]:focus-visible{outline-offset:0}div#\:\$p > svg > foreignObject > section kbd{display:inline-block;padding:var(--base-size-4);font:11px var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);line-height:10px;color:var(--fgColor-default);vertical-align:middle;background-color:var(--bgColor-muted);border-bottom-color:var(--borderColor-neutral-muted);border:1px solid var(--borderColor-neutral-muted);border-radius:6px;box-shadow:inset 0 -1px 0 var(--borderColor-neutral-muted)}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){margin-top:var(--base-size-24);margin-bottom:var(--base-size-16);font-weight:var(--base-text-weight-semibold, 600);line-height:1.25}div#\:\$p > svg > foreignObject > section :is(h2, marp-h2){padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid var(--borderColor-muted)}div#\:\$p > svg > foreignObject > section :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3){font-weight:var(--base-text-weight-semibold, 600)}div#\:\$p > svg > foreignObject > section :is(h3, marp-h3){font-size:1.25em}div#\:\$p > svg > foreignObject > section :is(h4, marp-h4){font-size:1em}div#\:\$p > svg > foreignObject > section :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5){font-weight:var(--base-text-weight-semibold, 600)}div#\:\$p > svg > foreignObject > section :is(h5, marp-h5){font-size:.875em}div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){font-weight:var(--base-text-weight-semibold, 600);font-size:.85em;color:var(--fgColor-muted)}div#\:\$p > svg > foreignObject > section p{margin-top:0;margin-bottom:10px}div#\:\$p > svg > foreignObject > section blockquote{margin:0;padding:0 1em;color:var(--fgColor-muted);border-left:.25em solid var(--borderColor-default)}div#\:\$p > svg > foreignObject > section ol,div#\:\$p > svg > foreignObject > section ul{margin-top:0;margin-bottom:0;padding-left:2em}div#\:\$p > svg > foreignObject > section ol ol,div#\:\$p > svg > foreignObject > section ul ol{list-style-type:lower-roman}div#\:\$p > svg > foreignObject > section ol ol ol,div#\:\$p > svg > foreignObject > section ol ul ol,div#\:\$p > svg > foreignObject > section ul ol ol,div#\:\$p > svg > foreignObject > section ul ul ol{list-style-type:lower-alpha}div#\:\$p > svg > foreignObject > section dd{margin-left:0}div#\:\$p > svg > foreignObject > section code,div#\:\$p > svg > foreignObject > section :is(pre, marp-pre),div#\:\$p > svg > foreignObject > section samp,div#\:\$p > svg > foreignObject > section tt{font-family:var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);font-size:12px}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){margin-top:0;margin-bottom:0;word-wrap:normal}div#\:\$p > svg > foreignObject > section .octicon{display:inline-block;overflow:visible!important;vertical-align:text-bottom;fill:currentColor}div#\:\$p > svg > foreignObject > section input::-webkit-inner-spin-button,div#\:\$p > svg > foreignObject > section input::-webkit-outer-spin-button{margin:0;-webkit-appearance:none;appearance:none}div#\:\$p > svg > foreignObject > section .mr-2{margin-right:var(--base-size-8, 8px)!important}div#\:\$p > svg > foreignObject > section:after,div#\:\$p > svg > foreignObject > section:before{display:table}div#\:\$p > svg > foreignObject > section:after{clear:both}div#\:\$p > svg > foreignObject > section>:first-child{margin-top:0!important}div#\:\$p > svg > foreignObject > section>:last-child{margin-bottom:0!important}div#\:\$p > svg > foreignObject > section a:not([href]){color:inherit;text-decoration:none}div#\:\$p > svg > foreignObject > section .absent{color:var(--fgColor-danger)}div#\:\$p > svg > foreignObject > section .anchor{float:left;padding-right:var(--base-size-4);margin-left:-20px;line-height:1}div#\:\$p > svg > foreignObject > section .anchor:focus{outline:none}div#\:\$p > svg > foreignObject > section blockquote,div#\:\$p > svg > foreignObject > section details,div#\:\$p > svg > foreignObject > section dl,div#\:\$p > svg > foreignObject > section ol,div#\:\$p > svg > foreignObject > section p,div#\:\$p > svg > foreignObject > section :is(pre, marp-pre),div#\:\$p > svg > foreignObject > section table,div#\:\$p > svg > foreignObject > section ul{margin-top:0;margin-bottom:var(--base-size-16)}div#\:\$p > svg > foreignObject > section blockquote>:first-child{margin-top:0}div#\:\$p > svg > foreignObject > section blockquote>:last-child{margin-bottom:0}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) .octicon-link,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) .octicon-link,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) .octicon-link,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) .octicon-link,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) .octicon-link,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) .octicon-link{color:var(--fgColor-default);vertical-align:middle;visibility:hidden}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1):hover .anchor,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2):hover .anchor,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3):hover .anchor,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4):hover .anchor,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5):hover .anchor,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6):hover .anchor{text-decoration:none}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1):hover .anchor .octicon-link,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2):hover .anchor .octicon-link,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3):hover .anchor .octicon-link,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4):hover .anchor .octicon-link,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5):hover .anchor .octicon-link,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6):hover .anchor .octicon-link{visibility:visible}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) code,div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) tt,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) code,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) tt,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) code,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) tt,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) code,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) tt,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) code,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) tt,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) code,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) tt{padding:0 .2em;font-size:inherit}div#\:\$p > svg > foreignObject > section summary :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section summary :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section summary :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section summary :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section summary :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section summary :is(h6, marp-h6){display:inline-block}div#\:\$p > svg > foreignObject > section summary :is(h1, marp-h1) .anchor,div#\:\$p > svg > foreignObject > section summary :is(h2, marp-h2) .anchor,div#\:\$p > svg > foreignObject > section summary :is(h3, marp-h3) .anchor,div#\:\$p > svg > foreignObject > section summary :is(h4, marp-h4) .anchor,div#\:\$p > svg > foreignObject > section summary :is(h5, marp-h5) .anchor,div#\:\$p > svg > foreignObject > section summary :is(h6, marp-h6) .anchor{margin-left:-40px}div#\:\$p > svg > foreignObject > section summary :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section summary :is(h2, marp-h2){padding-bottom:0;border-bottom:0}div#\:\$p > svg > foreignObject > section ol.no-list,div#\:\$p > svg > foreignObject > section ul.no-list{padding:0;list-style-type:none}div#\:\$p > svg > foreignObject > section ol[type="a s"]{list-style-type:lower-alpha}div#\:\$p > svg > foreignObject > section ol[type="A s"]{list-style-type:upper-alpha}div#\:\$p > svg > foreignObject > section ol[type="i s"]{list-style-type:lower-roman}div#\:\$p > svg > foreignObject > section ol[type="I s"]{list-style-type:upper-roman}div#\:\$p > svg > foreignObject > section div>ol:not([type]),div#\:\$p > svg > foreignObject > section ol[type="1"]{list-style-type:decimal}div#\:\$p > svg > foreignObject > section ol ol,div#\:\$p > svg > foreignObject > section ol ul,div#\:\$p > svg > foreignObject > section ul ol,div#\:\$p > svg > foreignObject > section ul ul{margin-top:0;margin-bottom:0}div#\:\$p > svg > foreignObject > section li>p{margin-top:var(--base-size-16)}div#\:\$p > svg > foreignObject > section li+li{margin-top:.25em}div#\:\$p > svg > foreignObject > section dl{padding:0}div#\:\$p > svg > foreignObject > section dl dt{padding:0;margin-top:var(--base-size-16);font-size:1em;font-style:italic;font-weight:var(--base-text-weight-semibold, 600)}div#\:\$p > svg > foreignObject > section dl dd{padding:0 var(--base-size-16);margin-bottom:var(--base-size-16)}div#\:\$p > svg > foreignObject > section table th{font-weight:var(--base-text-weight-semibold, 600)}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{padding:6px 13px;border:1px solid var(--borderColor-default)}div#\:\$p > svg > foreignObject > section table td>:last-child{margin-bottom:0}div#\:\$p > svg > foreignObject > section table tr{background-color:var(--bgColor-default);border-top:1px solid var(--borderColor-muted)}div#\:\$p > svg > foreignObject > section table tr:nth-child(2n){background-color:var(--bgColor-muted)}div#\:\$p > svg > foreignObject > section table img{background-color:transparent}div#\:\$p > svg > foreignObject > section img[align=right]{padding-left:20px}div#\:\$p > svg > foreignObject > section img[align=left]{padding-right:20px}div#\:\$p > svg > foreignObject > section .emoji{max-width:none;vertical-align:text-top;background-color:transparent}div#\:\$p > svg > foreignObject > section :is(span, marp-span).frame,div#\:\$p > svg > foreignObject > section :is(span, marp-span).frame>:is(span, marp-span){display:block;overflow:hidden}div#\:\$p > svg > foreignObject > section :is(span, marp-span).frame>:is(span, marp-span){float:left;width:auto;padding:7px;margin:13px 0 0;border:1px solid var(--borderColor-default)}div#\:\$p > svg > foreignObject > section :is(span, marp-span).frame :is(span, marp-span) img{display:block;float:left}div#\:\$p > svg > foreignObject > section :is(span, marp-span).frame :is(span, marp-span) :is(span, marp-span){display:block;padding:5px 0 0;clear:both;color:var(--fgColor-default)}div#\:\$p > svg > foreignObject > section :is(span, marp-span).align-center{display:block;overflow:hidden;clear:both}div#\:\$p > svg > foreignObject > section :is(span, marp-span).align-center>:is(span, marp-span){display:block;margin:13px auto 0;overflow:hidden;text-align:center}div#\:\$p > svg > foreignObject > section :is(span, marp-span).align-center :is(span, marp-span) img{margin:0 auto;text-align:center}div#\:\$p > svg > foreignObject > section :is(span, marp-span).align-right{display:block;overflow:hidden;clear:both}div#\:\$p > svg > foreignObject > section :is(span, marp-span).align-right>:is(span, marp-span){display:block;margin:13px 0 0;overflow:hidden;text-align:right}div#\:\$p > svg > foreignObject > section :is(span, marp-span).align-right :is(span, marp-span) img{margin:0;text-align:right}div#\:\$p > svg > foreignObject > section :is(span, marp-span).float-left{display:block;float:left;margin-right:13px;overflow:hidden}div#\:\$p > svg > foreignObject > section :is(span, marp-span).float-left :is(span, marp-span){margin:13px 0 0}div#\:\$p > svg > foreignObject > section :is(span, marp-span).float-right{display:block;float:right;margin-left:13px;overflow:hidden}div#\:\$p > svg > foreignObject > section :is(span, marp-span).float-right>:is(span, marp-span){display:block;margin:13px auto 0;overflow:hidden;text-align:right}div#\:\$p > svg > foreignObject > section code,div#\:\$p > svg > foreignObject > section tt{padding:.2em .4em;margin:0;font-size:85%;white-space:break-spaces;background-color:var(--bgColor-neutral-muted);border-radius:6px}div#\:\$p > svg > foreignObject > section code br,div#\:\$p > svg > foreignObject > section tt br{display:none}div#\:\$p > svg > foreignObject > section del code{text-decoration:inherit}div#\:\$p > svg > foreignObject > section samp{font-size:85%}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{font-size:100%}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)>code{padding:0;margin:0;word-break:normal;white-space:pre;background:transparent;border:0}div#\:\$p > svg > foreignObject > section .highlight{margin-bottom:var(--base-size-16)}div#\:\$p > svg > foreignObject > section .highlight :is(pre, marp-pre){margin-bottom:0;word-break:normal}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){padding:var(--base-size-16);overflow:auto;font-size:85%;line-height:1.45;color:var(--fgColor-default);background-color:var(--bgColor-muted);border-radius:6px}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code,div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) tt{display:inline;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}div#\:\$p > svg > foreignObject > section .csv-data td,div#\:\$p > svg > foreignObject > section .csv-data th{padding:5px;overflow:hidden;font-size:12px;line-height:1;text-align:left;white-space:nowrap}div#\:\$p > svg > foreignObject > section .csv-data .blob-num{padding:10px var(--base-size-8) 9px;text-align:right;background:var(--bgColor-default);border:0}div#\:\$p > svg > foreignObject > section .csv-data tr{border-top:0}div#\:\$p > svg > foreignObject > section .csv-data th{font-weight:var(--base-text-weight-semibold, 600);background:var(--bgColor-muted);border-top:0}div#\:\$p > svg > foreignObject > section [data-footnote-ref]:before{content:"["}div#\:\$p > svg > foreignObject > section [data-footnote-ref]:after{content:"]"}div#\:\$p > svg > foreignObject > section .footnotes{font-size:12px;color:var(--fgColor-muted);border-top:1px solid var(--borderColor-default)}div#\:\$p > svg > foreignObject > section div#\:\$p > svg > foreignObject > section section.footnotes{--marpit-root-font-size:12px}div#\:\$p > svg > foreignObject > section .footnotes ol,div#\:\$p > svg > foreignObject > section .footnotes ol ul{padding-left:var(--base-size-16)}div#\:\$p > svg > foreignObject > section .footnotes ol ul{display:inline-block;margin-top:var(--base-size-16)}div#\:\$p > svg > foreignObject > section .footnotes li{position:relative}div#\:\$p > svg > foreignObject > section .footnotes li:target:before{position:absolute;top:calc(var(--base-size-8)*-1);right:calc(var(--base-size-8)*-1);bottom:calc(var(--base-size-8)*-1);left:calc(var(--base-size-24)*-1);pointer-events:none;content:"";border:2px solid var(--borderColor-accent-emphasis);border-radius:6px}div#\:\$p > svg > foreignObject > section .footnotes li:target{color:var(--fgColor-default)}div#\:\$p > svg > foreignObject > section .footnotes .data-footnote-backref g-emoji{font-family:monospace}div#\:\$p > svg > foreignObject > section .pl-c{color:var(--color-prettylights-syntax-comment)}div#\:\$p > svg > foreignObject > section .pl-c1,div#\:\$p > svg > foreignObject > section .pl-s .pl-v{color:var(--color-prettylights-syntax-constant)}div#\:\$p > svg > foreignObject > section .pl-e,div#\:\$p > svg > foreignObject > section .pl-en{color:var(--color-prettylights-syntax-entity)}div#\:\$p > svg > foreignObject > section .pl-s .pl-s1,div#\:\$p > svg > foreignObject > section .pl-smi{color:var(--color-prettylights-syntax-storage-modifier-import)}div#\:\$p > svg > foreignObject > section .pl-ent{color:var(--color-prettylights-syntax-entity-tag)}div#\:\$p > svg > foreignObject > section .pl-k{color:var(--color-prettylights-syntax-keyword)}div#\:\$p > svg > foreignObject > section .pl-pds,div#\:\$p > svg > foreignObject > section .pl-s,div#\:\$p > svg > foreignObject > section .pl-s .pl-pse .pl-s1,div#\:\$p > svg > foreignObject > section .pl-sr,div#\:\$p > svg > foreignObject > section .pl-sr .pl-cce,div#\:\$p > svg > foreignObject > section .pl-sr .pl-sra,div#\:\$p > svg > foreignObject > section .pl-sr .pl-sre{color:var(--color-prettylights-syntax-string)}div#\:\$p > svg > foreignObject > section .pl-smw,div#\:\$p > svg > foreignObject > section .pl-v{color:var(--color-prettylights-syntax-variable)}div#\:\$p > svg > foreignObject > section .pl-bu{color:var(--color-prettylights-syntax-brackethighlighter-unmatched)}div#\:\$p > svg > foreignObject > section .pl-ii{color:var(--color-prettylights-syntax-invalid-illegal-text);background-color:var(--color-prettylights-syntax-invalid-illegal-bg)}div#\:\$p > svg > foreignObject > section .pl-c2{color:var(--color-prettylights-syntax-carriage-return-text);background-color:var(--color-prettylights-syntax-carriage-return-bg)}div#\:\$p > svg > foreignObject > section .pl-sr .pl-cce{font-weight:700;color:var(--color-prettylights-syntax-string-regexp)}div#\:\$p > svg > foreignObject > section .pl-ml{color:var(--color-prettylights-syntax-markup-list)}div#\:\$p > svg > foreignObject > section .pl-mh,div#\:\$p > svg > foreignObject > section .pl-mh .pl-en,div#\:\$p > svg > foreignObject > section .pl-ms{font-weight:700;color:var(--color-prettylights-syntax-markup-heading)}div#\:\$p > svg > foreignObject > section .pl-mi{font-style:italic;color:var(--color-prettylights-syntax-markup-italic)}div#\:\$p > svg > foreignObject > section .pl-mb{font-weight:700;color:var(--color-prettylights-syntax-markup-bold)}div#\:\$p > svg > foreignObject > section .pl-md{color:var(--color-prettylights-syntax-markup-deleted-text);background-color:var(--color-prettylights-syntax-markup-deleted-bg)}div#\:\$p > svg > foreignObject > section .pl-mi1{color:var(--color-prettylights-syntax-markup-inserted-text);background-color:var(--color-prettylights-syntax-markup-inserted-bg)}div#\:\$p > svg > foreignObject > section .pl-mc{color:var(--color-prettylights-syntax-markup-changed-text);background-color:var(--color-prettylights-syntax-markup-changed-bg)}div#\:\$p > svg > foreignObject > section .pl-mi2{color:var(--color-prettylights-syntax-markup-ignored-text);background-color:var(--color-prettylights-syntax-markup-ignored-bg)}div#\:\$p > svg > foreignObject > section .pl-mdr{font-weight:700;color:var(--color-prettylights-syntax-meta-diff-range)}div#\:\$p > svg > foreignObject > section .pl-ba{color:var(--color-prettylights-syntax-brackethighlighter-angle)}div#\:\$p > svg > foreignObject > section .pl-sg{color:var(--color-prettylights-syntax-sublimelinter-gutter-mark)}div#\:\$p > svg > foreignObject > section .pl-corl{text-decoration:underline;color:var(--color-prettylights-syntax-constant-other-reference-link)}div#\:\$p > svg > foreignObject > section [role=button]:focus:not(:focus-visible),div#\:\$p > svg > foreignObject > section [role=tabpanel][tabindex="0"]:focus:not(:focus-visible),div#\:\$p > svg > foreignObject > section a:focus:not(:focus-visible),div#\:\$p > svg > foreignObject > section button:focus:not(:focus-visible),div#\:\$p > svg > foreignObject > section summary:focus:not(:focus-visible){outline:none;box-shadow:none}div#\:\$p > svg > foreignObject > section [tabindex="0"]:focus:not(:focus-visible),div#\:\$p > svg > foreignObject > section details-dialog:focus:not(:focus-visible){outline:none}div#\:\$p > svg > foreignObject > section g-emoji{display:inline-block;min-width:1ch;font-family:Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;font-size:1em;font-style:normal!important;font-weight:var(--base-text-weight-normal, 400);line-height:1;vertical-align:-.075em}div#\:\$p > svg > foreignObject > section g-emoji img{width:1em;height:1em}div#\:\$p > svg > foreignObject > section a:has(>p,>div,>:is(pre, marp-pre),>blockquote){display:block}div#\:\$p > svg > foreignObject > section a:has(>p,>div,>:is(pre, marp-pre),>blockquote):not(:has(.snippet-clipboard-content,>:is(pre, marp-pre))){width:-moz-fit-content;width:fit-content}div#\:\$p > svg > foreignObject > section a:has(>p,>div,>:is(pre, marp-pre),>blockquote):has(.snippet-clipboard-content,>:is(pre, marp-pre)):focus-visible{outline:2px solid var(--focus-outlineColor);outline-offset:2px}div#\:\$p > svg > foreignObject > section .task-list-item{list-style-type:none}div#\:\$p > svg > foreignObject > section .task-list-item label{font-weight:var(--base-text-weight-normal, 400)}div#\:\$p > svg > foreignObject > section .task-list-item.enabled label{cursor:pointer}div#\:\$p > svg > foreignObject > section .task-list-item+.task-list-item{margin-top:var(--base-size-4)}div#\:\$p > svg > foreignObject > section .task-list-item .handle{display:none}div#\:\$p > svg > foreignObject > section .task-list-item-checkbox{margin:0 .2em .25em -1.4em;vertical-align:middle}div#\:\$p > svg > foreignObject > section ul:dir(rtl) .task-list-item-checkbox{margin:0 -1.6em .25em .2em}div#\:\$p > svg > foreignObject > section ol:dir(rtl) .task-list-item-checkbox{margin:0 -1.6em .25em .2em}div#\:\$p > svg > foreignObject > section .contains-task-list:focus-within .task-list-item-convert-container,div#\:\$p > svg > foreignObject > section .contains-task-list:hover .task-list-item-convert-container{display:block;width:auto;height:24px;overflow:visible;clip-path:none}div#\:\$p > svg > foreignObject > section ::-webkit-calendar-picker-indicator{filter:invert(50%)}div#\:\$p > svg > foreignObject > section .markdown-alert{padding:var(--base-size-8) var(--base-size-16);margin-bottom:var(--base-size-16);color:inherit;border-left:.25em solid var(--borderColor-default)}div#\:\$p > svg > foreignObject > section .markdown-alert>:first-child{margin-top:0}div#\:\$p > svg > foreignObject > section .markdown-alert>:last-child{margin-bottom:0}div#\:\$p > svg > foreignObject > section .markdown-alert .markdown-alert-title{display:flex;font-weight:var(--base-text-weight-medium, 500);align-items:center;line-height:1}div#\:\$p > svg > foreignObject > section .markdown-alert.markdown-alert-note{border-left-color:var(--borderColor-accent-emphasis)}div#\:\$p > svg > foreignObject > section .markdown-alert.markdown-alert-note .markdown-alert-title{color:var(--fgColor-accent)}div#\:\$p > svg > foreignObject > section .markdown-alert.markdown-alert-important{border-left-color:var(--borderColor-done-emphasis)}div#\:\$p > svg > foreignObject > section .markdown-alert.markdown-alert-important .markdown-alert-title{color:var(--fgColor-done)}div#\:\$p > svg > foreignObject > section .markdown-alert.markdown-alert-warning{border-left-color:var(--borderColor-attention-emphasis)}div#\:\$p > svg > foreignObject > section .markdown-alert.markdown-alert-warning .markdown-alert-title{color:var(--fgColor-attention)}div#\:\$p > svg > foreignObject > section .markdown-alert.markdown-alert-tip{border-left-color:var(--borderColor-success-emphasis)}div#\:\$p > svg > foreignObject > section .markdown-alert.markdown-alert-tip .markdown-alert-title{color:var(--fgColor-success)}div#\:\$p > svg > foreignObject > section .markdown-alert.markdown-alert-caution{border-left-color:var(--borderColor-danger-emphasis)}div#\:\$p > svg > foreignObject > section .markdown-alert.markdown-alert-caution .markdown-alert-title{color:var(--fgColor-danger)}div#\:\$p > svg > foreignObject > section>:first-child>.heading-element:first-child{margin-top:0!important}div#\:\$p > svg > foreignObject > section .highlight :is(pre, marp-pre):has(+.zeroclipboard-container){min-height:52px}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){color:var(--h1-color);font-size:1.6em}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2){border-bottom:none}div#\:\$p > svg > foreignObject > section :is(h2, marp-h2){font-size:1.3em}div#\:\$p > svg > foreignObject > section :is(h3, marp-h3){font-size:1.1em}div#\:\$p > svg > foreignObject > section :is(h4, marp-h4){font-size:1.05em}div#\:\$p > svg > foreignObject > section :is(h5, marp-h5){font-size:1em}div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){font-size:.9em}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{font-weight:inherit;color:var(--heading-strong-color)}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6)::part(auto-scaling){max-height:563px}div#\:\$p > svg > foreignObject > section hr{height:0;padding-top:.25em}div#\:\$p > svg > foreignObject > section img{background-color:transparent}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){border:1px solid var(--borderColor-default);line-height:1.15;overflow:visible}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)::part(auto-scaling){max-height:529px}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs){color:var(--color-prettylights-syntax-storage-modifier-import)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-doctag),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-keyword),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-meta .hljs-keyword),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-template-tag),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-template-variable),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-type),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-variable.language_){color:var(--color-prettylights-syntax-keyword)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-title),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-title.class_),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-title.class_.inherited__),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-title.function_){color:var(--color-prettylights-syntax-entity)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-attr),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-attribute),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-literal),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-meta),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-number),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-operator),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-selector-attr),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-selector-class),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-selector-id),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-variable){color:var(--color-prettylights-syntax-constant)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-meta .hljs-string),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-regexp),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-string){color:var(--color-prettylights-syntax-string)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-built_in),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-symbol){color:var(--color-prettylights-syntax-variable)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-code),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-comment),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-formula){color:var(--color-prettylights-syntax-comment)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-name),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-quote),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-selector-pseudo),div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-selector-tag){color:var(--color-prettylights-syntax-entity-tag)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-subst){color:var(--color-prettylights-syntax-storage-modifier-import)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-section){font-weight:700;color:var(--color-prettylights-syntax-markup-heading)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-bullet){color:var(--color-prettylights-syntax-markup-list)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-emphasis){font-style:italic;color:var(--color-prettylights-syntax-markup-italic)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-strong){font-weight:700;color:var(--color-prettylights-syntax-markup-bold)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-addition){color:var(--color-prettylights-syntax-markup-inserted-text);background-color:var(--color-prettylights-syntax-markup-inserted-bg)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) :where(.hljs-deletion){color:var(--color-prettylights-syntax-markup-deleted-text);background-color:var(--color-prettylights-syntax-markup-deleted-bg)}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header{margin:0;position:absolute;left:30px;color:var(--header-footer-color);font-size:18px}div#\:\$p > svg > foreignObject > section header{top:21px}div#\:\$p > svg > foreignObject > section footer{bottom:21px}div#\:\$p > svg > foreignObject > section{--h1-color:light-dark(#246, #cee7ff);--header-footer-color:light-dark(hsla(0,0%,40%,.75), hsla(0,0%,60%,.75));--heading-strong-color:light-dark(#48c, #7bf);--paginate-color:light-dark(#777, #999);--base-size-4:4px;--base-size-8:8px;--base-size-16:16px;--base-size-24:24px;--base-size-40:40px;display:block;font-size:29px;height:720px;padding:78.5px;place-content:safe center center;width:1280px;flex-flow:column nowrap;align-items:stretch}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size:29px}div#\:\$p > svg > foreignObject > section>:last-child,div#\:\$p > svg > foreignObject > section[data-footer]>:nth-last-child(2){margin-bottom:0}div#\:\$p > svg > foreignObject > section>:first-child,div#\:\$p > svg > foreignObject > section>header:first-child+*{margin-top:0}div#\:\$p > svg > foreignObject > section:after{position:absolute;padding:0;right:30px;bottom:21px;font-size:24px;color:var(--paginate-color)}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:24px}div#\:\$p > svg > foreignObject > section[data-color] :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section[data-color] :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section[data-color] :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section[data-color] :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section[data-color] :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section[data-color] :is(h6, marp-h6){color:currentcolor}div#\:\$p > svg > foreignObject > :where(section){container-type:size}div#\:\$p > svg > foreignObject > section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}div#\:\$p > svg > foreignObject > :where(section):not([\20 root]){--ink: #17212b;--muted: #607080;--paper: #ffffff;--panel: #eef4f7;--accent: #087e8b;--accent-dark: #07505a;--warm: #e07a3f;--line: #d5e1e5;--code: #17212b;}div#\:\$p > svg > foreignObject > section{box-sizing:border-box;width:1280px;height:720px;overflow:hidden;padding:62px 72px 78px;color:var(--ink);background:var(--paper);font-family:"Source Han Sans SC", "Microsoft YaHei", sans-serif;font-size:27px;line-height:1.25}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size: 27px}div#\:\$p > svg > foreignObject > section::before{content:"";position:absolute;inset:0 0 auto;height:8px;background:var(--accent)}div#\:\$p > svg > foreignObject > section::after{color:var(--muted);right:40px;bottom:20px;font-size:14px}div#\:\$p > svg > foreignObject > section::after{--marpit-root-font-size: 14px}div#\:\$p > svg > foreignObject > section header, div#\:\$p > svg > foreignObject > section footer{position:absolute;color:var(--muted);font-size:14px}div#\:\$p > svg > foreignObject > section header{top:25px;left:72px;font-weight:600}div#\:\$p > svg > foreignObject > section footer{left:72px;bottom:20px}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1), div#\:\$p > svg > foreignObject > section :is(h2, marp-h2), div#\:\$p > svg > foreignObject > section :is(h3, marp-h3){margin:0 0 0.45em;line-height:1.08;letter-spacing:0}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:46px;color:var(--accent-dark)}div#\:\$p > svg > foreignObject > section :is(h2, marp-h2){font-size:36px;color:var(--accent-dark)}div#\:\$p > svg > foreignObject > section :is(h3, marp-h3){font-size:28px;color:var(--accent)}div#\:\$p > svg > foreignObject > section p, div#\:\$p > svg > foreignObject > section ul, div#\:\$p > svg > foreignObject > section ol, div#\:\$p > svg > foreignObject > section table, div#\:\$p > svg > foreignObject > section blockquote, div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){margin:0.4em 0}div#\:\$p > svg > foreignObject > section li{margin:0.18em 0}div#\:\$p > svg > foreignObject > section strong{color:var(--accent-dark)}div#\:\$p > svg > foreignObject > section blockquote{padding:14px 20px;border-left:6px solid var(--warm);background:var(--panel)}div#\:\$p > svg > foreignObject > section table{width:100%;border-collapse:collapse;font-size:22px}div#\:\$p > svg > foreignObject > section th, div#\:\$p > svg > foreignObject > section td{padding:9px 12px;border:1px solid var(--line);text-align:left}div#\:\$p > svg > foreignObject > section th{color:white;background:var(--accent-dark)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){padding:16px 20px;background:var(--code);color:#eff7f8;font-size:20px}div#\:\$p > svg > foreignObject > section code{color:var(--accent-dark);background:var(--panel)}div#\:\$p > svg > foreignObject > section.lead{justify-content:center;background:var(--accent-dark);color:#fff}div#\:\$p > svg > foreignObject > section.lead :is(h1, marp-h1), div#\:\$p > svg > foreignObject > section.lead :is(h2, marp-h2){color:#fff}div#\:\$p > svg > foreignObject > section.lead :is(h1, marp-h1){font-size:58px}div#\:\$p > svg > foreignObject > section.result-slide{padding-top:58px}div#\:\$p > svg > foreignObject > section.result-slide :is(h1, marp-h1){margin-bottom:0.25em}div#\:\$p > svg > foreignObject > section .result-pair{display:flex;gap:24px;align-items:center;justify-content:center;height:485px}div#\:\$p > svg > foreignObject > section .result-pair img{max-width:48%;max-height:455px;object-fit:contain}div#\:\$p > svg > foreignObject > section .result-pair.compact{height:340px;gap:18px}div#\:\$p > svg > foreignObject > section .result-pair.compact img{max-height:325px}div#\:\$p > svg > foreignObject > section .result-single{display:flex;align-items:center;justify-content:center;height:500px}div#\:\$p > svg > foreignObject > section .result-single img{max-width:92%;max-height:470px;object-fit:contain}div#\:\$p > svg > foreignObject > section .result-single.compact{height:330px}div#\:\$p > svg > foreignObject > section .result-single.compact img{max-height:310px}div#\:\$p > svg > foreignObject > section .split.compact img{max-height:385px}div#\:\$p > svg > foreignObject > section .single-figure{display:flex;align-items:center;justify-content:center;height:450px;margin-top:12px}div#\:\$p > svg > foreignObject > section .single-figure img{display:block;max-width:94%;max-height:430px;object-fit:contain;background:#eef2f1}div#\:\$p > svg > foreignObject > section.lead :is(h2, marp-h2){color:#d9eef0;font-weight:400}div#\:\$p > svg > foreignObject > section .split{display:grid;grid-template-columns:minmax(0, 0.9fr) minmax(0, 1.1fr);gap:34px;align-items:center;margin-top:18px}div#\:\$p > svg > foreignObject > section .split.reverse{grid-template-columns:minmax(0, 1.1fr) minmax(0, 0.9fr)}div#\:\$p > svg > foreignObject > section .split :is(h2, marp-h2), div#\:\$p > svg > foreignObject > section .split :is(h3, marp-h3), div#\:\$p > svg > foreignObject > section .split p, div#\:\$p > svg > foreignObject > section .split ul{margin-top:0}div#\:\$p > svg > foreignObject > section .split figure{margin:0}div#\:\$p > svg > foreignObject > section .split img{display:block;width:100%;max-height:465px;object-fit:contain;background:#eef2f1}div#\:\$p > svg > foreignObject > section .split figcaption{margin-top:8px;color:var(--muted);font-size:14px}div#\:\$p > svg > foreignObject > section .process-flow{display:flex;align-items:stretch;gap:10px;margin:28px 0 20px}div#\:\$p > svg > foreignObject > section .process-flow :is(span, marp-span){flex:1;display:flex;align-items:center;justify-content:center;min-height:84px;padding:12px;border-top:4px solid var(--accent);background:var(--panel);color:var(--accent-dark);font-size:20px;font-weight:700;text-align:center}div#\:\$p > svg > foreignObject > section .process-flow :is(span, marp-span)::after{content:"→";margin-left:12px;color:var(--warm)}div#\:\$p > svg > foreignObject > section .process-flow :is(span, marp-span):last-child::after{content:"";margin:0}div#\:\$p > svg > foreignObject > section .slide-grid{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:18px 28px;margin-top:24px}div#\:\$p > svg > foreignObject > section .slide-grid > div{padding:18px 20px;border-left:4px solid var(--accent);background:var(--panel)}div#\:\$p > svg > foreignObject > section .slide-grid :is(h3, marp-h3){margin:0 0 8px}div#\:\$p > svg > foreignObject > section .slide-grid p{margin:0;font-size:20px}div#\:\$p > svg > foreignObject > section .check-list li{margin:0.3em 0}div#\:\$p > svg > foreignObject > section .reference-list{columns:2;column-gap:42px;font-size:20px}div#\:\$p > svg > foreignObject > section section.reference-list{--marpit-root-font-size: 20px}div#\:\$p > svg > foreignObject > section .reference-list li{break-inside:avoid;margin-bottom:8px}div#\:\$p > svg > foreignObject > section .small-note{color:var(--muted);font-size:16px}div#\:\$p > svg > foreignObject > section section.small-note{--marpit-root-font-size: 16px}div#\:\$p > svg > foreignObject > section .emphasis-box{margin-top:24px;padding:18px 22px;border-left:6px solid var(--warm);background:var(--panel);color:var(--ink);font-size:21px}div#\:\$p > svg > foreignObject > section section.emphasis-box{--marpit-root-font-size: 21px}div#\:\$p > svg > foreignObject > section .icon-inline{display:inline-block!important;width:1em;height:1em;margin:0 0.25em 0 0!important;vertical-align:-0.12em;object-fit:contain}div#\:\$p > svg > foreignObject > section .icon-grid{display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:16px;margin-top:22px}div#\:\$p > svg > foreignObject > section .icon-grid > div{padding:17px 18px;border-top:4px solid var(--accent);background:var(--panel)}div#\:\$p > svg > foreignObject > section .icon-grid img{display:block;width:34px;height:34px;margin:0 0 9px;object-fit:contain}div#\:\$p > svg > foreignObject > section .icon-grid :is(h3, marp-h3){margin:0 0 6px;font-size:22px}div#\:\$p > svg > foreignObject > section .icon-grid p{margin:0;color:var(--muted);font-size:17px;line-height:1.45}div#\:\$p > svg > foreignObject > section .icon-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}div#\:\$p > svg > foreignObject > section .icon-strip img{display:block;width:34px;height:34px;margin:0;padding:8px;border:1px solid var(--line);background:var(--panel);object-fit:contain}div#\:\$p > svg > foreignObject > section .icon-callout{display:flex;gap:16px;align-items:flex-start;margin-top:22px;padding:17px 20px;border-left:5px solid var(--warm);background:var(--panel)}div#\:\$p > svg > foreignObject > section .icon-callout img{display:block;width:32px;height:32px;margin:0;flex:0 0 auto}div#\:\$p > svg > foreignObject > section .icon-callout p{margin:0;font-size:20px;line-height:1.5}div#\:\$p > svg > foreignObject > section{width:1280px;height:720px}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]{columns:initial!important;display:block!important;padding:0!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::after, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::after{display:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction="vertical"]{flex-direction:column}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split] > div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split, 50%)}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split="right"] > div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure > figcaption{position:absolute;border:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;white-space:nowrap;width:1px}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"], div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"]{background:transparent!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"], div#\:\$p > svg[data-marpit-svg] > foreignObject[data-marpit-advanced-background="pseudo"]{pointer-events:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background-split]{width:100%;height:100%}
+</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="overview" tabindex="-1" title="Toggle overview view (o)">Toggle overview view</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id=":$p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-class="lead" data-theme="microelectronics" lang="en-US" class="lead" data-marpit-pagination="1" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--class:lead;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+
+<h1 id="%E5%99%A8%E4%BB%B6%E7%BB%93%E6%9E%84%E4%B8%8E%E7%89%A9%E7%90%86%E6%A8%A1%E5%9E%8B">器件结构与物理模型</h1>
+<h2 id="%E4%BB%8E%E7%BD%91%E6%A0%BC%E6%9D%90%E6%96%99%E5%8F%82%E6%95%B0%E5%88%B0%E5%8A%9F%E7%8E%87%E5%99%A8%E4%BB%B6%E7%89%B9%E6%80%A7%E4%B8%8E%E7%BB%93%E6%9E%9C%E8%AF%81%E6%8D%AE">从网格、材料参数到功率器件特性与结果证据</h2>
+<p>课程组 · 微电子器件建模与仿真</p>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="2" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E6%9C%AC%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87">本章学习目标</h1>
+<div class="icon-grid">
+<div><img src="assets/icons/grid-3x3.svg" alt="结构图标" /><h3>建结构</h3><p>用 ATLAS 或 DevEdit 形成可计算结构。</p></div>
+<div><img src="assets/icons/atom.svg" alt="材料图标" /><h3>定参数</h3><p>说明材料参数的物理含义与来源。</p></div>
+<div><img src="assets/icons/settings-2.svg" alt="模型图标" /><h3>选模型</h3><p>按功率器件工作区选择物理模型。</p></div>
+<div><img src="assets/icons/network.svg" alt="接触图标" /><h3>设边界</h3><p>正确描述接触和界面。</p></div>
+<div><img src="assets/icons/chart-line.svg" alt="特性图标" /><h3>取特性</h3><p>获取 DC、AC、瞬态和热响应。</p></div>
+<div><img src="assets/icons/circle-check-big.svg" alt="证据图标" /><h3>验结果</h3><p>用结构、日志和空间分布形成证据链。</p></div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="3" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E4%B8%89%E8%8A%82%E4%B8%BB%E7%BA%BF%E8%BF%9E%E6%8E%A5%E7%BB%93%E6%9E%84%E7%89%A9%E7%90%86%E5%92%8C%E8%AF%81%E6%8D%AE">三节主线连接结构、物理和证据</h1>
+<div class="process-flow">
+<span>第1节<br />结构与网格</span>
+<span>第2节<br />参数与模型</span>
+<span>第3节<br />特性与结果</span>
+</div>
+<div class="icon-strip">
+<img src="assets/icons/layers-3.svg" alt="区域" />
+<img src="assets/icons/cpu.svg" alt="电极" />
+<img src="assets/icons/atom.svg" alt="材料" />
+<img src="assets/icons/settings-2.svg" alt="模型" />
+<img src="assets/icons/scan-line.svg" alt="结果" />
+</div>
+<ul>
+<li>第1节回答：器件在空间上是什么？</li>
+<li>第2节回答：内部遵循什么物理？</li>
+<li>第3节回答：端特性和空间结果如何证明设计判断？</li>
+</ul>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-class="lead" data-theme="microelectronics" lang="en-US" class="lead" data-marpit-pagination="4" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--class:lead;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+
+<h1 id="%E7%AC%AC1%E8%8A%82">第1节</h1>
+<h2 id="%E5%99%A8%E4%BB%B6%E7%BB%93%E6%9E%84%E7%94%9F%E6%88%90%E5%87%A0%E4%BD%95%E4%B8%8E%E7%BD%91%E6%A0%BC">器件结构生成、几何与网格</h2>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="5" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%BB%93%E6%9E%84%E6%98%AF%E4%B8%80%E4%B8%AA%E5%B8%A6%E7%89%A9%E7%90%86%E5%B1%9E%E6%80%A7%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B">结构是一个带物理属性的数据模型</h1>
+<p><img src="assets/icons/layers-3.svg" class="icon-inline" alt="结构图标" />结构不是一张示意图，而是区域、材料、电极、掺杂和网格共同组成的数据对象。</p>
+<div class="slide-grid">
+<div><h3>几何</h3><p>边界、面积、厚度、结深和终端形状。</p></div>
+<div><h3>材料</h3><p>每个区域属于半导体、绝缘体或导体。</p></div>
+<div><h3>掺杂</h3><p>施主、受主及空间分布决定结和漂移区。</p></div>
+<div><h3>离散</h3><p>网格把连续结构变成有限个未知量。</p></div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="6" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%BB%93%E6%9E%84%E7%94%9F%E6%88%90%E5%8C%85%E5%90%AB%E4%BA%94%E4%B8%AA%E7%9B%B8%E4%BA%92%E5%88%B6%E7%BA%A6%E7%9A%84%E5%B1%82%E6%AC%A1">结构生成包含五个相互制约的层次</h1>
+<div class="icon-grid">
+<div><img src="assets/icons/layers-3.svg" alt="区域图标" /><h3>REGION</h3><p>划定几何与材料域。</p></div>
+<div><img src="assets/icons/atom.svg" alt="材料图标" /><h3>MATERIAL</h3><p>赋予区域物性参数。</p></div>
+<div><img src="assets/icons/cpu.svg" alt="电极图标" /><h3>ELECTRODE</h3><p>建立外部电学边界。</p></div>
+<div><img src="assets/icons/database.svg" alt="掺杂图标" /><h3>DOPING</h3><p>形成 PN 结和漂移区。</p></div>
+<div><img src="assets/icons/grid-3x3.svg" alt="网格图标" /><h3>MESH</h3><p>决定空间分辨率和成本。</p></div>
+<div><img src="assets/icons/circle-check-big.svg" alt="检查图标" /><h3>闭合检查</h3><p>无重叠、无空洞、边界可追踪。</p></div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="7" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E4%B8%89%E7%A7%8D%E7%BB%93%E6%9E%84%E6%9D%A5%E6%BA%90%E5%AF%B9%E5%BA%94%E4%B8%8D%E5%90%8C%E5%8F%AF%E8%BF%BD%E6%BA%AF%E6%80%A7">三种结构来源对应不同可追溯性</h1>
+<div class="process-flow">
+<span>ATHENA<br />工艺结果</span>
+<span>DevEdit<br />结构编辑</span>
+<span>ATLAS<br />命令描述</span>
+<span>统一 .str</span>
+</div>
+<ul>
+<li>工艺生成结构保留工艺历史与掺杂来路。</li>
+<li>DevEdit 适合复杂几何、局部修改和三维。</li>
+<li>ATLAS 命令描述适合参数化和教学示例。</li>
+<li>无论来源如何，都应保存输入和结构文件。</li>
+</ul>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="8" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="atlas-%E7%BB%93%E6%9E%84%E6%B5%81%E7%A8%8B%E5%85%88%E5%AE%9A%E4%B9%89%E7%A9%BA%E9%97%B4%E5%86%8D%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7">ATLAS 结构流程先定义空间再定义属性</h1>
+<div class="process-flow">
+<span>MESH</span>
+<span>REGION</span>
+<span>ELECTRODE</span>
+<span>DOPING</span>
+<span>SAVE</span>
+</div>
+<pre><code>mesh space.mult=1.0
+region num=1 silicon
+electrode name=anode top
+electrode name=cathode bottom
+doping n.type conc=5e13 uniform
+save outf=device_0.str</code></pre>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="9" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="mesh-%E5%90%8C%E6%97%B6%E6%8E%A7%E5%88%B6%E5%85%A8%E5%B1%80%E4%B8%8E%E5%B1%80%E9%83%A8%E5%88%86%E8%BE%A8%E7%8E%87">MESH 同时控制全局与局部分辨率</h1>
+<div class="split">
+<div>
+<h3>三类命令</h3>
+<ul>
+<li><code>mesh</code>：整体缩放或读入结构网格。</li>
+<li><code>x.mesh</code>：定义横向位置和间距。</li>
+<li><code>y.mesh</code>：定义纵向位置和间距。</li>
+<li><code>eliminate</code>：删除部分网格线以降成本。</li>
+</ul>
+</div>
+<div class="icon-callout">
+<img src="assets/icons/grid-3x3.svg" alt="网格图标" />
+<p>功率器件的结区、栅氧界面、表面终端和高场边缘通常需要局部加密。</p>
+</div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="10" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%BD%91%E6%A0%BC%E8%B4%A8%E9%87%8F%E7%94%B1%E7%89%A9%E7%90%86%E6%A2%AF%E5%BA%A6%E8%80%8C%E4%B8%8D%E6%98%AF%E5%B9%B3%E5%9D%87%E9%97%B4%E8%B7%9D%E5%86%B3%E5%AE%9A">网格质量由物理梯度而不是平均间距决定</h1>
+<div class="slide-grid">
+<div><h3>结区</h3><p>耗尽层和载流子梯度要求足够细的网格。</p></div>
+<div><h3>界面</h3><p>材料界面和薄氧化层不能跨越少数单元。</p></div>
+<div><h3>高场区</h3><p>终端拐角与结曲率附近要解析电场峰值。</p></div>
+<div><h3>体区</h3><p>低梯度漂移区可以适当放粗。</p></div>
+</div>
+<div class="emphasis-box">网格加密的目标是解析物理梯度，不是让整张图看起来更密。</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="11" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="eliminate-%E7%94%A8%E4%BA%8E%E5%9C%A8%E5%B7%B2%E6%9C%89%E7%BD%91%E6%A0%BC%E4%B8%8A%E9%99%8D%E4%BD%8E%E5%AF%86%E5%BA%A6">ELIMINATE 用于在已有网格上降低密度</h1>
+<pre><code>eliminate columns x.min=0.2 x.max=1.4 \
+  y.min=0.2 y.max=0.7</code></pre>
+<ul>
+<li>本节说明其基础行为是按区域隔一条删除一条网格线。</li>
+<li>适合移除远离关键物理区域的过密网格。</li>
+<li>不能跨越结区、薄层或高场区随意降密。</li>
+<li>降密后必须比较关键指标与原始网格的差异。</li>
+</ul>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="12" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="region-%E5%BF%85%E9%A1%BB%E5%BD%A2%E6%88%90%E4%B8%8D%E9%87%8D%E5%8F%A0%E4%B8%8D%E7%95%99%E6%B4%9E%E7%9A%84%E6%9D%90%E6%96%99%E5%9F%9F">REGION 必须形成不重叠、不留洞的材料域</h1>
+<pre><code>region num=1 x.min=0 x.max=10 \
+  y.min=0 y.max=5 material=silicon
+region num=2 x.min=0 x.max=10 \
+  y.min=5 y.max=5.2 material=oxide</code></pre>
+<ul>
+<li>区域编号用于后续材料、掺杂和截线引用。</li>
+<li>共享边界是允许的，但区域体积不应不可解释地重叠。</li>
+<li>材料域之外不能留下未定义空腔。</li>
+<li>结构图异常时先核对 region 覆盖。</li>
+</ul>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="13" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E5%A4%8D%E6%9D%82%E5%8A%9F%E7%8E%87%E7%BB%93%E6%9E%84%E6%9B%B4%E8%A6%81%E6%98%BE%E5%BC%8F%E6%A0%B8%E5%AF%B9%E6%9D%90%E6%96%99%E5%9F%9F">复杂功率结构更要显式核对材料域</h1>
+<div class="icon-grid">
+<div><img src="assets/icons/box.svg" alt="外延层图标" /><h3>外延层</h3><p>器件耐压和漂移区的主体。</p></div>
+<div><img src="assets/icons/layers-3.svg" alt="氧化层图标" /><h3>场氧</h3><p>影响表面电场与终端耗尽。</p></div>
+<div><img src="assets/icons/network.svg" alt="钝化层图标" /><h3>钝化层</h3><p>改变界面电荷与表面漏电路径。</p></div>
+<div><img src="assets/icons/cpu.svg" alt="金属图标" /><h3>金属/接触</h3><p>定义电极、势垒和电流路径。</p></div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="14" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="electrode-%E8%AF%AD%E6%B3%95%E8%A6%81%E5%90%8C%E6%97%B6%E6%8C%87%E5%AE%9A%E5%90%8D%E7%A7%B0%E5%92%8C%E7%A9%BA%E9%97%B4%E8%8C%83%E5%9B%B4">ELECTRODE 语法要同时指定名称和空间范围</h1>
+<pre><code>electrode name=anode top
+electrode name=cathode bottom
+electrode name=gate x.min=0.25 length=0.5
+electrode name=source y.min=0 left length=0.25
+electrode name=drain y.min=0 right length=0.25</code></pre>
+<p><img src="assets/icons/cpu.svg" class="icon-inline" alt="电极图标" />电极名称进入后续 <code>solve</code>、<code>contact</code> 和日志列，必须唯一且稳定。</p>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="15" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%94%B5%E6%9E%81%E6%88%AA%E5%9B%BE%E5%85%88%E7%9C%8B%E7%AB%AF%E7%82%B9%E6%98%AF%E5%90%A6%E8%90%BD%E5%9C%A8%E6%AD%A3%E7%A1%AE%E8%BE%B9%E7%95%8C">电极截图先看端点是否落在正确边界</h1>
+<div class="split">
+<div>
+<h3>四项核对</h3>
+<ol>
+<li>电极名称是否唯一。</li>
+<li>覆盖区间与版图是否一致。</li>
+<li>端点是否接触目标材料。</li>
+<li>是否误把浮空金属当成电极。</li>
+</ol>
+</div>
+<figure>
+<img src="assets/ch07/electrode.jpg" alt="ATLAS电极语法、区间和端点示例" />
+<figcaption>电极名称、长度、左右端与上下表面示例</figcaption>
+</figure>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="16" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="doping-%E6%94%AF%E6%8C%81%E5%9D%87%E5%8C%80%E8%A7%A3%E6%9E%90%E5%92%8C%E5%A4%96%E9%83%A8%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%83">DOPING 支持均匀、解析和外部数据分布</h1>
+<div class="icon-grid">
+<div><img src="assets/icons/layers-3.svg" alt="均匀掺杂图标" /><h3>Uniform</h3><p>背景浓度、外延层和简化衬底。</p></div>
+<div><img src="assets/icons/chart-spline.svg" alt="高斯图标" /><h3>Gaussian</h3><p>峰值、结深或特征长度描述。</p></div>
+<div><img src="assets/icons/activity.svg" alt="误差函数图标" /><h3>Erfc</h3><p>扩散型或理想化剖面。</p></div>
+<div><img src="assets/icons/database.svg" alt="文件图标" /><h3>文件导入</h3><p>保留工艺或测量得到的分布。</p></div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="17" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E6%8E%BA%E6%9D%82%E6%95%B0%E6%8D%AE%E8%A6%81%E4%B8%8E%E6%B5%8B%E9%87%8F%E6%88%96%E5%B7%A5%E8%89%BA%E5%89%96%E9%9D%A2%E5%8C%BA%E5%88%86%E6%9D%A5%E6%BA%90">掺杂数据要与测量或工艺剖面区分来源</h1>
+<div class="split">
+<div>
+<h3>判断顺序</h3>
+<ul>
+<li>这条剖面来自命令、工艺仿真还是测量？</li>
+<li>横轴深度和纵轴浓度单位是什么？</li>
+<li>峰值、结深和尾部分布是否合理？</li>
+<li>校准是否使用了独立数据？</li>
+</ul>
+</div>
+<figure>
+<img src="assets/silvaco-original/image29.jpeg" alt="不同注入能量下铝浓度剖面的计算值与SIMS测量值" />
+<figcaption>计算剖面与 SIMS 数据的深度和浓度对比</figcaption>
+</figure>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="18" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E4%BA%8C%E6%9E%81%E7%AE%A1%E7%BB%93%E6%9E%84%E4%BE%8B%E5%AD%90%E5%8F%AF%E4%BB%A5%E9%80%90%E6%9D%A1%E6%98%A0%E5%B0%84%E5%88%B0%E5%9B%BE%E5%83%8F">二极管结构例子可以逐条映射到图像</h1>
+<div class="split">
+<div>
+<pre><code>mesh
+x.mesh loc=0.00 spac=0.05
+x.mesh loc=0.10 spac=0.05
+y.mesh loc=0.00 spac=0.20
+y.mesh loc=1.00 spac=0.01
+region number=1 x.min=0 x.max=0.1 \
+  y.min=0 y.max=1 material=silicon
+electrode name=anode top
+electrode name=cathode bottom
+doping uniform conc=1e18 n.type region=1
+save outfile=diode_0.str</code></pre>
+</div>
+<figure>
+<img src="assets/ch06/diode-structure.jpg" alt="ATLAS二极管结构命令与TonyPlot结构" />
+<figcaption>结构声明、材料区域和电极位置的对应关系</figcaption>
+</figure>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="19" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="devedit-%E7%9A%84%E6%B5%81%E7%A8%8B%E6%98%AF%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%8C%BA%E5%9F%9F%E7%BD%91%E6%A0%BC%E4%BF%9D%E5%AD%98">DevEdit 的流程是工作区、区域、网格、保存</h1>
+<div class="process-flow">
+<span>Work area</span>
+<span>Defining region</span>
+<span>Impurity</span>
+<span>Mesh creation</span>
+<span>Save structure</span>
+</div>
+<ul>
+<li>工作区限定几何范围。</li>
+<li>区域由材料、编号和多边形点集定义。</li>
+<li>杂质按区域和空间范围赋值。</li>
+<li>网格约束在结构完成后生成。</li>
+<li>最后保存为 ATLAS 可读取的结构文件。</li>
+</ul>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="20" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="devedit-%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%9D%82%E8%B4%A8%E8%A6%81%E6%8C%89%E5%8C%BA%E5%9F%9F%E7%BC%96%E5%8F%B7%E7%BB%84%E7%BB%87">DevEdit 区域和杂质要按区域编号组织</h1>
+<pre><code>region reg=1 mat=silicon \
+  points="0,0 1,0 1,1 0,1 0,0"
+impurity id=1 region.id=1 imp=Donors \
+  x1=0 x2=1 y1=0 y2=1 \
+  peak.value=1e18 ref.value=1e12 \
+  comb.func=Multiply</code></pre>
+<ul>
+<li>区域编号和杂质 <code>region.id</code> 必须一致。</li>
+<li>点集应形成闭合多边形。</li>
+<li>掺杂分布函数和空间边界要同时解释。</li>
+</ul>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="21" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="devedit-%E7%BD%91%E6%A0%BC%E7%BA%A6%E6%9D%9F%E6%8E%A7%E5%88%B6%E4%B8%89%E8%A7%92%E5%BD%A2%E8%B4%A8%E9%87%8F%E5%92%8C%E5%B0%BA%E5%AF%B8">DevEdit 网格约束控制三角形质量和尺寸</h1>
+<pre><code>base.mesh height=0.1 width=0.125
+bound.cond max.slope=28 max.ratio=300
+constr.mesh mat.type=semiconductor \
+  max.angle=180 max.ratio=200 \
+  max.height=1 max.width=1 \
+  min.height=0.001 min.width=0.001</code></pre>
+<p><img src="assets/icons/grid-3x3.svg" class="icon-inline" alt="网格图标" />局部 <code>constr.mesh</code> 可在结区、表面和薄层附近规定更严格的高度和宽度。</p>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="22" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="atlas-%E4%B8%8E-devedit-%E5%BA%94%E5%9B%B4%E7%BB%95%E5%8F%AF%E5%A4%8D%E7%8E%B0%E6%80%A7%E9%80%89%E6%8B%A9">ATLAS 与 DevEdit 应围绕可复现性选择</h1>
+<div class="split">
+<div>
+<h3>选择依据</h3>
+<ul>
+<li>结构是否参数化、批量变化？</li>
+<li>是否需要复杂局部编辑或三维？</li>
+<li>谁负责维护结构和命令？</li>
+<li>能否从源文件重建同一个 <code>.str</code>？</li>
+</ul>
+</div>
+<figure>
+<img src="assets/silvaco-original/image26.jpeg" alt="TonyPlot3D显示复杂三维器件网格、材料与掺杂" />
+<figcaption>复杂几何需要三维编辑和网格检查，但计算成本更高</figcaption>
+</figure>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="23" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%BB%93%E6%9E%84%E4%BF%9D%E5%AD%98%E5%89%8D%E8%A6%81%E5%AE%8C%E6%88%90%E5%9B%9B%E7%B1%BB%E5%9B%9E%E5%BD%92%E6%A3%80%E6%9F%A5">结构保存前要完成四类回归检查</h1>
+<div class="icon-grid">
+<div><img src="assets/icons/box.svg" alt="几何图标" /><h3>几何连续</h3><p>区域边界、外延层和终端没有意外裂缝。</p></div>
+<div><img src="assets/icons/database.svg" alt="掺杂图标" /><h3>掺杂合理</h3><p>净掺杂极性、结深和背景浓度可解释。</p></div>
+<div><img src="assets/icons/cpu.svg" alt="电极图标" /><h3>电极覆盖</h3><p>端点和接触长度符合版图或测试定义。</p></div>
+<div><img src="assets/icons/grid-3x3.svg" alt="网格图标" /><h3>网格可用</h3><p>关键梯度附近有足够分辨率。</p></div>
+</div>
+<p><img src="assets/icons/file-code-2.svg" class="icon-inline" alt="文件图标" />保存结构时同步记录生成命令、来源版本和本次检查结论。</p>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="24" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%AC%AC1%E8%8A%82%E6%A3%80%E6%9F%A5%E7%82%B9%E7%BB%93%E6%9E%84%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95">第1节检查点：结构验收清单</h1>
+<div class="icon-callout">
+<img src="assets/icons/circle-check-big.svg" alt="检查图标" />
+<p>看到一张结构图时，能用两分钟回答：从哪里来、区域是否闭合、电极接触谁、掺杂是什么、网格为什么这样密。</p>
+</div>
+<ol>
+<li>保存命令或上游结构文件。</li>
+<li>显示材料、净掺杂和电极。</li>
+<li>在关键结区做一维截线。</li>
+<li>标出局部网格加密区域。</li>
+<li>记录已知局限与待校准参数。</li>
+</ol>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-class="lead" data-theme="microelectronics" lang="en-US" class="lead" data-marpit-pagination="25" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--class:lead;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+
+<h1 id="%E7%AC%AC2%E8%8A%82">第2节</h1>
+<h2 id="%E6%9D%90%E6%96%99%E5%8F%82%E6%95%B0%E7%89%A9%E7%90%86%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8E%A5%E8%A7%A6%E7%95%8C%E9%9D%A2">材料参数、物理模型与接触界面</h2>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="26" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E6%9D%90%E6%96%99%E5%8F%82%E6%95%B0%E6%98%AF%E5%99%A8%E4%BB%B6%E7%89%A9%E7%90%86%E7%9A%84%E8%BE%93%E5%85%A5%E5%90%88%E5%90%8C">材料参数是器件物理的输入合同</h1>
+<p><img src="assets/icons/atom.svg" class="icon-inline" alt="材料图标" />同一材料名称不代表同一组数值，材料参数必须和温区、掺杂、晶型及来源一起记录。</p>
+<div class="icon-grid">
+<div><img src="assets/icons/scale.svg" alt="介电图标" /><h3>介电</h3><p><code>permittivity</code> 影响电场和电容。</p></div>
+<div><img src="assets/icons/chart-line.svg" alt="能带图标" /><h3>能带</h3><p><code>eg300</code>、<code>affinity</code> 影响势垒和统计。</p></div>
+<div><img src="assets/icons/activity.svg" alt="迁移率图标" /><h3>迁移率</h3><p><code>mun0</code>、<code>mup0</code> 影响导通电阻。</p></div>
+<div><img src="assets/icons/refresh-cw.svg" alt="寿命图标" /><h3>寿命</h3><p><code>taun0</code>、<code>taup0</code> 影响复合。</p></div>
+<div><img src="assets/icons/gauge.svg" alt="饱和速度图标" /><h3>饱和速度</h3><p><code>vsat</code> 影响高场输运。</p></div>
+<div><img src="assets/icons/database.svg" alt="来源图标" /><h3>来源</h3><p>默认值、文献或独立测量。</p></div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="27" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BD%86%E4%B8%8D%E8%83%BD%E5%8C%BF%E5%90%8D%E4%BD%BF%E7%94%A8">默认参数可以使用，但不能匿名使用</h1>
+<div class="slide-grid">
+<div><h3>软件默认值</h3><p>适合教学起步和快速检查，需记录软件版本。</p></div>
+<div><h3>文献数值</h3><p>适合成熟材料，但必须确认温区、晶型和测试条件。</p></div>
+<div><h3>工艺提取</h3><p>来自 SIMS、C-V 或其他测量，需说明反演方法。</p></div>
+<div><h3>拟合参数</h3><p>用于匹配器件曲线，需保留独立验证集。</p></div>
+</div>
+<div class="emphasis-box">“ATLAS 的默认值”不是材料参数的物理出处，只是当前版本的软件状态。</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="28" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E8%83%BD%E5%B8%A6%E5%8F%82%E6%95%B0%E6%8E%A7%E5%88%B6%E5%8A%BF%E5%9E%92%E7%BB%9F%E8%AE%A1%E5%92%8C%E7%95%8C%E9%9D%A2%E8%A1%8C%E4%B8%BA">能带参数控制势垒、统计和界面行为</h1>
+<div class="split">
+<div>
+<h3>关键量</h3>
+<ul>
+<li><code>eg300</code>：300 K 禁带宽度。</li>
+<li><code>affinity</code>：电子亲和势。</li>
+<li><code>align</code>：异质界面带边不连续参数。</li>
+<li><code>nc300</code>、<code>nv300</code>：有效状态密度。</li>
+<li><code>d.tunnel</code>：肖特基隧穿相关距离。</li>
+</ul>
+</div>
+<figure>
+<img src="assets/ch07/materials.jpg" alt="ATLAS区域和能带结构参数定义表" />
+<figcaption>区域、能带和介电参数的项目示例</figcaption>
+</figure>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="29" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E5%8A%9F%E7%8E%87%E6%9D%90%E6%96%99%E5%8F%82%E6%95%B0%E8%A6%81%E9%94%81%E5%AE%9A%E6%99%B6%E5%9E%8B%E6%B8%A9%E5%BA%A6%E5%92%8C%E6%A8%A1%E5%9E%8B%E7%89%88%E6%9C%AC">功率材料参数要锁定晶型、温度和模型版本</h1>
+<div class="icon-grid">
+<div><img src="assets/icons/cpu.svg" alt="硅图标" /><h3>Si</h3><p>关注温度相关迁移率、Auger 和击穿参数。</p></div>
+<div><img src="assets/icons/atom.svg" alt="碳化硅图标" /><h3>4H-SiC</h3><p>锁定晶型、各向异性和掺杂相关参数。</p></div>
+<div><img src="assets/icons/flask-conical.svg" alt="氮化镓图标" /><h3>GaN</h3><p>异质界面、极化与陷阱参数必须交代。</p></div>
+<div><img src="assets/icons/book-open.svg" alt="来源图标" /><h3>文献一致性</h3><p>同一结果不要混用不兼容的数据源。</p></div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="30" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E6%9D%90%E6%96%99%E5%91%BD%E4%BB%A4%E5%8F%AF%E4%BB%A5%E6%8C%89%E6%9D%90%E6%96%99%E5%8C%BA%E5%9F%9F%E6%88%96%E5%8F%82%E6%95%B0%E6%96%87%E4%BB%B6%E8%B5%8B%E5%80%BC">材料命令可以按材料、区域或参数文件赋值</h1>
+<pre><code>material material=4H-SiC permitti=9.66 \
+  eg300=2.99 edb=0.1 gcb=2 \
+  eab=0.2 gvb=4 nsrhn=3e17 nsrhp=3e17 \
+  taun0=5e-10 taup0=1e-10 tc.a=100
+material region=1 taun0=8e-10
+material material=silicon f.taun="taun.lib"</code></pre>
+<ul>
+<li><code>material</code> 可按材料或区域覆盖参数。</li>
+<li>参数文件适合复杂或复用的温度依赖关系。</li>
+<li>覆盖顺序要记录，否则默认值与自定义值可能混淆。</li>
+</ul>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="31" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9D%90%E6%96%99%E9%9C%80%E8%A6%81%E7%B1%BB%E5%9E%8B%E5%90%8D%E7%A7%B0%E5%92%8C%E5%8F%82%E6%95%B0%E4%B8%89%E9%83%A8%E5%88%86">自定义材料需要类型、名称和参数三部分</h1>
+<div class="process-flow">
+<span>user.group</span>
+<span>user.material</span>
+<span>material 参数</span>
+<span>region 引用</span>
+</div>
+<pre><code>material material=super_pebu \
+  user.group=semiconductor \
+  permittivity=13.2 eg300=1.44 \
+  affinity=4.07 vsat=7.7e6
+region num=2 user.material=super_pebu \
+  y.max=0.5</code></pre>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="32" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="c-%E8%A7%A3%E9%87%8A%E5%99%A8%E7%94%A8%E4%BA%8E%E8%A1%A8%E8%BE%BE%E7%A9%BA%E9%97%B4%E6%88%96%E6%8E%BA%E6%9D%82%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0">C 解释器用于表达空间或掺杂相关参数</h1>
+<div class="split">
+<div>
+<h3>适用形式</h3>
+<ul>
+<li>少子寿命随位置变化。</li>
+<li>材料参数随局部浓度变化。</li>
+<li>经验关系难以用单一常数表示。</li>
+</ul>
+<pre><code>int taun(double x, double y, double temp,
+         double nd, double na, double *taun) {
+  *taun = (y &gt;= 0.75 &amp;&amp; y &lt;= 0.85)
+          ? 5e-8 : 2e-6;
+  return 0;
+}</code></pre>
+</div>
+<div class="icon-callout">
+<img src="assets/icons/file-code-2.svg" alt="代码图标" />
+<p>自定义函数改变的是参数模型，必须记录编译版本、参数文件和适用区域。</p>
+</div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="33" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E5%A4%8D%E5%90%88%E6%A8%A1%E5%9E%8B%E5%86%B3%E5%AE%9A%E6%BC%8F%E7%94%B5%E5%AD%98%E5%82%A8%E7%94%B5%E8%8D%B7%E5%92%8C%E6%B8%A9%E5%BA%A6%E8%A1%8C%E4%B8%BA">复合模型决定漏电、存储电荷和温度行为</h1>
+<div class="icon-grid">
+<div><img src="assets/icons/refresh-cw.svg" alt="SRH图标" /><h3>SRH</h3><p>陷阱辅助复合，受寿命和缺陷能级影响。</p></div>
+<div><img src="assets/icons/activity.svg" alt="Auger图标" /><h3>Auger</h3><p>高注入和高掺杂下不可忽略。</p></div>
+<div><img src="assets/icons/network.svg" alt="表面复合图标" /><h3>Surface</h3><p><code>s.n</code>、<code>s.p</code> 描述表面复合速度。</p></div>
+<div><img src="assets/icons/layers-3.svg" alt="陷阱图标" /><h3>Trap</h3><p>陷阱能级、密度和俘获截面影响动态行为。</p></div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="34" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E8%BF%81%E7%A7%BB%E7%8E%87%E6%A8%A1%E5%9E%8B%E8%A6%86%E7%9B%96%E4%BD%8E%E5%9C%BA%E9%AB%98%E5%9C%BA%E5%92%8C%E6%B8%A9%E5%BA%A6%E4%BE%9D%E8%B5%96">迁移率模型覆盖低场、高场和温度依赖</h1>
+<div class="split">
+<div>
+<ul>
+<li><code>conmob</code>：浓度依赖迁移率。</li>
+<li><code>analytic</code>、<code>arora</code>：浓度与温度依赖。</li>
+<li><code>fldmob</code>：平行电场依赖。</li>
+<li><code>cvt</code>、<code>yamaguchi</code>：集成表面/沟道模型。</li>
+<li><code>tasch</code>、<code>watt</code>、<code>shirahata</code>：横向高场模型。</li>
+</ul>
+</div>
+<figure>
+<img src="assets/ch07/models.jpg" alt="低场迁移率温度公式和默认参数表" />
+<figcaption>低场迁移率中的温度幂律和用户可定义参数</figcaption>
+</figure>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="35" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%A2%B0%E6%92%9E%E7%94%B5%E7%A6%BB%E6%A8%A1%E5%9E%8B%E6%98%AF%E5%87%BB%E7%A9%BF%E5%88%86%E6%9E%90%E7%9A%84%E6%A0%B8%E5%BF%83%E9%80%89%E6%8B%A9">碰撞电离模型是击穿分析的核心选择</h1>
+<div class="slide-grid">
+<div><h3>Selberherr</h3><p><code>impact selb</code>，常用于通用击穿分析。</p></div>
+<div><h3>Grant/Crowell</h3><p>不同场强范围和材料参数化选择。</p></div>
+<div><h3>Concannon/Valdinoci</h3><p>特定材料和模型形式。</p></div>
+<div><h3>Toyabe</h3><p>另一种电离系数表达。</p></div>
+</div>
+<div class="emphasis-box">不能用未校准的电离模型直接给出精确耐压数值；模型名称、参数和适用材料必须同时报告。</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="36" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E9%9A%A7%E7%A9%BF%E6%A8%A1%E5%9E%8B%E8%A7%A3%E9%87%8A%E8%82%96%E7%89%B9%E5%9F%BA%E4%B8%8E%E9%AB%98%E5%9C%BA%E6%BC%8F%E7%94%B5">隧穿模型解释肖特基与高场漏电</h1>
+<div class="icon-grid">
+<div><img src="assets/icons/activity.svg" alt="带间隧穿图标" /><h3>BTBT</h3><p><code>bbt.std</code>、<code>bbt.kl</code> 描述带间隧穿。</p></div>
+<div><img src="assets/icons/route.svg" alt="FN图标" /><h3>FN</h3><p>福勒-诺德海姆隧穿用于强电场势垒。</p></div>
+<div><img src="assets/icons/layers-3.svg" alt="能带变窄图标" /><h3>BGN</h3><p>重掺杂下必须同步考虑能带变窄。</p></div>
+<div><img src="assets/icons/gauge.svg" alt="热电子发射图标" /><h3>热电子发射</h3><p>肖特基界面的温度相关电流路径。</p></div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="37" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E8%BD%BD%E6%B5%81%E5%AD%90%E7%BB%9F%E8%AE%A1%E5%9C%A8%E9%87%8D%E6%8E%BA%E6%9D%82%E5%92%8C%E9%AB%98%E5%9C%BA%E4%B8%8B%E4%B8%8D%E8%83%BD%E5%8F%AA%E9%9D%A0%E9%BB%98%E8%AE%A4%E5%80%BC">载流子统计在重掺杂和高场下不能只靠默认值</h1>
+<div class="split">
+<div>
+<h3>Boltzmann 与 Fermi-Dirac</h3>
+<ul>
+<li>Boltzmann 是常用默认近似。</li>
+<li>重掺杂时 Fermi-Dirac 更合适。</li>
+<li><code>incomp</code>、<code>ioniz</code> 描述不完全离化。</li>
+<li><code>bgn</code> 描述能带变窄。</li>
+</ul>
+</div>
+<div class="icon-callout">
+<img src="assets/icons/settings-2.svg" alt="统计图标" />
+<p>统计模型会影响载流子密度、结内建电势和漏电，和复合、隧穿模型共同作用。</p>
+</div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="38" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E6%99%B6%E6%A0%BC%E5%8A%A0%E7%83%AD%E5%92%8C%E8%83%BD%E9%87%8F%E5%B9%B3%E8%A1%A1%E6%8F%8F%E8%BF%B0%E9%9D%9E%E7%AD%89%E6%B8%A9%E8%BE%93%E8%BF%90">晶格加热和能量平衡描述非等温输运</h1>
+<div class="split">
+<div>
+<h3>模型入口</h3>
+<ul>
+<li><code>lat.temp</code>：启用晶格温度。</li>
+<li>能量平衡：载流子温度与晶格温度分离。</li>
+<li><code>thermcontact</code>：设置外部热边界。</li>
+<li>热导率、热容和热源需匹配材料。</li>
+</ul>
+</div>
+<div class="icon-callout">
+<img src="assets/icons/flask-conical.svg" alt="热学图标" />
+<p>大电流下的电流拥挤、热失控和击穿曲线回折，需要热模型参与解释。</p>
+</div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="39" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E6%A8%A1%E5%9E%8B%E7%BB%84%E5%90%88%E8%A6%81%E5%9B%B4%E7%BB%95%E5%99%A8%E4%BB%B6%E5%B7%A5%E4%BD%9C%E5%8C%BA%E9%97%AD%E5%90%88">模型组合要围绕器件工作区闭合</h1>
+<table>
+<tr><th>问题</th><th>可考虑的模型</th><th>检查点</th></tr>
+<tr><td>MOS 沟道</td><td>SRH、CVT、BGN</td><td>栅氧和界面参数</td></tr>
+<tr><td>功率二极管</td><td>SRH、场依赖迁移率、碰撞电离</td><td>漂移区与终端场</td></tr>
+<tr><td>肖特基/JBS</td><td>热电子发射、隧穿、势垒</td><td>温度与反向漏电</td></tr>
+<tr><td>大电流/热失效</td><td>Giga、晶格加热、热接触</td><td>热边界与电流拥挤</td></tr>
+</table>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="40" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="contact-%E5%AE%9A%E4%B9%89%E7%94%B5%E6%9E%81%E7%9A%84%E7%89%A9%E7%90%86%E4%B8%8E%E5%A4%96%E9%83%A8%E6%9D%A1%E4%BB%B6">CONTACT 定义电极的物理与外部条件</h1>
+<div class="icon-grid">
+<div><img src="assets/icons/cpu.svg" alt="肖特基图标" /><h3>肖特基</h3><p>功函数、势垒和接触材料。</p></div>
+<div><img src="assets/icons/route.svg" alt="电流边界图标" /><h3>电流边界</h3><p><code>current</code> 将电极改为电流控制。</p></div>
+<div><img src="assets/icons/activity.svg" alt="寄生图标" /><h3>寄生参数</h3><p>电阻、电容和电感。</p></div>
+<div><img src="assets/icons/git-branch.svg" alt="连接图标" /><h3>连接状态</h3><p>浮空、短接、公共电极或开路。</p></div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="41" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E6%8E%A5%E8%A7%A6%E5%91%BD%E4%BB%A4%E8%A6%81%E6%98%8E%E7%A1%AE%E5%AE%83%E6%94%B9%E5%8F%98%E7%9A%84%E6%98%AF%E5%93%AA%E4%B8%80%E7%B1%BB%E8%BE%B9%E7%95%8C">接触命令要明确它改变的是哪一类边界</h1>
+<pre><code>contact name=gate workfunction=4.8
+contact name=anode workfunction=4.9 \
+  barrier alpha=1e-7
+contact name=drain current
+contact name=source resistance=50 \
+  capacitance=20e-12 inductance=1e-6
+contact name=gate1 common=gate2 factor=0.1</code></pre>
+<ul>
+<li>功函数和电流边界不能混用。</li>
+<li>短接与因子连接要能对应实际测试拓扑。</li>
+<li>开路应通过删除、极大电阻或零电流边界明确表达。</li>
+</ul>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="42" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="interface-%E6%8F%8F%E8%BF%B0%E7%95%8C%E9%9D%A2%E7%94%B5%E8%8D%B7%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%A4%8D%E5%90%88">INTERFACE 描述界面电荷与表面复合</h1>
+<pre><code>interface y.max=0.1 qf=-1e11
+interface x.min=-4 x.max=4 \
+  y.min=-0.25 y.max=0.1 \
+  qf=1e11 s.n=1e4 s.p=1e4</code></pre>
+<div class="slide-grid">
+<div><h3><code>qf</code></h3><p>界面固定电荷面密度。</p></div>
+<div><h3><code>s.n</code></h3><p>电子表面复合速度。</p></div>
+<div><h3><code>s.p</code></h3><p>空穴表面复合速度。</p></div>
+<div><h3>位置范围</h3><p>界面命令只应作用于目标界面。</p></div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="43" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E6%A8%A1%E5%9E%8B%E8%80%A6%E5%90%88%E5%86%B3%E5%AE%9A%E7%BB%93%E6%9E%9C%E6%98%AF%E5%90%A6%E7%89%A9%E7%90%86%E4%B8%80%E8%87%B4">模型耦合决定结果是否“物理一致”</h1>
+<div class="process-flow">
+<span>迁移率</span>
+<span>载流子密度</span>
+<span>复合</span>
+<span>碰撞电离</span>
+<span>晶格温度</span>
+</div>
+<ul>
+<li>高场改变迁移率和碰撞电离。</li>
+<li>碰撞电离改变载流子密度与电流。</li>
+<li>电流改变焦耳热与晶格温度。</li>
+<li>温度又反馈到迁移率、统计和电离参数。</li>
+</ul>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="44" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E5%8F%82%E6%95%B0%E6%A0%A1%E5%87%86%E8%A6%81%E6%9C%8D%E4%BB%8E%E7%89%A9%E7%90%86%E8%BE%B9%E7%95%8C%E5%92%8C%E7%8B%AC%E7%AB%8B%E9%AA%8C%E8%AF%81">参数校准要服从物理边界和独立验证</h1>
+<div class="icon-grid">
+<div><img src="assets/icons/scan-line.svg" alt="观测量图标" /><h3>选观测量</h3><p>正向 I-V、反向漏电、击穿或 C-V。</p></div>
+<div><img src="assets/icons/settings-2.svg" alt="参数图标" /><h3>找敏感参数</h3><p>一次只改变少数有物理意义的量。</p></div>
+<div><img src="assets/icons/scale.svg" alt="边界图标" /><h3>设范围</h3><p>参数不得超出材料或文献合理区间。</p></div>
+<div><img src="assets/icons/circle-check-big.svg" alt="验证图标" /><h3>独立验证</h3><p>留出不同温度或偏置的数据检验。</p></div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="45" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%AC%AC2%E8%8A%82%E6%A3%80%E6%9F%A5%E7%82%B9%E6%A8%A1%E5%9E%8B%E8%AE%BA%E8%AF%81%E8%A1%A8">第2节检查点：模型论证表</h1>
+<div class="icon-callout">
+<img src="assets/icons/circle-check-big.svg" alt="检查图标" />
+<p>为每个模型写一行：解决什么物理、作用在哪个区域、关键参数从哪里来、关闭它会发生什么。</p>
+</div>
+<table>
+<tr><th>模型</th><th>作用区域</th><th>参数来源</th><th>关闭后的预期变化</th></tr>
+<tr><td>碰撞电离</td><td>高场终端</td><td>材料文献/校准</td><td>无法形成可靠击穿</td></tr>
+<tr><td>SRH</td><td>耗尽区/表面</td><td>寿命数据</td><td>漏电与存储电荷改变</td></tr>
+<tr><td>晶格加热</td><td>大电流区</td><td>热参数/热边界</td><td>热失控趋势消失</td></tr>
+</table>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-class="lead" data-theme="microelectronics" lang="en-US" class="lead" data-marpit-pagination="46" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--class:lead;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+
+<h1 id="%E7%AC%AC3%E8%8A%82">第3节</h1>
+<h2 id="%E7%89%B9%E6%80%A7%E8%8E%B7%E5%8F%96%E7%A9%BA%E9%97%B4%E5%88%86%E5%B8%83%E4%B8%8E%E7%BB%93%E6%9E%9C%E8%AF%81%E6%8D%AE">特性获取、空间分布与结果证据</h2>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="47" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%89%B9%E6%80%A7%E8%8E%B7%E5%8F%96%E8%A6%81%E5%A4%8D%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%98%8E%E7%A1%AE%E7%9A%84%E6%B5%8B%E9%87%8F%E9%97%AE%E9%A2%98">特性获取要复现一个明确的测量问题</h1>
+<p><img src="assets/icons/chart-no-axes-combined.svg" class="icon-inline" alt="特性图标" />先定义端对、激励和环境，再决定使用 DC、AC、瞬态、热或三维求解。</p>
+<div class="process-flow">
+<span>端对</span>
+<span>激励</span>
+<span>环境</span>
+<span>输出变量</span>
+<span>指标判据</span>
+</div>
+<ul>
+<li>没有端对，就不知道电流相对谁定义。</li>
+<li>没有激励路径，就不知道曲线如何得到。</li>
+<li>没有环境，就无法比较温度相关结果。</li>
+</ul>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="48" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="dc-%E7%89%B9%E6%80%A7%E8%A6%86%E7%9B%96-i-v%E8%BD%AC%E7%A7%BB%E8%BE%93%E5%87%BA%E5%92%8C%E5%87%BB%E7%A9%BF">DC 特性覆盖 I-V、转移、输出和击穿</h1>
+<div class="split">
+<div>
+<ul>
+<li><code>solve init</code> 建立零偏状态。</li>
+<li>固定非扫描电极，再扫描目标电极。</li>
+<li>输出特性保留不同控制电极条件。</li>
+<li>击穿曲线使用反向扫描或电流控制。</li>
+</ul>
+</div>
+<figure>
+<img src="assets/ch07/dc.jpg" alt="ATLAS直流扫描命令与多偏置输出曲线" />
+<figcaption>DC 命令、多个偏置条件和 TonyPlot 曲线结果</figcaption>
+</figure>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="49" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%AB%AF%E7%94%B5%E6%B5%81%E5%BF%85%E9%A1%BB%E5%92%8C%E9%9D%A2%E7%A7%AF%E6%96%B9%E5%90%91%E5%8F%82%E8%80%83%E7%AB%AF%E4%B8%80%E8%B5%B7%E8%AE%B0%E5%BD%95">端电流必须和面积、方向、参考端一起记录</h1>
+<div class="slide-grid">
+<div><h3>方向</h3><p>电流正负号取决于端和偏压约定。</p></div>
+<div><h3>归一化</h3><p>总量、每微米宽度或每平方厘米。</p></div>
+<div><h3>参考端</h3><p>阴极、源极或衬底必须明确。</p></div>
+<div><h3>输出列</h3><p>日志列名和单位要与图轴一致。</p></div>
+</div>
+<div class="emphasis-box">“电流达到 1e-3”没有面积和端信息时，无法比较不同功率器件。</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="50" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="50" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="ac-%E5%B0%8F%E4%BF%A1%E5%8F%B7%E7%94%A8%E4%BA%8E-c-v-%E5%92%8C%E5%81%8F%E7%BD%AE%E7%9B%B8%E5%85%B3%E5%93%8D%E5%BA%94">AC 小信号用于 C-V 和偏置相关响应</h1>
+<div class="split">
+<div>
+<pre><code>solve vgate=-5 vstep=0.1 \
+  vfinal=5 name=gate \
+  ac freq=1e6</code></pre>
+<ul>
+<li>记录直流偏置、频率和端对。</li>
+<li>可扫描固定频率或改变频率。</li>
+<li>本课聚焦功率器件端口特性。</li>
+</ul>
+</div>
+<figure>
+<img src="assets/ch07/ac.jpg" alt="MOS结构C-V结果和AC频率扫描命令" />
+<figcaption>不同端对和频率下的 MOS C-V 响应</figcaption>
+</figure>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="51" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="51" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%9E%AC%E6%80%81%E6%9D%A1%E4%BB%B6%E7%94%B1%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81%E6%B3%A2%E5%BD%A2%E5%92%8C%E6%97%B6%E9%97%B4%E6%AD%A5%E9%95%BF%E5%85%B1%E5%90%8C%E5%AE%9A%E4%B9%89">瞬态条件由初始状态、波形和时间步长共同定义</h1>
+<pre><code>solve vgate=1.0 ramptime=1e-9 \
+  tstep=0.1e-9 tstop=1e-8</code></pre>
+<div class="icon-grid">
+<div><img src="assets/icons/activity.svg" alt="初始图标" /><h3>初始状态</h3><p>零偏、导通或高温平衡。</p></div>
+<div><img src="assets/icons/route.svg" alt="波形图标" /><h3>激励波形</h3><p>上升、保持、下降和幅值。</p></div>
+<div><img src="assets/icons/gauge.svg" alt="步长图标" /><h3>时间步长</h3><p>必须解析最快响应。</p></div>
+<div><img src="assets/icons/circle-check-big.svg" alt="终止图标" /><h3>终止时间</h3><p>覆盖稳定或恢复过程。</p></div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="52" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="52" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="curvetrace-%E5%A4%84%E7%90%86%E5%BC%BA%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%87%BB%E7%A9%BF%E8%B7%AF%E5%BE%84">Curvetrace 处理强非线性击穿路径</h1>
+<div class="split">
+<div>
+<pre><code>curvetrace contr.name=collector \
+  step.init=0.05 nextst.ratio=1.1 \
+  mincur=1e-13 end.val=1e-3 \
+  curr.cont
+solve curvetrace</code></pre>
+<ul>
+<li>用于自动追踪复杂 I-V 路径。</li>
+<li>可观察击穿、回折和热失控趋势。</li>
+<li>结论应限定在功率器件内部物理。</li>
+</ul>
+</div>
+<div class="icon-callout">
+<img src="assets/icons/refresh-cw.svg" alt="追踪图标" />
+<p>回折段是否可信，要结合碰撞电离、晶格温度和电流密度空间分布判断。</p>
+</div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="53" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="53" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%83%AD%E5%AD%A6%E7%89%B9%E6%80%A7%E8%87%B3%E5%B0%91%E9%9C%80%E8%A6%81%E7%83%AD%E6%A8%A1%E5%9E%8B%E5%92%8C%E7%83%AD%E6%8E%A5%E8%A7%A6">热学特性至少需要热模型和热接触</h1>
+<div class="split">
+<div>
+<h3>热学设置</h3>
+<ul>
+<li><code>models lat.temp</code> 启用晶格加热。</li>
+<li><code>thermcontact</code> 定义温度边界。</li>
+<li>热源来自电流与场的焦耳项。</li>
+<li>热导率、热容和几何需匹配。</li>
+</ul>
+</div>
+<figure>
+<img src="assets/silvaco-original/image27.jpeg" alt="VICTORY击穿曲线在固定300K与晶格加热条件下的对比" />
+<figcaption>晶格加热会改变高场大电流段的击穿曲线形态</figcaption>
+</figure>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="54" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="54" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E4%B8%89%E7%BB%B4%E7%BB%93%E6%9E%9C%E5%8F%AA%E5%9C%A8%E5%85%B3%E9%94%AE%E8%B7%AF%E5%BE%84%E6%97%A0%E6%B3%95%E4%BA%8C%E7%BB%B4%E5%8C%96%E6%97%B6%E4%BD%BF%E7%94%A8">三维结果只在关键路径无法二维化时使用</h1>
+<div class="split">
+<div>
+<h3>适用理由</h3>
+<ul>
+<li>第三维存在电流拥挤。</li>
+<li>终端拐角或局部接触主导。</li>
+<li>二维截线无法代表整体。</li>
+</ul>
+<p>三维流程可沿用二维语法，但需增加 Z 坐标、Z 区域范围与相应网格。</p>
+</div>
+<figure>
+<img src="assets/silvaco-original/image26.jpeg" alt="TonyPlot3D显示三维结构网格、材料与净掺杂" />
+<figcaption>三维结构的网格、材料和掺杂必须同时检查</figcaption>
+</figure>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="55" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%BB%93%E6%9E%9C%E6%96%87%E4%BB%B6%E6%9C%89%E4%B8%89%E7%A7%8D%E6%A0%B8%E5%BF%83%E8%A7%92%E8%89%B2">结果文件有三种核心角色</h1>
+<div class="icon-grid">
+<div><img src="assets/icons/monitor.svg" alt="实时输出图标" /><h3>实时输出</h3><p>命令、警告和收敛轨迹。</p></div>
+<div><img src="assets/icons/box.svg" alt="结构图标" /><h3><code>.str</code></h3><p>几何、网格和空间解。</p></div>
+<div><img src="assets/icons/database.svg" alt="日志图标" /><h3><code>.log</code></h3><p>端特性和扫描记录。</p></div>
+<div><img src="assets/icons/file-code-2.svg" alt="导出图标" /><h3>导出数据</h3><p>CSV 或 TonyPlot User Data。</p></div>
+</div>
+<p>截图只是人眼入口，原生文件才是可复核证据。</p>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="56" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="56" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="tonyplot-%E7%94%A8%E4%BA%8E%E8%81%94%E5%90%88%E9%98%85%E8%AF%BB%E6%9B%B2%E7%BA%BF%E5%92%8C%E7%BB%93%E6%9E%84">TonyPlot 用于联合阅读曲线和结构</h1>
+<div class="result-single compact">
+<img src="assets/silvaco-original/image31.png" alt="TonyPlot叠加显示不同保护环结构功率二极管的反向I-V曲线" />
+</div>
+<ul>
+<li>先读图例，确认不同曲线对应哪种结构。</li>
+<li>再读坐标范围，确认是否覆盖漏电到击穿。</li>
+<li>最后回到日志，提取击穿点或漏电流。</li>
+</ul>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="57" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="57" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%BB%93%E6%9E%84%E6%88%AA%E7%BA%BF%E5%92%8C%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE%E6%8A%8A%E5%9B%BE%E5%83%8F%E5%8F%98%E6%88%90%E6%95%B0%E5%80%BC">结构截线和导出数据把图像变成数值</h1>
+<div class="split">
+<div>
+<h3>两种导出</h3>
+<ul>
+<li>结构文件通过 Cutline 得到一维剖面。</li>
+<li>日志文件通过 File → Export 导出曲线数据。</li>
+</ul>
+<h3>检查</h3>
+<ul>
+<li>坐标范围、单位与原始图一致。</li>
+<li>截线穿过目标物理区域。</li>
+<li>数据列与图例一一对应。</li>
+</ul>
+</div>
+<figure>
+<img src="assets/ch07/results.jpg" alt="ATLAS结果类型、TonyPlot和导出数据说明" />
+<figcaption>结果类型和导出入口，本页使用结果分析示例</figcaption>
+</figure>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="58" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="58" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="csv-%E5%AF%BC%E5%87%BA%E9%80%82%E5%90%88%E9%87%8D%E7%BB%98%E7%BB%9F%E8%AE%A1%E5%92%8C%E7%BB%93%E6%9E%9C%E7%95%99%E6%A1%A3">CSV 导出适合重绘、统计和结果留档</h1>
+<div class="slide-grid">
+<div><h3>格式</h3><p>Comma Separated Values，便于脚本和表格处理。</p></div>
+<div><h3>路径</h3><p>文件名应包含器件、偏压、温度和版本。</p></div>
+<div><h3>表头</h3><p>确认变量名、单位与数据列顺序。</p></div>
+<div><h3>一致性</h3><p>用独立绘图复核 TonyPlot 趋势。</p></div>
+</div>
+<div class="icon-callout">
+<img src="assets/icons/database.svg" alt="数据图标" />
+<p>导出文件是量化证据，但必须能从日志或结构文件追溯到具体求解条件。</p>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="59" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="59" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E5%8A%9F%E7%8E%87%E5%99%A8%E4%BB%B6%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90%E8%A6%81%E6%8C%89%E5%9B%A0%E6%9E%9C%E9%A1%BA%E5%BA%8F%E6%8E%A8%E8%BF%9B">功率器件结果分析要按因果顺序推进</h1>
+<div class="process-flow">
+<span>结构</span>
+<span>模型</span>
+<span>端特性</span>
+<span>空间分布</span>
+<span>指标与结论</span>
+</div>
+<ol>
+<li>确认结构和掺杂。</li>
+<li>确认材料、模型和接触。</li>
+<li>读取正向与反向 I-V。</li>
+<li>定位最大电场和电流拥挤。</li>
+<li>提取耐压、漏电、导通或其他指标。</li>
+</ol>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="60" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="60" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E6%8E%BA%E6%9D%82%E5%88%86%E5%B8%83%E5%9B%BE%E8%AF%B4%E6%98%8E%E5%99%A8%E4%BB%B6%E7%9A%84%E9%9D%99%E6%80%81%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6">掺杂分布图说明器件的静态边界条件</h1>
+<div class="result-pair compact">
+<img src="assets/silvaco-original/image30.png" alt="4H-SiC功率结构不同位置的一维净掺杂剖面" />
+<img src="assets/silvaco-original/image31.png" alt="不同保护环结构的功率二极管反向I-V曲线" />
+</div>
+<ul>
+<li>掺杂剖面定义漂移区和结的位置。</li>
+<li>I-V 曲线显示终端结构对反向特性的影响。</li>
+<li>两张图必须对应同一批结构文件。</li>
+</ul>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="61" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="61" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%94%B5%E5%9C%BA%E5%88%86%E5%B8%83%E5%9B%BE%E7%94%A8%E4%BA%8E%E5%88%A4%E6%96%AD%E7%BB%88%E7%AB%AF%E6%98%AF%E5%90%A6%E5%85%88%E8%BE%BE%E5%88%B0%E4%B8%B4%E7%95%8C%E5%9C%BA">电场分布图用于判断终端是否先达到临界场</h1>
+<div class="split">
+<div>
+<h3>观察点</h3>
+<ul>
+<li>峰值位置在体内还是表面。</li>
+<li>颜色分区与等势线是否合理。</li>
+<li>偏压升高时峰值如何迁移。</li>
+<li>是否靠近材料临界击穿场强。</li>
+</ul>
+</div>
+<figure>
+<img src="assets/silvaco-original/image33.png" alt="4H-SiC功率二极管在400V下的电场分布" />
+<figcaption>400 V 反向偏压下的表面电场和耗尽区形态</figcaption>
+</figure>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="62" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="62" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%94%B5%E6%B5%81%E5%AF%86%E5%BA%A6%E5%9B%BE%E8%AF%B4%E6%98%8E%E5%B1%80%E9%83%A8%E5%AF%BC%E9%80%9A%E4%B8%8E%E5%A4%B1%E6%95%88%E9%A3%8E%E9%99%A9">电流密度图说明局部导通与失效风险</h1>
+<div class="split">
+<div>
+<h3>与耐压分析的区别</h3>
+<ul>
+<li>电流密度关注导通和局部拥挤。</li>
+<li>高场关注雪崩和击穿。</li>
+<li>热源由电流与场共同决定。</li>
+<li>三个量必须使用同一工作点。</li>
+</ul>
+</div>
+<figure>
+<img src="assets/silvaco-original/image37.png" alt="4H-SiC功率二极管在1400V下的电流密度分布" />
+<figcaption>高反向偏压下的导电电流密度路径</figcaption>
+</figure>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="63" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="63" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%83%AD%E5%8F%82%E4%B8%8E%E5%90%8E%E7%9A%84%E5%87%BB%E7%A9%BF%E6%9B%B2%E7%BA%BF%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E8%A7%A3%E9%87%8A">热参与后的击穿曲线需要重新解释</h1>
+<div class="split">
+<div>
+<h3>联合证据</h3>
+<ul>
+<li>I-V 是否出现回折或迟滞。</li>
+<li>晶格温度在哪里升高。</li>
+<li>电流是否向局部路径收缩。</li>
+<li>热接触位置是否改变结果。</li>
+</ul>
+</div>
+<figure>
+<img src="assets/silvaco-original/image27.jpeg" alt="固定300K与晶格加热条件下的击穿曲线对比" />
+<figcaption>是否启用晶格加热会改变强非线性击穿段</figcaption>
+</figure>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="64" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="64" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%94%A8%E8%AF%81%E6%8D%AE%E7%9F%A9%E9%98%B5%E7%BA%A6%E6%9D%9F%E6%AF%8F%E4%B8%80%E6%9D%A1%E7%BB%93%E8%AE%BA">用证据矩阵约束每一条结论</h1>
+<table>
+<tr><th>结论</th><th>端证据</th><th>空间证据</th><th>条件</th></tr>
+<tr><td>终端改善耐压</td><td>反向 I-V</td><td>电势/电场</td><td>结构、模型、温度</td></tr>
+<tr><td>漏电来自势垒</td><td>温度相关 I-V</td><td>界面/电流路径</td><td>接触、隧穿参数</td></tr>
+<tr><td>电流拥挤引发热风险</td><td>大电流 I-V</td><td>电流密度/温度</td><td>热边界、面积</td></tr>
+</table>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="65" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="65" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E6%94%B6%E6%95%9B%E5%92%8C%E6%95%8F%E6%84%9F%E6%80%A7%E6%A3%80%E6%9F%A5%E5%BF%85%E9%A1%BB%E8%BF%9B%E5%85%A5%E6%9C%80%E7%BB%88%E6%8A%A5%E5%91%8A">收敛和敏感性检查必须进入最终报告</h1>
+<div class="icon-grid">
+<div><img src="assets/icons/grid-3x3.svg" alt="网格图标" /><h3>网格</h3><p>局部加密后关键指标是否稳定。</p></div>
+<div><img src="assets/icons/route.svg" alt="步长图标" /><h3>偏压步长</h3><p>击穿点是否随步长明显移动。</p></div>
+<div><img src="assets/icons/settings-2.svg" alt="模型图标" /><h3>模型</h3><p>核心模型开关是否改变趋势。</p></div>
+<div><img src="assets/icons/circle-check-big.svg" alt="验证图标" /><h3>独立验证</h3><p>是否在另一温度或结构上成立。</p></div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="66" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="66" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E7%BB%93%E6%9E%9C%E9%A1%B5%E4%B8%8E%E7%AC%AC3%E8%8A%82%E6%A3%80%E6%9F%A5%E7%82%B9">结果页与第3节检查点</h1>
+<div class="slide-grid">
+<div><h3>条件</h3><p>结构、材料、模型、偏压、温度、面积。</p></div>
+<div><h3>图</h3><p>端特性图与至少一张空间分布图。</p></div>
+<div><h3>指标</h3><p>明确判据、数值和单位。</p></div>
+<div><h3>机制与局限</h3><p>用空间分布解释原因，并写出验证边界。</p></div>
+</div>
+<div class="icon-callout">
+<img src="assets/icons/book-open.svg" alt="答辩图标" />
+<p>用 90 秒完成“问题、条件、图、指标、机制、局限”的证据答辩。</p>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="67" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="67" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E6%9C%AC%E7%AB%A0%E5%B0%8F%E7%BB%93">本章小结</h1>
+<ul>
+<li>结构、材料、模型、接触和界面共同定义器件仿真问题。</li>
+<li>ATLAS 适合参数化结构，DevEdit 适合复杂几何和三维编辑，两者都要保留来源。</li>
+<li>迁移率、复合、碰撞电离、隧穿、统计和热模型必须按工作区组合。</li>
+<li>DC、AC、瞬态、热和三维结果需要不同的边界与时间/空间条件。</li>
+<li>结果证据由结构、日志、导出数据和空间分布共同构成。</li>
+</ul>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="68" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="68" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E8%AF%BE%E5%A0%82%E4%BB%BB%E5%8A%A1%E4%B8%8E%E6%A3%80%E6%9F%A5%E7%82%B9">课堂任务与检查点</h1>
+<div class="split">
+<div>
+<h3>提交一张功率器件参数页</h3>
+<ol>
+<li>结构区域、电极和网格加密理由。</li>
+<li>材料参数及其来源。</li>
+<li>三个模型及各自作用区域。</li>
+<li>一组 DC 和一组热或瞬态条件。</li>
+<li>两个指标及其提取判据。</li>
+</ol>
+</div>
+<div class="icon-callout">
+<img src="assets/icons/circle-check-big.svg" alt="检查图标" />
+<p>通过标准：每一项都能指回结构文件、模型命令、日志列或空间截图。</p>
+</div>
+</div>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="69" data-paginate="true" data-header="微电子器件建模与仿真 · 第7章" data-footer="器件结构、物理模型与结果分析" data-theme="microelectronics" lang="en-US" data-marpit-pagination="69" style="--paginate:true;--header:微电子器件建模与仿真 · 第7章;--footer:器件结构、物理模型与结果分析;--theme:microelectronics;" data-marpit-pagination-total="69" data-size="16:9">
+<header>微电子器件建模与仿真 · 第7章</header>
+<h1 id="%E6%9C%AC%E7%AB%A0%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">本章参考文献</h1>
+<ol class="reference-list">
+<li>SILVACO INTERNATIONAL. <em>Silvaco TCAD Device Structure Generation</em>[Z]. Silvaco TCAD Training Materials, n.d.</li>
+<li>SILVACO INTERNATIONAL. <em>Material Parameters and Physical Models in Silvaco TCAD</em>[Z]. Silvaco TCAD Training Materials, n.d.</li>
+<li>SILVACO INTERNATIONAL. <em>Device Characteristics Extraction and Result Analysis</em>[Z]. Silvaco TCAD Training Materials, n.d.</li>
+<li>SILVACO INTERNATIONAL. <em>ATLAS User's Manual</em>[Z]. Santa Clara, CA: Silvaco International, n.d.</li>
+<li>SILVACO INTERNATIONAL. <em>DevEdit User's Manual</em>[Z]. Santa Clara, CA: Silvaco International, n.d.</li>
+<li>SILVACO INTERNATIONAL. <em>Model Development Using the C-Interpreter</em>[Z]. Silvaco International, n.d.</li>
+<li>SILVACO INTERNATIONAL. <em>Power Device Physics Revealed: TCAD for Power Device Technologies</em>[Z]. Silvaco International, 2010.</li>
+</ol>
+<footer>器件结构、物理模型与结果分析</footer>
+</section>
+<script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{container;containerSize;containerObserver;svg;svgComputedStyle;svgPreserveAspectRatio="xMinYMid meet";wrapper;wrapperSize;wrapperObserver;constructor(){super();const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${e}]`)??void 0;const t=this.svg;this.svg=this.wrapper?.querySelector(`svg[${i}]`)??void 0,this.svg!==t&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${n}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame(()=>{t.style.display=""}))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){let t=Math.ceil(this.containerSize?.width??0);const e=Math.ceil(this.containerSize?.height??0);void 0!==this.dataset.downscaleOnly&&(t=Math.max(t,this.wrapperSize?.width??0));const i=this.svg?.querySelector(":scope > foreignObject");if(i?.setAttribute("width",`${t}`),i?.setAttribute("height",`${e}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${t} ${e}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=t<=0||e<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const r=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(t){if(!(t instanceof Error&&"NotSupportedError"===t.name))throw t}return this.shadowRoot}_update(){const t=this._shadow();if(t){const e=i?`<style>:host { ${i} }</style>`:"";let n="<slot></slot>";const{autoScaling:s}=this.dataset;if(void 0!==s){n=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===s?"data-downscale-only":""}>${n}</marp-auto-scaling>`}t.innerHTML=e+n}}};let o;const a=()=>o??(o=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),o),l=Symbol();let c;const d="marpitSVGPolyfill:setZoomFactor,",h=Symbol(),g=Symbol();const p=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[v]:[],i={then:e=>(t?(async()=>{if(void 0===c){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise(t=>{i.addEventListener("load",()=>t())});i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),c=e.getImageData(5,5,1,1).data[3]<128}return c})().then(t=>{null==e||e(t?[v]:[])}):null==e||e([]),i)};return Object.assign(e,i)};let m,u;function v(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(d)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(u=i)}}catch(t){console.error(t)}}));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),t=>{var e,s,r,o;t.style.transform||(t.style.transform="translateZ(0)");const a=i||u||t.currentScale||1;m!==a&&(m=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(o=null===(r=n.y)||void 0===r?void 0:r.baseVal.value)&&void 0!==o?o:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}}),!1!==n&&Array.from(e.querySelectorAll("iframe"),({contentWindow:t})=>{null==t||t.postMessage(`${d}${n}`,"null"===window.origin?"*":window.origin)})}function w({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[h])return t[h];let e=!0;const i=()=>{e=!1,delete t[h]};Object.defineProperty(t,h,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await p()}finally{s=!0}})();const r=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(r)};return r(),i}(e);return t?(i(),()=>{}):i}m=1,u=void 0;const b=Symbol(),y=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[l];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,o=t[n].proto();a()&&o!==HTMLElement?i||customElements.define(s,r(o,{style:t[n].style}),{extends:n}):(i||customElements.define(s,r(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach(t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)}))}window[l]=!0})(e),e[b])return e[b];const i=w({target:e}),n=()=>{i(),delete e[b]},o=Object.assign(n,{cleanup:n,update:()=>y(e)});return Object.defineProperty(e,b,{configurable:!0,value:o}),o},f=document.currentScript;y(f?f.getRootNode():document)}();
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>讲师备注：本章用三个 45 分钟小节讲清结构、模型和结果分析。</p></div><div class="bespoke-marp-note" data-index="1" tabindex="0"><p>讲师备注：目标从“会写命令”提升到“能解释参数和模型为何适合当前功率器件问题”。</p></div><div class="bespoke-marp-note" data-index="2" tabindex="0"><p>讲师备注：先建立课程地图，后续每个结论都要求能回到这三层中的具体证据。</p></div><div class="bespoke-marp-note" data-index="3" tabindex="0"><p>讲师备注：第1节约 45 分钟，从 ATLAS 命令和 DevEdit 两条路径讲结构建模与网格质量控制。</p></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>讲师备注：如果学生只能指着图说“这里有红色和蓝色”，说明还没有把结构理解为可计算数据。</p></div><div class="bespoke-marp-note" data-index="5" tabindex="0"><p>讲师备注：五个层次彼此制约，改变区域或电极通常也要求重新检查网格和材料赋值。</p></div><div class="bespoke-marp-note" data-index="6" tabindex="0"><p>讲师备注：工具选择由几何复杂度和可复现要求决定，而不是由哪一个界面看起来更高级决定。</p></div><div class="bespoke-marp-note" data-index="7" tabindex="0"><p>讲师备注：先形成空间和材料，再挂电极与掺杂；顺序错误会影响默认区域和边界解释。</p></div><div class="bespoke-marp-note" data-index="8" tabindex="0"><p>讲师备注：全局密度决定总成本，局部 line 决定关键区域的解析能力，两者必须分开控制。</p></div><div class="bespoke-marp-note" data-index="9" tabindex="0"><p>讲师备注：用物理量梯度指导局部加密，可以在有限计算资源下保留击穿和漏电结果的可信度。</p></div><div class="bespoke-marp-note" data-index="10" tabindex="0"><p>讲师备注：本节示例 明确指出 eliminate 的隔条删除行为，本页补充功率器件局部降密的验证要求。</p></div><div class="bespoke-marp-note" data-index="11" tabindex="0"><p>讲师备注：区域定义是结构错误的高频来源，错误常在求解阶段才表现为“不收敛”。</p></div><div class="bespoke-marp-note" data-index="12" tabindex="0"><p>讲师备注：功率器件的终端通常由多层介质和场板组成，材料域错一层就可能改变表面电场结论。</p></div><div class="bespoke-marp-note" data-index="13" tabindex="0"><p>讲师备注：本节给出顶部、底部、区间、左端和右端电极形式，命名与位置必须一起检查。</p></div><div class="bespoke-marp-note" data-index="14" tabindex="0"><p>讲师备注：接触边长会直接影响电流和电容，电极看起来“贴上了”不代表覆盖范围正确。</p></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>讲师备注：掺杂命令既有分布类型，也有浓度、结深、特征长度和空间位置等参数组，必须与物理来路匹配。</p></div><div class="bespoke-marp-note" data-index="16" tabindex="0"><p>讲师备注：本节示例结构和参数生成都强调来源；有测量数据时，应明确哪些曲线是计算、哪些是实验。</p></div><div class="bespoke-marp-note" data-index="17" tabindex="0"><p>讲师备注：逐条对照代码和图，确认网格位置、区域边界、电极表面和掺杂显示都来自显式声明。</p></div><div class="bespoke-marp-note" data-index="18" tabindex="0"><p>讲师备注：DevEdit 适合手工构建复杂几何，但每一步都应保存并回到结构显示中核对。</p></div><div class="bespoke-marp-note" data-index="19" tabindex="0"><p>讲师备注：本页用 id、region.id、峰值和参考浓度说明 DevEdit 的杂质定义，本页强调跨语句的一致性。</p></div><div class="bespoke-marp-note" data-index="20" tabindex="0"><p>讲师备注：DevEdit 的网格不是自动生成后就结束，边界条件、三角形比例和局部约束共同决定结构质量。</p></div><div class="bespoke-marp-note" data-index="21" tabindex="0"><p>讲师备注：ATLAS 文本便于版本管理和重复生成，DevEdit 更适合复杂几何与三维，但必须保存独立结构来源。</p></div><div class="bespoke-marp-note" data-index="22" tabindex="0"><p>讲师备注：结构保存不是流程终点，只有通过几何、掺杂、电极和网格四项回归检查，后续求解才有稳定对象。</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>讲师备注：结构验收不通过时，不应进入材料模型和特性分析，否则后续结果没有稳定对象。</p></div><div class="bespoke-marp-note" data-index="24" tabindex="0"><p>讲师备注：第2节约 45 分钟解释材料参数、迁移率、复合、碰撞电离、隧穿、统计、热、接触和界面的选择逻辑。</p></div><div class="bespoke-marp-note" data-index="25" tabindex="0"><p>讲师备注：材料参数层把几何结构变成具体物理问题，参数来源应与模型选择一起说明。</p></div><div class="bespoke-marp-note" data-index="26" tabindex="0"><p>讲师备注：结果报告中要区分软件默认、文献选择和实验校准，不能让读者误以为所有参数都已验证。</p></div><div class="bespoke-marp-note" data-index="27" tabindex="0"><p>讲师备注：本节给出能带不连续和输出 con.band、val.band 的说明；功率异质结构分析必须检查这些量。</p></div><div class="bespoke-marp-note" data-index="28" tabindex="0"><p>讲师备注：功率材料对晶型、温度和场强非常敏感，材料名称相同但参数来源不同会改变击穿和漏电结论。</p></div><div class="bespoke-marp-note" data-index="29" tabindex="0"><p>讲师备注：示例保留本节示例定义方式，具体数值仅作语法说明，不能代替实际材料标定。</p></div><div class="bespoke-marp-note" data-index="30" tabindex="0"><p>讲师备注：本节示例先定义半导体类别和自定义材料名，再在结构中引用；引用名必须完全一致。</p></div><div class="bespoke-marp-note" data-index="31" tabindex="0"><p>讲师备注：本节示例 用少子寿命函数说明 C 解释器；本页不展开软件安装，只强调自定义物理关系的可追溯性。</p></div><div class="bespoke-marp-note" data-index="32" tabindex="0"><p>讲师备注：本节列出 SRH、Auger、表面和陷阱复合；本课排除光学复合，只保留功率器件电热相关部分。</p></div><div class="bespoke-marp-note" data-index="33" tabindex="0"><p>讲师备注：功率器件的漂移区、沟道和表面可能处于不同场强，不能用同一迁移率假设覆盖全部区域。</p></div><div class="bespoke-marp-note" data-index="34" tabindex="0"><p>讲师备注：本节示例 列出多种碰撞电离模型，课堂重点是理解模型选择影响击穿，而不是背诵全部命令名。</p></div><div class="bespoke-marp-note" data-index="35" tabindex="0"><p>讲师备注：功率肖特基和 JBS 的反向漏电常受势垒、隧穿和温度共同控制，不能只用理想热发射解释。</p></div><div class="bespoke-marp-note" data-index="36" tabindex="0"><p>讲师备注：本节把统计、不完全离化和能带变窄列为一组，重掺杂功率器件的源漏和接触区尤其要检查。</p></div><div class="bespoke-marp-note" data-index="37" tabindex="0"><p>讲师备注：器件热分析至少需要晶格温度模型和热接触，这两个条件与电学接触是两个独立边界。</p></div><div class="bespoke-marp-note" data-index="38" tabindex="0"><p>讲师备注：本节给出 MOSFET、BJT/晶闸管和击穿推荐组合；本页按功率器件工作区重组，强调组合要有理由。</p></div><div class="bespoke-marp-note" data-index="39" tabindex="0"><p>讲师备注：接触不是简单接零，功函数、边界类型、寄生与连接关系都会改变端特性和内部解。</p></div><div class="bespoke-marp-note" data-index="40" tabindex="0"><p>讲师备注：本节说明肖特基、电流、寄生、短接和开路定义，并聚焦器件端边界。</p></div><div class="bespoke-marp-note" data-index="41" tabindex="0"><p>讲师备注：功率器件的场氧、钝化和栅氧界面可能主导表面漏电，界面边界必须与材料结构精确对齐。</p></div><div class="bespoke-marp-note" data-index="42" tabindex="0"><p>讲师备注：模型不是并列勾选项，功率器件强场和热效应会形成反馈，因此模型组合必须通过灵敏度检查。</p></div><div class="bespoke-marp-note" data-index="43" tabindex="0"><p>讲师备注：校准的目标是提高可预测性，不是把某一条测量曲线拟合得最像。</p></div><div class="bespoke-marp-note" data-index="44" tabindex="0"><p>讲师备注：如果学生说不清关闭模型后的变化，说明模型还只是命令，不是经过理解的物理假设。</p></div><div class="bespoke-marp-note" data-index="45" tabindex="0"><p>讲师备注：第3节约 45 分钟讲 DC、AC、瞬态、热、Curvetrace 和三维结果，并完成从文件到结论的证据闭环。</p></div><div class="bespoke-marp-note" data-index="46" tabindex="0"><p>讲师备注：仿真特性应模仿真实测量思路，但结果报告还要额外说明结构和模型，因为仿真条件比实验更透明。</p></div><div class="bespoke-marp-note" data-index="47" tabindex="0"><p>讲师备注：直流特性示例给出多组基极条件下的集电极扫描，方法可迁移到功率器件的栅压或温度分组。</p></div><div class="bespoke-marp-note" data-index="48" tabindex="0"><p>讲师备注：端特性分析的第一个质量门是坐标合同，不是曲线是否好看。</p></div><div class="bespoke-marp-note" data-index="49" tabindex="0"><p>讲师备注：AC 结果要与偏置和频率绑定；功率器件的电容会包含结、栅、界面和寄生贡献。</p></div><div class="bespoke-marp-note" data-index="50" tabindex="0"><p>讲师备注：本页用栅压斜坡示例说明 ramptime、tstep 和 tstop，功率器件还要记录初始温度和负载条件。</p></div><div class="bespoke-marp-note" data-index="51" tabindex="0"><p>讲师备注：本节把 Curvetrace 与击穿、闩锁和二次击穿关联；本课只保留器件级耐压与热失控分析。</p></div><div class="bespoke-marp-note" data-index="52" tabindex="0"><p>讲师备注：曲线在热参与后可能回折，不能把纯电学碰撞电离击穿与热失控混成一个判据。</p></div><div class="bespoke-marp-note" data-index="53" tabindex="0"><p>讲师备注：本页指出三维语法可参照二维并增加 z 轴，真正的门槛是网格成本与结果解释。</p></div><div class="bespoke-marp-note" data-index="54" tabindex="0"><p>讲师备注：结果页必须区分实时信息、空间结构和端特性日志，不同文件回答不同问题。</p></div><div class="bespoke-marp-note" data-index="55" tabindex="0"><p>讲师备注：多曲线叠加图非常适合比较终端方案，但图例、坐标和判据缺失时很容易误读。</p></div><div class="bespoke-marp-note" data-index="56" tabindex="0"><p>讲师备注：本页介绍 TonyPlot 显示和导出数据，本页强调导出后仍需检查坐标和列语义。</p></div><div class="bespoke-marp-note" data-index="57" tabindex="0"><p>讲师备注：本节示例 给出 TonyPlot File → Export 和 CSV 格式流程，本课要求导出后做一次独立一致性检查。</p></div><div class="bespoke-marp-note" data-index="58" tabindex="0"><p>讲师备注：从端特性到空间分布再到指标，是解释因果的顺序；直接看彩色云图容易失去问题上下文。</p></div><div class="bespoke-marp-note" data-index="59" tabindex="0"><p>讲师备注：如果结构图与曲线来自不同器件版本，再漂亮的对比也不能作为同一结论的证据。</p></div><div class="bespoke-marp-note" data-index="60" tabindex="0"><p>讲师备注：电场图要和电势图、I-V 拐点联合使用，不能仅凭某一点颜色判断器件已经击穿。</p></div><div class="bespoke-marp-note" data-index="61" tabindex="0"><p>讲师备注：功率器件的失效可能由电场驱动，也可能由电流拥挤和自加热驱动，结果页要写清是哪一种机制。</p></div><div class="bespoke-marp-note" data-index="62" tabindex="0"><p>讲师备注：本节把热学特性列为独立结果类别；本页强调热击穿和纯电击穿需要不同的证据组合。</p></div><div class="bespoke-marp-note" data-index="63" tabindex="0"><p>讲师备注：证据矩阵把“结论需要哪些文件”前置，学生可以据此检查自己的汇报是否缺证据。</p></div><div class="bespoke-marp-note" data-index="64" tabindex="0"><p>讲师备注：可信结果不仅有最低点，还要说明数值和模型不确定性；没有敏感性检查就只能写趋势性结论。</p></div><div class="bespoke-marp-note" data-index="65" tabindex="0"><p>讲师备注：第3节结束时，学生应能用一张结果页回答“结果是什么、为什么、有多可信”。</p></div><div class="bespoke-marp-note" data-index="66" tabindex="0"><p>讲师备注：回收结构、模型和结果三节，强调功率器件结论必须同时有物理机制和可复核数据。</p></div><div class="bespoke-marp-note" data-index="67" tabindex="0"><p>讲师备注：任务以参数论证和证据闭环为主，不要求运行重型三维案例；重点是解释为什么这样建模。</p></div><div class="bespoke-marp-note" data-index="68" tabindex="0"><p>讲师备注：参考文献覆盖结构生成、材料参数、物理模型、特性获取和功率器件案例，结果图仅用于方法说明。</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.5.1/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";function e(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var t,n,r=(n||(n=1,t={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),o=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,function(e){return"SCRIPT"!==e.nodeName}),i={},a=function(e,t){return(t=t||{}).index=o.indexOf(e),t.slide=e,t},s=function(e,t){i[e]=(i[e]||[]).filter(function(e){return e!==t})},l=function(e,t){return(i[e]||[]).reduce(function(e,n){return e&&!1!==n(t)},!0)},c=function(e,t){o[e]&&(n&&l("deactivate",a(n,t)),n=o[e],l("activate",a(n,t)))},d=function(e,t){var r=o.indexOf(n)+e;l(e>0?"next":"prev",a(n,t))&&c(r,t)},u={off:s,on:function(e,t){return(i[e]||(i[e]=[])).push(t),s.bind(null,e,t)},fire:l,slide:function(e,t){if(!arguments.length)return o.indexOf(n);l("slide",a(o[e],t))&&c(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:o,destroy:function(e){l("destroy",a(n,e)),i={}}};return(t||[]).forEach(function(e){e(u)}),n||c(0),u}}),t),o=e(r);const i=document.body,a=(...e)=>history.replaceState(...e),s="",l="presenter",c="next",d="overview",u=["",l,d,c],f="bespoke-marp-",m=`data-${f}`,g=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const i=e.toString();return`${t}//${n}${r}${i?"?":""}${i}${o}`},p=()=>i.dataset.bespokeView,v=e=>new URLSearchParams(location.search).get(e),h=(e,t={})=>{const n={location,setter:a,...t},r=new URLSearchParams(n.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?r.set(t,n):r.delete(t)}try{n.setter({...window.history.state??{}},"",g(r,n.location))}catch(e){console.error(e)}},w=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch{return!1}})(),y=e=>{try{return localStorage.getItem(e)}catch{return null}},b=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch{return!1}},k=e=>{try{return localStorage.removeItem(e),!0}catch{return!1}},x=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},E=e=>{e.parent.classList.add(`${f}parent`),e.slides.forEach(e=>e.classList.add(`${f}slide`)),e.on("activate",t=>{const n=`${f}active`,r=t.slide,o=r.classList,i=!o.contains(n);if(e.slides.forEach(e=>{e.classList.remove(n),x(e,!0)}),o.add(n),x(r,!1),i){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}})},$=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const i=t<r||t===r&&n<=o;e.setAttribute(`${m}fragment`,(i?"":"in")+"active");const a=`${m}current-fragment`;t===r&&n===o?e.setAttribute(a,"current"):e.removeAttribute(a)})}),e.fragmentIndex=o;const i={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",i)};e.on("next",({fragment:i=!0})=>{if(i){if(r(1))return o(t,n+1),!1;const i=t+1;e.fragments[i]&&o(i,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const i=e.fragments[t+1];i&&o(t+1,i.length-1)}}),e.on("prev",({fragment:i=!0})=>{if(r(-1)&&i)return o(t,n-1),!1;const a=t-1;e.fragments[a]&&o(a,e.fragments[a].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)}),o(0,0)},L=document,S=()=>!(!L.fullscreenEnabled&&!L.webkitFullscreenEnabled),P=()=>!(!L.fullscreenElement&&!L.webkitFullscreenElement),_=e=>{e.fullscreen=()=>{S()&&(async()=>{P()?(L.exitFullscreen||L.webkitExitFullscreen)?.call(L):((e=L.body)=>{(e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)})()})()},document.addEventListener("keydown",t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!S()||(e.fullscreen(),t.preventDefault())})},O=`${f}inactive`,T=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let i;const a=()=>{i&&clearTimeout(i),i=setTimeout(()=>{r.add(O),o()},e),r.contains(O)&&(r.remove(O),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,a);setTimeout(a,0)},I=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],M=e=>{e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(I.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})},A=e=>{window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]");t.setAttribute(`${m}load`,e?"":"hideable")}})},C=({interval:e=250}={})=>t=>{document.addEventListener("keydown",e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()});let n,r,o=0;t.parent.addEventListener("wheel",i=>{let a=!1;const s=(e,t)=>{e&&(a=a||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),e?.parentElement&&s(e.parentElement,t)};if(0!==i.deltaX&&s(i.target,"X"),0!==i.deltaY&&s(i.target,"Y"),a)return;i.preventDefault();const l=Math.sqrt(i.deltaX**2+i.deltaY**2);if(void 0!==i.wheelDelta){if(void 0===i.webkitForce&&Math.abs(i.wheelDelta)<40)return;if(i.deltaMode===i.DOM_DELTA_PIXEL&&l<4)return}else if(i.deltaMode===i.DOM_DELTA_PIXEL&&l<12)return;r&&clearTimeout(r),r=setTimeout(()=>{n=0},e);const c=Date.now()-o<e,d=l<=n;if(n=l,c||d)return;let u;(i.deltaX>0||i.deltaY>0)&&(u="next"),(i.deltaX<0||i.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())})},D=(e=`.${f}osc`)=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${m}osc=${JSON.stringify(e)}]`).forEach(n)};if(S()||n("fullscreen",e=>e.style.display="none"),!w){const e=(e,t)=>{e.disabled=!0,e.title=`${t} is disabled due to restricted localStorage.`};n("presenter",t=>e(t,"Presenter view")),n("overview",t=>e(t,"Overview view"))}return e=>{t.addEventListener("click",t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?e?.fullscreen():"presenter"===n?e.openPresenterView():"overview"===n&&e.toggleOverviewView()}}),e.parent.appendChild(t),e.on("activate",({index:t})=>{n("page",n=>n.textContent=`Page ${t+1} of ${e.slides.length}`)}),e.on("fragment",({index:t,fragments:r,fragmentIndex:o})=>{n("prev",e=>e.disabled=0===t&&0===o),n("next",n=>n.disabled=t===e.slides.length-1&&o===r.length-1)}),e.on("marp-active",()=>x(t,!1)),e.on("marp-inactive",()=>x(t,!0)),S()&&(e=>{for(const t of["","webkit"])L.addEventListener(t+"fullscreenchange",e)})(()=>n("fullscreen",e=>e.classList.toggle("exit",S()&&P())))}},N=e=>{if(e.syncKey&&"string"==typeof e.syncKey)return!0;throw new Error("The current instance of Bespoke.js is incompatible with Marp bespoke sync plugin.")},B=(e={})=>{const t=e.key||window.history.state?.marpBespokeSyncKey||Math.random().toString(36).slice(2),n=`bespoke-marp-sync-${t}`;var r;r={marpBespokeSyncKey:t},h({},{setter:(e,...t)=>a({...e,...r},...t)});const o=()=>{const e=y(n);return e?JSON.parse(e):Object.create(null)},i=e=>{const t=o(),r={...t,...e(t)};return b(n,JSON.stringify(r)),r},s=()=>{window.removeEventListener("pageshow",s),i(e=>({reference:(e.reference||0)+1}))};return e=>{s(),Object.defineProperty(e,"syncKey",{value:t,enumerable:!0});let r=!0;setTimeout(()=>{e.on("fragment",e=>{r&&i(()=>({index:e.index,fragmentIndex:e.fragmentIndex}))})},0),window.addEventListener("storage",t=>{if(t.key===n&&t.oldValue&&t.newValue){const n=JSON.parse(t.oldValue),o=JSON.parse(t.newValue);if(n.index!==o.index||n.fragmentIndex!==o.fragmentIndex)try{r=!1,e.slide(o.index,{fragment:o.fragmentIndex,forSync:!0})}finally{r=!0}}});const a=()=>{const{reference:e}=o();void 0===e||e<=1?k(n):i(()=>({reference:e-1}))};window.addEventListener("pagehide",e=>{e.persisted&&window.addEventListener("pageshow",s),a()}),e.on("destroy",a)}},K=e=>{w&&document.addEventListener("keydown",t=>{("o"!==t.key||t.altKey||t.ctrlKey||t.metaKey)&&"Escape"!==t.key||(t.preventDefault(),e())})};let q=null;const V=({closeOnSelect:e=!0}={})=>t=>{N(t);const n=n=>{const r=(()=>{if(!q||!q.isConnected){q=document.createElement("div"),q.className=`${f}overview`,q.inert=!0;const n=document.createElement("iframe");n.src=(()=>{const n=new URLSearchParams(location.search);return n.set("view","overview"),n.set("sync",t.syncKey),e&&n.set("closeOnSelect","1"),g(n)})(),q.append(n),document.body.append(q)}return q})(),o=n??!r.dataset.open;setTimeout(()=>{if(r.dataset.open=o?"1":"",r.inert=!o,t.skipTransition=o,o){const e=r.querySelector("iframe");try{e?.contentWindow?.focus()}catch{e?.focus()}}else window.focus()},0)};Object.defineProperties(t,{toggleOverviewView:{enumerable:!0,value:n}}),window.addEventListener("message",e=>{e.origin===window.origin&&"closeOverview"===e.data&&n(!1)}),K(n)},j=e=>{const{title:t}=document;document.title="[Overview]"+(t?` - ${t}`:"");const n=!!v("closeOnSelect"),r=()=>{window.parent.postMessage("closeOverview","null"===window.origin?"*":window.origin)};if(e.slides.forEach((t,o)=>{t.tabIndex=0;const i=()=>{e.slide(o,{fragment:-1}),n&&r()};t.addEventListener("click",i),t.addEventListener("keydown",e=>{"Enter"!==e.key&&" "!==e.key||(e.preventDefault(),i())})}),window.addEventListener("keydown",t=>{const n=e.slide(),r=t=>{const r=t=>{const n=e.slides[t].getBoundingClientRect();return[Math.round((n.left+n.right)/2),Math.round((n.top+n.bottom)/2)]};let o=null,i=n;do{const e=r(i);if(o){if(Math.abs(e[0]-o[0])<2)return i}else o=e;i+=t}while(i>=0&&i<e.slides.length);return n};if("ArrowLeft"===t.key)e.slide(Math.max(n-1,0),{fragment:-1});else if("ArrowRight"===t.key)e.slide(Math.min(n+1,e.slides.length-1),{fragment:-1});else if("ArrowUp"===t.key)e.slide(r(-1),{fragment:-1});else if("ArrowDown"===t.key)e.slide(r(1),{fragment:-1});else if("End"===t.key)e.slide(e.slides.length-1,{fragment:-1});else{if("Home"!==t.key)return;e.slide(0,{fragment:-1})}t.preventDefault();const o=e.slide();e.slides[o]?.focus?.(),e.slides[o]?.scrollIntoView?.({behavior:"smooth",block:"nearest"})}),e.on("slide",({index:t})=>{e.slides[t]?.scrollIntoView?.({behavior:"smooth",block:"nearest"})}),window.parent!==window){K(r);const e=document.createElement("header");e.className=`${f}overview-header`;const t=document.createElement("button");t.className=`${f}overview-close`,t.type="button",t.title="Close overview",t.textContent=t.title,t.addEventListener("click",r),e.append(t),document.body.prepend(e)}},F=()=>{const e=p();return{[s]:V(),[l]:V({closeOnSelect:!1}),[d]:j}[e]},U=e=>{window.addEventListener("message",t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),i=Number.parseInt(n,10)+1;i>=e.fragments[o].length&&(o+=1,i=0),e.slide(o,{fragment:i})}})};var R,X,H,W,J,Y,z,G={exports:{}},Q=(R||(R=1,G.exports=(X=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"],H=function(e){return String(e).replace(/[&<>"']/g,function(e){return"&"+W[e]+";"})},W={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},J="dangerouslySetInnerHTML",Y={className:"class",htmlFor:"for"},z={},function(e,t){var n=[],r="";t=t||{};for(var o=arguments.length;o-- >2;)n.push(arguments[o]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(var i in t)!1!==t[i]&&null!=t[i]&&i!==J&&(r+=" "+(Y[i]?Y[i]:H(i))+'="'+H(t[i])+'"');r+=">"}if(-1===X.indexOf(e)){if(t[J])r+=t[J].__html;else for(;n.length;){var a=n.pop();if(a)if(a.pop)for(var s=a.length;s--;)n.push(a[s]);else r+=!0===z[a]?a:H(a)}r+=e?"</"+e+">":""}return z[r]=!0,r})),G.exports),Z=e(Q);const ee=({children:e})=>Z(null,null,...e),te=`${f}presenter-`,ne={container:`${te}container`,dragbar:`${te}dragbar-container`,next:`${te}next`,nextContainer:`${te}next-container`,noteContainer:`${te}note-container`,noteWrapper:`${te}note-wrapper`,noteButtons:`${te}note-buttons`,infoContainer:`${te}info-container`,infoPageArea:`${te}info-page-area`,infoPage:`${te}info-page`,infoPagePrev:`${te}info-page-prev`,infoPageNext:`${te}info-page-next`,noteButtonsBigger:`${te}note-bigger`,noteButtonsSmaller:`${te}note-smaller`,infoTime:`${te}info-time`,infoTimer:`${te}info-timer`},re=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=ne.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",Z(ee,null,Z("div",{class:ne.nextContainer},Z("iframe",{class:ne.next,src:"?view=next"})),Z("div",{class:ne.dragbar}),Z("div",{class:ne.noteContainer},Z("div",{class:ne.noteWrapper}),Z("div",{class:ne.noteButtons},Z("button",{class:ne.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),Z("button",{class:ne.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),Z("div",{class:ne.infoContainer},Z("div",{class:ne.infoPageArea},Z("button",{class:ne.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),Z("button",{class:ne.infoPage}),Z("button",{class:ne.infoPageNext,tabindex:"-1",title:"Next"},"Next")),Z("time",{class:ne.infoTime,title:"Current time"}),Z("time",{class:ne.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(ne.dragbar).addEventListener("mousedown",()=>{t=!0,r(ne.dragbar).classList.add("active")}),window.addEventListener("mouseup",()=>{t=!1,r(ne.dragbar).classList.remove("active")}),window.addEventListener("mousemove",e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(ne.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)}),r(ne.nextContainer).addEventListener("click",()=>e.next());const n=r(ne.next),o=(i=n,(e,t)=>i.contentWindow?.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin));var i;n.addEventListener("load",()=>{r(ne.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",({index:e,fragmentIndex:t})=>o(e,t))});const a=document.querySelectorAll(".bespoke-marp-note");a.forEach(e=>{e.addEventListener("keydown",e=>e.stopPropagation()),r(ne.noteWrapper).appendChild(e)}),e.on("activate",()=>a.forEach(t=>t.classList.toggle("active",t.dataset.index==e.slide())));let s=0;const l=e=>{s=Math.max(-5,s+e),r(ne.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},c=()=>l(1),d=()=>l(-1),u=r(ne.noteButtonsBigger),f=r(ne.noteButtonsSmaller);u.addEventListener("click",()=>{u.blur(),c()}),f.addEventListener("click",()=>{f.blur(),d()}),document.addEventListener("keydown",e=>{"+"===e.key&&c(),"-"===e.key&&d()},!0);const m=r(ne.infoPage);e.on("activate",({index:t})=>{m.textContent=`${t+1} / ${e.slides.length}`}),m.addEventListener("click",()=>{m.blur(),e.toggleOverviewView()});const g=r(ne.infoPagePrev),p=r(ne.infoPageNext);g.addEventListener("click",t=>{g.blur(),e.prev({fragment:!t.shiftKey})}),p.addEventListener("click",t=>{p.blur(),e.next({fragment:!t.shiftKey})}),e.on("fragment",({index:t,fragments:n,fragmentIndex:r})=>{g.disabled=0===t&&0===r,p.disabled=t===e.slides.length-1&&r===n.length-1});let v=new Date;const h=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-v.getTime(),o=t(n/1e3%60),i=t(n/1e3/60%60),a=t(n/36e5%24);r(ne.infoTime).textContent=e.toLocaleTimeString(),r(ne.infoTimer).textContent=`${a}:${i}:${o}`};h(),setInterval(h,250),r(ne.infoTimer).addEventListener("click",()=>{v=new Date})})(e)},oe=e=>{N(e),Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:ie},presenterUrl:{enumerable:!0,get:ae}}),w&&document.addEventListener("keydown",t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())})};function ie(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,te+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function ae(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),g(e)}const se=e=>{const t=p();return t===c&&e.appendChild(document.createElement("span")),{[s]:oe,[l]:re,[c]:U}[t]},le=e=>{e.on("activate",t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach(n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"})})},ce=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},de=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{let n=t.fragment?ce(v("f")||""):null;((t,n)=>{const{min:r,max:o}=Math,{fragments:i,slides:a}=e,s=o(0,r(t,a.length-1)),l=o(0,r(n||0,i[s].length-1));s===e.slide()&&l===e.fragmentIndex||e.slide(s,{fragment:l})})((()=>{if(location.hash){const[t]=location.hash.slice(1).split(":~:");if(/^\d+$/.test(t))return(ce(t)??1)-1;const r=document.getElementById(t)||document.querySelector(`a[name="${CSS.escape(t)}"]`);if(r){const{length:t}=e.slides;for(let o=0;o<t;o+=1)if(e.slides[o].contains(r)){const t=e.fragments?.[o],i=r.closest("[data-marpit-fragment]");if(t&&i){const e=t.indexOf(i);e>=0&&(n=e)}return o}}}return 0})(),n)};e.on("fragment",({index:e,fragmentIndex:r})=>{n||h({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})}),setTimeout(()=>{o(),window.addEventListener("hashchange",()=>r(()=>{o({fragment:!1}),h({f:void 0})})),window.addEventListener("popstate",()=>{n||r(()=>o())}),n=!1},0)}},{PI:ue,abs:fe,sqrt:me,atan2:ge}=Math,pe={passive:!0},ve=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,i=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",({touches:e})=>{r=1===e.length?i(e[0]):void 0},pe),o.addEventListener("touchmove",e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=i(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=me(fe(n)**2+fe(o)**2),r.radian=ge(n,o)}else r=void 0}),o.addEventListener("touchend",o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+ue)%(2*ue)-ue;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}},pe)},he=new Map;he.clear(),he.set("none",{backward:{both:void 0,incoming:void 0,outgoing:void 0},forward:{both:void 0,incoming:void 0,outgoing:void 0}});const we={both:"",outgoing:"outgoing-",incoming:"incoming-"},ye={forward:"",backward:"-backward"},be=e=>`--marp-bespoke-transition-animation-${e}`,ke=e=>`--marp-transition-${e}`,xe=be("name"),Ee=be("duration"),$e=e=>new Promise(t=>{const n={},r=document.createElement("div"),o=e=>{r.remove(),t(e)};r.addEventListener("animationstart",()=>o(n)),Object.assign(r.style,{animationName:e,animationDuration:"1s",animationFillMode:"both",animationPlayState:"paused",position:"absolute",pointerEvents:"none"}),document.body.appendChild(r);const i=getComputedStyle(r).getPropertyValue(ke("duration"));i&&Number.parseFloat(i)>=0&&(n.defaultDuration=i),((e,t)=>{requestAnimationFrame(()=>{e.style.animationPlayState="running",requestAnimationFrame(()=>t(void 0))})})(r,o)}),Le=async e=>he.has(e)?he.get(e):(e=>{const t={},n=[];for(const[r,o]of Object.entries(we))for(const[i,a]of Object.entries(ye)){const s=`marp-${o}transition${a}-${e}`;n.push($e(s).then(e=>{t[i]=t[i]||{},t[i][r]=e?{...e,name:s}:void 0}))}return Promise.all(n).then(()=>t)})(e).then(t=>(he.set(e,t),t)),Se=e=>Object.values(e).flatMap(Object.values).every(e=>!e),Pe=(e,{type:t,backward:n})=>{const r=e[n?"backward":"forward"],o=(()=>{const e=r[t],n=e=>({[xe]:e.name});if(e)return n(e);if(r.both){const e=n(r.both);return"incoming"===t&&(e[be("direction")]="reverse"),e}})();return!o&&n?Pe(e,{type:t,backward:!1}):o||{[xe]:"__bespoke_marp_transition_no_animation__"}},_e=e=>{if(e)try{const t=JSON.parse(e);if((e=>{if("object"!=typeof e)return!1;const t=e;return"string"==typeof t.name&&(void 0===t.duration||"string"==typeof t.duration)})(t))return t}catch{}},Oe="_tSId",Te="_tA",Ie="bespoke-marp-transition-warming-up",Me=window.matchMedia("(prefers-reduced-motion: reduce)"),Ae="__bespoke_marp_transition_reduced_outgoing__",Ce="__bespoke_marp_transition_reduced_incoming__",De={forward:{both:void 0,incoming:{name:Ce},outgoing:{name:Ae}},backward:{both:void 0,incoming:{name:Ce},outgoing:{name:Ae}}},Ne=e=>{if(!document.startViewTransition)return;const t=t=>(void 0!==t&&(e._tD=t),e._tD);let n;t(!1),((...e)=>{CSS.registerProperty({name:ke("duration"),syntax:"<time>",inherits:!0,initialValue:"-1s"});const t=[...new Set(e).values()];return Promise.all(t.map(e=>Le(e))).then()})(...Array.from(document.querySelectorAll("section[data-transition], section[data-transition-back]")).flatMap(e=>[e.dataset.transition,e.dataset.transitionBack].flatMap(e=>{const t=_e(e);return[t?.name,t?.builtinFallback?`__builtin__${t.name}`:void 0]}).filter(e=>!!e))).then(()=>{document.querySelectorAll("style").forEach(e=>{e.innerHTML=e.innerHTML.replace(/--marp-transition-duration:[^;}]*[;}]/g,e=>e.slice(0,-1)+"!important"+e.slice(-1))})});const r=(n,{back:r,cond:o})=>i=>{const a=t();if(a)return!!i[Te]||!("object"!=typeof a||(a.skipTransition(),!i.forSync));if(e.skipTransition)return!0;if(!o(i))return!0;const s=e.slides[e.slide()],l=()=>i.back??r,c="data-transition"+(l()?"-back":""),d=s.querySelector(`section[${c}]`);if(!d)return!0;const u=_e(d.getAttribute(c)??void 0);return!u||((async(e,{builtinFallback:t=!0}={})=>{let n=await Le(e);if(Se(n)){if(!t)return;return n=await Le(`__builtin__${e}`),Se(n)?void 0:n}return n})(u.name,{builtinFallback:u.builtinFallback}).then(e=>{if(!e){t(!0);try{n(i)}finally{t(!1)}return}let r=e;Me.matches&&(console.warn("Use a constant animation to transition because preferring reduced motion by viewer has detected."),r=De);const o=document.getElementById(Oe);o&&o.remove();const a=document.createElement("style");a.id=Oe,document.head.appendChild(a),((e,t)=>{const n=[`:root{${ke("direction")}:${t.backward?-1:1};}`,":root:has(.bespoke-marp-inactive){cursor:none;}"],r=t=>{const n=e[t].both?.defaultDuration||e[t].outgoing?.defaultDuration||e[t].incoming?.defaultDuration;return"forward"===t?n:n||r("forward")},o=t.duration||r(t.backward?"backward":"forward");void 0!==o&&n.push(`::view-transition-group(*){${Ee}:${o};}`);const i=e=>Object.entries(e).map(([e,t])=>`${e}:${t};`).join("");return n.push(`::view-transition-old(root){${i(Pe(e,{...t,type:"outgoing"}))}}`,`::view-transition-new(root){${i(Pe(e,{...t,type:"incoming"}))}}`),n})(r,{backward:l(),duration:u.duration}).forEach(e=>a.sheet?.insertRule(e));const s=document.documentElement.classList;s.add(Ie);let c=!1;const d=()=>{c||(n(i),c=!0,s.remove(Ie))},f=()=>{t(!1),a.remove(),s.remove(Ie)};try{t(!0);const e=document.startViewTransition(d);t(e),e.finished.finally(f)}catch(e){console.error(e),d(),f()}}),!1)};e.on("prev",r(t=>e.prev({...t,[Te]:!0}),{back:!0,cond:e=>e.index>0&&!((e.fragment??1)&&n.fragmentIndex>0)})),e.on("next",r(t=>e.next({...t,[Te]:!0}),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout(()=>{e.on("slide",r(t=>e.slide(t.index,{...t,[Te]:!0}),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))},0),e.on("fragment",e=>{n=e})};let Be;const Ke=()=>(void 0===Be&&(Be="wakeLock"in navigator&&navigator.wakeLock),Be),qe=async()=>{const e=Ke();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},Ve=async()=>{if(!Ke())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&qe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await qe(),e};((e=document.getElementById(":$p"))=>{(()=>{const e=v("view");i.dataset.bespokeView=u.some(t=>t&&t===e)?e:""})();const t=(e=>{const t=v(e);return h({[e]:void 0}),t})("sync")||void 0;o.from(e,((...e)=>{const t=u.findIndex(e=>p()===e);return e.map(([e,n])=>e[t]&&n).filter(e=>e)})([[1,1,1,0],B({key:t})],[[1,1,0,1],se(e)],[[1,1,0,0],M],[[1,1,1,1],E],[[1,0,0,0],T()],[[1,1,1,1],A],[[1,1,1,1],de({history:!1})],[[1,1,0,0],C()],[[1,1,1,0],_],[[1,0,0,0],le],[[1,1,0,0],ve()],[[1,0,0,0],D()],[[1,1,1,0],F()],[[1,0,0,0],Ne],[[1,1,1,1],$],[[1,1,1,0],Ve]))})()}();</script></body></html>

@@ -12,4 +12,12 @@ await cp(new URL('./assets/', import.meta.url), new URL('./assets/', outputDirec
   recursive: true,
 });
 
-console.log('Built static site to dist/.');
+for (const course of ['vlsi-testing-technology', 'microelectronic-device-modeling']) {
+  await cp(
+    new URL(`./courses/${course}/`, import.meta.url),
+    new URL(`./courses/${course}/`, outputDirectory),
+    { recursive: true },
+  );
+}
+
+console.log('Built static site and embedded courses to dist/.');
