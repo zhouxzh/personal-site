@@ -264,6 +264,92 @@ h1 em {
 .course-repo { color: var(--muted); font-size: 12px; }
 .course-repo:hover, .course-repo:focus-visible { color: var(--ink); }
 
+.research-section {
+  background: #eef2ec;
+  display: grid;
+  gap: 64px;
+  grid-template-columns: 160px minmax(0, 1fr);
+  margin: 0 auto;
+  max-width: var(--max-width);
+  padding: 112px 40px 124px;
+}
+
+.research-content { min-width: 0; }
+
+.research-heading {
+  align-items: end;
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+
+.research-heading h2 { margin-bottom: 0; }
+.research-heading h2 em {
+  color: var(--coral);
+  font-family: Georgia, "Noto Serif SC", serif;
+  font-size: 0.8em;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.research-intro {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0 0 4px;
+  max-width: 340px;
+}
+
+.research-list { border-top: 1px solid var(--line); }
+
+.research-item {
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  padding: 25px 0;
+}
+
+.research-number {
+  color: var(--coral);
+  font-size: 13px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.research-meta {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  margin: 0 0 9px;
+}
+
+.research-item h3 {
+  font-size: 23px;
+  margin-bottom: 8px;
+}
+
+.research-item div > p:last-child {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+  margin: 0;
+  max-width: 650px;
+}
+
+.research-link {
+  border-bottom: 1px solid currentColor;
+  font-size: 13px;
+  font-weight: 800;
+  padding-bottom: 6px;
+  white-space: nowrap;
+}
+
+.research-link span { font-size: 18px; font-weight: 400; margin-left: 12px; }
+
 .current-section {
   background: var(--ink);
   color: white;
@@ -375,6 +461,11 @@ h1 em {
   .course-grid { display: block; }
   .course-card { min-height: 0; padding: 25px 22px; }
   .course-card + .course-card { border-top: 1px solid var(--line); }
+  .research-section { display: block; padding: 80px 22px; }
+  .research-heading { align-items: start; display: block; margin-bottom: 42px; }
+  .research-intro { margin-top: 25px; max-width: 520px; }
+  .research-item { align-items: start; grid-template-columns: 32px minmax(0, 1fr); padding: 24px 0; }
+  .research-link { grid-column: 2; justify-self: start; }
   .current-section { padding-left: 22px; padding-right: 22px; }
   .status-grid { display: block; margin-top: 44px; }
   .status-grid article { border-bottom: 1px solid #425047; padding: 22px 0; }
