@@ -171,6 +171,17 @@ h1, h2, h3, p { margin-top: 0; }
 
 .outputs-toolbar { align-items: center; display: flex; flex-wrap: wrap; gap: 18px; margin: -8px 0 35px; }
 .outputs-toolbar > span { color: var(--muted); font-size: 12px; }
+.publication-list { border-top: 1px solid var(--line); margin-bottom: 64px; }
+.publication-item { align-items: start; border-bottom: 1px solid var(--line); display: grid; gap: 24px; grid-template-columns: 54px minmax(0, 1fr) auto; padding: 23px 0; }
+.publication-year { color: var(--accent-dark); font-size: 12px; font-weight: 850; padding-top: 2px; }
+.publication-title { display: inline; font-size: 16px; font-weight: 800; line-height: 1.5; }
+.publication-title span { color: var(--accent-dark); font-size: 17px; font-weight: 400; margin-left: 6px; }
+.publication-title:hover, .publication-title:focus-visible { color: var(--accent-dark); }
+.publication-body p { color: var(--muted); font-size: 13px; line-height: 1.7; margin: 8px 0 0; }
+.publication-body em { color: var(--ink-soft); font-family: Georgia, serif; }
+.citation-count { color: var(--accent-dark); font-size: 12px; font-weight: 850; padding-top: 3px; white-space: nowrap; }
+.citation-count:hover, .citation-count:focus-visible { text-decoration: underline; }
+.citation-count-muted { color: var(--muted); }
 .patent-table-wrap { overflow-x: auto; }
 .patent-table { border-collapse: collapse; min-width: 760px; width: 100%; }
 .patent-table th, .patent-table td { border-bottom: 1px solid var(--line); padding: 16px 14px 16px 0; text-align: left; vertical-align: top; }
@@ -225,6 +236,8 @@ h1, h2, h3, p { margin-top: 0; }
   .research-details { display: block; margin-top: 38px; }
   .research-detail { padding: 23px 0; }
   .research-detail + .research-detail { border-left: 0; padding-left: 0; }
+  .publication-item { gap: 10px 16px; grid-template-columns: 42px minmax(0, 1fr); }
+  .citation-count { grid-column: 2; justify-self: start; }
   .courses-section { margin-left: -24px; margin-right: -24px; padding-left: 24px; padding-right: 24px; }
   .profile-links { display: block; }
   .profile-links a + a { border-left: 0; }
