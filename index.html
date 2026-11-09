@@ -33,7 +33,8 @@
           <a href="#research"><span>02</span>研究方向</a>
           <a href="#courses"><span>03</span>课程资源</a>
           <a href="#profile"><span>04</span>学术档案</a>
-          <a href="#contact"><span>05</span>联系</a>
+          <a href="#outputs"><span>05</span>研究成果</a>
+          <a href="#contact"><span>06</span>联系</a>
         </nav>
 
         <div class="aside-links">
@@ -55,7 +56,7 @@
           <div class="index-strip" aria-label="站点内容索引">
             <a href="#research"><strong>01</strong><span>研究方向</span><b>→</b></a>
             <a href="#courses"><strong>02</strong><span>课程资料</span><b>→</b></a>
-            <a href="#profile"><strong>03</strong><span>学术档案</span><b>→</b></a>
+            <a href="#outputs"><strong>03</strong><span>研究成果</span><b>→</b></a>
           </div>
         </section>
 
@@ -67,19 +68,24 @@
           <div class="research-list">
             <article class="research-row">
               <div class="row-index">01</div>
-              <div class="row-body"><p class="row-label">ASCEND 310B · OPEN RESEARCH</p><h3>昇腾 310B 研究与实践</h3><p>整理面向 Ascend 310B 的开发、调试、部署与实践经验，持续维护为公开电子书。</p></div>
-              <a class="row-link" href="https://310b.cn/" target="_blank" rel="noopener">资料 <span aria-hidden="true">↗</span></a>
+              <div class="row-body"><p class="row-label">ASCEND 310B · PIM · BINARY NEURAL NETWORK</p><h3>昇腾 310B 研究与实践</h3><p>围绕存算一体、二值神经网络和边缘 AI 加速，整理面向 Ascend 310B 的开发、调试与部署经验。</p></div>
+              <a class="row-link" href="#research-ascend">介绍 <span aria-hidden="true">↓</span></a>
             </article>
             <article class="research-row">
               <div class="row-index">02</div>
-              <div class="row-body"><p class="row-label">POWER SEMICONDUCTOR · DRIVER</p><h3>功率半导体驱动电路</h3><p>关注功率器件驱动、栅极控制、开关行为和保护电路之间的设计关系。</p></div>
-              <a class="row-link" href="https://github.com/zhouxzh" target="_blank" rel="noopener">资料 <span aria-hidden="true">↗</span></a>
+              <div class="row-body"><p class="row-label">POWER SEMICONDUCTOR · DRIVER · DIAGNOSIS</p><h3>功率半导体驱动电路</h3><p>围绕栅极驱动、可调脉冲、逆变器故障诊断和有源栅极控制，研究驱动行为与可靠性之间的关系。</p></div>
+              <a class="row-link" href="#research-driver">介绍 <span aria-hidden="true">↓</span></a>
             </article>
             <article class="research-row">
               <div class="row-index">03</div>
-              <div class="row-body"><p class="row-label">SEMICONDUCTOR · TCAD</p><h3>半导体器件建模与仿真</h3><p>围绕功率器件和微电子器件，整理结构、材料参数、物理模型与结果解释之间的关系。</p></div>
-              <a class="row-link" href="courses/microelectronic-device-modeling/">资料 <span aria-hidden="true">↗</span></a>
+              <div class="row-body"><p class="row-label">SEMICONDUCTOR · DEVICE MODELING · TCAD</p><h3>半导体器件建模与仿真</h3><p>围绕功率半导体器件，研究结构、材料参数、物理模型、仿真结果与实验判据之间的关系。</p></div>
+              <a class="row-link" href="#research-tcad">介绍 <span aria-hidden="true">↓</span></a>
             </article>
+          </div>
+          <div class="research-details" aria-label="研究方向介绍">
+            <article id="research-ascend" class="research-detail"><p class="row-label">01 / ASCEND 310B</p><h3>存算一体与边缘 AI 加速</h3><p>研究内容围绕 PIM 系统的读写电压标定、二值神经网络构建和加速器开发展开，重点关注从算法表示、存储器行为到芯片侧部署的完整链路。</p><a class="detail-link" href="https://310b.cn/" target="_blank" rel="noopener">查看研究电子书 <span aria-hidden="true">↗</span></a></article>
+            <article id="research-driver" class="research-detail"><p class="row-label">02 / POWER DRIVER CIRCUITS</p><h3>驱动、诊断与保护</h3><p>研究功率半导体驱动电路中的脉冲生成、栅极控制、开路故障诊断和主动保护，关注可调电压、变化率与器件开关过程的协同设计。</p><a class="detail-link" href="#outputs">查看相关专利 <span aria-hidden="true">↓</span></a></article>
+            <article id="research-tcad" class="research-detail"><p class="row-label">03 / SEMICONDUCTOR TCAD</p><h3>器件结构与物理模型</h3><p>研究半导体器件的结构设计、材料参数、物理模型和 TCAD 结果解释，强调模型假设、边界条件和结果证据之间的对应关系。</p><a class="detail-link" href="https://scholar.google.com/citations?user=WNad_jQAAAAJ&amp;hl=zh-CN" target="_blank" rel="noopener">查看论文档案 <span aria-hidden="true">↗</span></a></article>
           </div>
         </section>
 
@@ -102,7 +108,7 @@
 
         <section id="profile" class="profile-section content-section" aria-labelledby="profile-title">
           <div class="section-heading">
-            <div><p class="section-number">04 / PROFILE</p><h2 id="profile-title">学术档案</h2></div>
+            <div><p class="section-number">05 / PROFILE</p><h2 id="profile-title">学术档案</h2></div>
             <p>公开档案与代码入口，方便从课程资料继续了解研究工作。</p>
           </div>
           <div class="profile-links">
@@ -111,8 +117,31 @@
           </div>
         </section>
 
+        <section id="outputs" class="outputs-section content-section" aria-labelledby="outputs-title">
+          <div class="section-heading">
+            <div><p class="section-number">05 / OUTPUTS</p><h2 id="outputs-title">研究成果</h2></div>
+            <p>论文列表以 Google Scholar 为准；这里先集中展示已提供的授权专利。</p>
+          </div>
+          <div class="outputs-toolbar">
+            <a class="button-primary" href="https://scholar.google.com/citations?user=WNad_jQAAAAJ&amp;hl=zh-CN" target="_blank" rel="noopener">查看论文列表 <span aria-hidden="true">↗</span></a>
+            <span>Google Scholar · WNad_jQAAAAJ</span>
+          </div>
+          <div class="patent-table-wrap">
+            <table class="patent-table">
+              <thead><tr><th>名称</th><th>专利号</th><th>作者</th><th>授权公告日</th></tr></thead>
+              <tbody>
+                <tr><td>一种二值神经网络的构建方法</td><td>ZL 2021 1 0462157.6</td><td>周贤中；黄智豪；赵曜；王帅；杨帆</td><td>2024.01.16</td></tr>
+                <tr><td>一种适用于 PIM 系统的读写电压自动标定方法及系统</td><td>ZL 2023 1 0642698.6</td><td>周贤中；杨帆</td><td>2024.03.13</td></tr>
+                <tr><td>一种逆变器开路故障诊断方法和系统</td><td>ZL 2023 1 0681760.2</td><td>周贤中；邓男发</td><td>2023.06.09</td></tr>
+                <tr><td>一种可调电压和电压变化率的脉冲发生器和方法</td><td>ZL 2024 1 0790278.7</td><td>周贤中；余达明</td><td>2024.06.19</td></tr>
+                <tr><td>一种变电阻式有源栅极驱动器、驱动方法及介质</td><td>ZL 2024 1 1636604.5</td><td>文景瑜；周贤中</td><td>2025.06.20</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         <section id="contact" class="contact-section" aria-labelledby="contact-title">
-          <p class="section-number">05 / CONTACT</p>
+          <p class="section-number">06 / CONTACT</p>
           <h2 id="contact-title">欢迎交流课程、研究<br />与开放资料。</h2>
           <div class="contact-actions">
             <button id="copy-domain" class="domain-button" type="button" data-domain="zhouxianzhong.cn"><span>zhouxianzhong.cn</span><span aria-hidden="true">↗</span></button>
