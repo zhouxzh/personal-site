@@ -12,7 +12,21 @@ await cp(new URL('./assets/', import.meta.url), new URL('./assets/', outputDirec
   recursive: true,
 });
 
-for (const course of ['vlsi-testing-technology', 'microelectronic-device-modeling']) {
+await cp(
+  new URL('./courses/index.html', import.meta.url),
+  new URL('./courses/index.html', outputDirectory),
+);
+
+for (const course of [
+  'python-basic',
+  'python-data-analysis',
+  'fpga-system-design',
+  'embedded-system-design',
+  'vlsi-testing-technology',
+  'microelectronic-device-modeling',
+  'reinforcement-learning',
+  'python-scientific-computing',
+]) {
   await cp(
     new URL(`./courses/${course}/`, import.meta.url),
     new URL(`./courses/${course}/`, outputDirectory),

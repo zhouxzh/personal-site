@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Python 编程基础 · Day 4</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<link rel="stylesheet" href="course.css"></head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Python 编程基础 · Day 4</h1>
+</header>
+<h1 id="day-4函数与模块化编程及文件操作3学时">Day
+4：函数与模块化编程及文件操作（3学时）</h1>
+<h2 id="函数定义与参数传递">1. 函数定义与参数传递</h2>
+<h3 id="基本函数定义">1.1 基本函数定义</h3>
+<p>```python function_basics.py<br />
+def greet(name):<br />
+“““返回欢迎信息（功能注释）”“”<br />
+return f”Hello, {name}!”</p>
+<h1 id="调用示例">调用示例</h1>
+<p>print(greet(“DeepSeek”)) # Hello, DeepSeek!<br />
+print(greet.__doc__) # 返回欢迎信息（功能注释）</p>
+<pre><code>
+#### 架构说明：  
+- `def` 关键字定义函数  
+- 函数名遵循蛇形命名法（snake_case）  
+- 推荐使用文档字符串描述功能  
+- 使用 return 语句返回结果（默认返回 None）
+
+---
+
+### 1.2 参数类型与传递  
+```python parameter_types.py  
+def data_analyze(data, threshold=0.7, *scores, **options):  
+    &quot;&quot;&quot;  
+    :param data: 必需位置参数  
+    :param threshold: 带默认值参数（必须声明在无默认参数后）  
+    :param scores: 可变位置参数（元组）  
+    :param options: 可变关键字参数（字典）  
+    &quot;&quot;&quot;  
+    print(f&quot;基底数据: {data}&quot;)  
+    print(f&quot;阈值: {threshold}&quot;)  
+    print(f&quot;附加分数: {scores}&quot;)  
+    print(f&quot;配置选项: {options}&quot;)  
+
+# 调用演示  
+data_analyze(&quot;原始数据&quot;, 0.65, 85, 90, mode=&quot;strict&quot;, log=True)  
+&quot;&quot;&quot;  
+输出:  
+基底数据: 原始数据  
+阈值: 0.65  
+附加分数: (85, 90)  
+配置选项: {&#39;mode&#39;: &#39;strict&#39;, &#39;log&#39;: True}  
+&quot;&quot;&quot;</code></pre>
+<hr />
+<h3 id="参数传递机制">1.3 参数传递机制</h3>
+<p>```python passing_mechanism.py<br />
+def modify_args(a, b, c):<br />
+a = 100 # 新整数对象赋值<br />
+b.append(4) # 修改列表对象内容<br />
+c = [5,6] # 新列表对象赋值</p>
+<h1 id="原始变量">原始变量</h1>
+<p>x = 1 # 不可变类型<br />
+y = [2,3] # 可变类型<br />
+z = [“init”]</p>
+<h1 id="函数调用">函数调用</h1>
+<p>modify_args(x, y, z)</p>
+<p>print(“调用后变量值:”)<br />
+print(f”x: {x}“) # 1 (未被修改)<br />
+print(f”y: {y}“) # [2,3,4] (已修改)<br />
+print(f”z: {z}“) # [“init”] (未修改)</p>
+<pre><code>
+#### 关键结论：  
+- 参数传递本质是对象引用的传递  
+- 对不可变对象（如整数、字符串）的修改不会影响原始变量  
+- 对可变对象（如列表、字典）的内容修改会保留  
+- 变量重新赋值会创建新对象，不影响原变量
+
+---
+
+### 1.4 参数解包技巧  
+```python argument_unpacking.py  
+def plot_point(x, y, color=&#39;blue&#39;, size=12):  
+    print(f&quot;在坐标({x},{y})绘制{color}色点，尺寸{size}&quot;)  
+
+# 参数解包调用  
+position = (15, 25)  
+style_args = {&#39;color&#39;: &#39;red&#39;, &#39;size&#39;: 20}  
+
+plot_point(*position, **style_args)  # 在坐标(15,25)绘制红色点，尺寸20  
+plot_point(*[30,40], **dict(color=&#39;green&#39;))  # 在坐标(30,40)绘制绿色点，尺寸12</code></pre>
+<hr />
+<h2 id="参数类型总结表">参数类型总结表</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 32%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th>参数类型</th>
+<th>语法示例</th>
+<th>特点</th>
+<th>典型应用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>位置参数</td>
+<td>def func(a)</td>
+<td>调用时必须传入</td>
+<td>核心参数处理</td>
+</tr>
+<tr>
+<td>默认参数</td>
+<td>def func(a=1)</td>
+<td>声明必须在后，避免可变对象</td>
+<td>可选配置项</td>
+</tr>
+<tr>
+<td>可变位置参数</td>
+<td>def func(*args)</td>
+<td>收集为元组</td>
+<td>处理不定长输入</td>
+</tr>
+<tr>
+<td>可变关键字参数</td>
+<td>def func(**kwargs)</td>
+<td>收集为字典</td>
+<td>配置选项/扩展参数</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="最佳实践指南">最佳实践指南</h2>
+<p>```python practice_advice.py<br />
+# 1. 避免可变默认值陷阱<br />
+def append_value(value, lst=None):<br />
+“““正确方式：用None作为默认值”“”<br />
+if lst is None:<br />
+lst = []<br />
+lst.append(value)<br />
+return lst</p>
+<h1 id="类型提示python-3.5">2. 类型提示（Python 3.5+）</h1>
+<p>from typing import List, Dict</p>
+<p>def process_data(data: List[str], config: Dict[str, int] = {}) -&gt;
+float:<br />
+“““清晰的类型注解”“”<br />
+return 0.0</p>
+<h1 id="参数验证装饰器">3. 参数验证装饰器</h1>
+<p>def validate_input(func):<br />
+def wrapper(num: int):<br />
+if not isinstance(num, int):<br />
+raise TypeError(“必须输入整数”)<br />
+return func(num)<br />
+return wrapper</p>
+<p><span class="citation"
+data-cites="validate_input">@validate_input</span><br />
+def square(n):<br />
+return n ** 2</p>
+<pre><code>
+## 2. 返回值与作用域
+
+### 2.1 返回机制详解
+```python return_demo.py
+def process_data(raw_data):
+    &quot;&quot;&quot;处理数据并返回多个计算结果&quot;&quot;&quot;
+    if not raw_data:
+        print(&quot;空数据输入&quot;)
+        return  # 隐式返回None
+    
+    sum_val = sum(raw_data)
+    avg_val = sum_val / len(raw_data)
+    return sum_val, avg_val  # 显式返回元组
+
+# 结果接收方式
+data = [85, 92, 78]
+result = process_data(data)           # 接收元组 → (255, 85.0)
+total, average = process_data(data)  # 分别解包 → total=255, average=85.0
+
+# 特殊返回情况
+print(process_data([]))  # 输出: None</code></pre>
+<h4 id="返回机制特点">返回机制特点：</h4>
+<ul>
+<li>可返回任意类型对象，包括其他函数</li>
+<li>多返回值自动打包为元组</li>
+<li>返回语句执行后立即结束函数</li>
+<li>不存在返回值的函数默认返回<code>None</code></li>
+</ul>
+<h3 id="作用域链与访问规则">2.2 作用域链与访问规则</h3>
+<p>```python scope_demo.py global_var = 10 # 全局作用域</p>
+<p>def outer_func(): outer_var = 20 # 闭包作用域</p>
+<pre><code>def inner_func():
+    inner_var = 30  # 局部作用域
+    print(&quot;访问全局变量:&quot;, global_var)  # 10
+    print(&quot;访问闭包变量:&quot;, outer_var)   # 20
+    # 直接修改闭包变量会触发错误，需使用nonlocal
+    
+inner_func()
+return inner_var  # NameError，变量作用域仅限于内部</code></pre>
+<p>outer_func()</p>
+<pre><code>
+#### LEGB作用域优先级：
+1. **Local**：函数内部定义变量  
+2. **Enclosing**：闭包函数外层变量  
+3. **Global**：模块全局变量  
+4. **Built-in**：内置命名空间  
+
+### 2.3 global与nonlocal应用
+```python variable_scope.py
+counter = 0  # 全局变量
+
+def create_counter():
+    count = 0  # 闭包作用域
+    
+    def increment():
+        global counter        # 声明全局变量
+        nonlocal count        # 声明闭包变量
+        count += 1           # 修改闭包变量
+        counter += 10        # 修改全局变量
+        
+        return count, counter
+    
+    return increment
+
+counter_proc = create_counter()
+print(counter_proc())  # (1, 10)
+print(counter_proc())  # (2, 20)</code></pre>
+<h4 id="变量修改规则">变量修改规则：</h4>
+<table>
+<thead>
+<tr>
+<th>操作类型</th>
+<th>语法</th>
+<th>作用范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全局修改</td>
+<td><code>global x</code></td>
+<td>跨模块修改</td>
+</tr>
+<tr>
+<td>闭包修改</td>
+<td><code>nonlocal x</code></td>
+<td>外层非全局作用域</td>
+</tr>
+<tr>
+<td>默认访问</td>
+<td>直接访问</td>
+<td>LEGB顺序查找</td>
+</tr>
+</tbody>
+</table>
+<h3 id="闭包与工厂函数">2.4 闭包与工厂函数</h3>
+<p>```python closure_demo.py def power_factory(exponent):
+“““创建指数计算函数的工厂”“” def calculate(base): return base **
+exponent return calculate</p>
+<h1 id="创建不同幂函数">创建不同幂函数</h1>
+<p>square = power_factory(2) cube = power_factory(3)</p>
+<p>print(f”3的平方: {square(3)}“) # 9 print(f”3的立方: {cube(3)}“) #
+27</p>
+<h1 id="查看闭包保存的值">查看闭包保存的值</h1>
+<p>print(cube.__closure__[0].cell_contents) # 3</p>
+<pre><code>
+#### 闭包核心特性：
+- 保持外层作用域状态
+- 实现数据封装
+- 减少全局变量使用
+- 支持装饰器模式实现
+
+### 作用域错误诊断表
+| 错误现象              | 原因分析                    | 解决方案                  |
+|-----------------------|----------------------------|--------------------------|
+| UnboundLocalError     | 局部变量在使用前未初始化     | 使用global/nonlocal声明  |
+| NameError             | 变量在任何作用域都不存在     | 检查变量定义或作用域声明 |
+| 意外的变量值变化       | 意外修改了全局变量          | 减少全局变量使用         |
+| 闭包变量值不更新       | 未使用nonlocal声明          | 添加nonlocal声明         |
+
+建议实际开发中：
+
+1. 优先使用返回值传递数据，而非依赖作用域修改
+2. 谨慎使用global变量
+3. 保持函数纯函数特性（无副作用）有利于代码维护
+4. 使用闭包替代类实现简单状态管理
+
+函数执行后应显式释放不再需要的局部变量以节省内存，作用域管理是编写可靠Python代码的重要基础。```
+
+## 3. 常用内置函数（map/filter/sorted）
+
+### 3.1 map() 函数应用
+
+```python map_demo.py
+# 基本数值处理
+numbers = [1, 2, 3, 4]
+squared = map(lambda x: x**2, numbers)
+print(list(squared))  # [1, 4, 9, 16]
+
+# 多序列映射计算
+base = [10, 20]
+bonus = [3, 5]
+total = map(lambda a,b: a + b/100, base, bonus)
+print(list(total))    # [10.03, 20.05]
+
+# 类型转换应用
+str_nums = [&quot;3.14&quot;, &quot;-5&quot;, &quot;100&quot;]
+real_nums = map(float, str_nums)
+print(list(real_nums))  # [3.14, -5.0, 100.0]</code></pre>
+<h4 id="函数特性">函数特性：</h4>
+<ul>
+<li>返回惰性求值的迭代器对象</li>
+<li>支持多个可迭代对象并行处理</li>
+<li>函数参数需要与元素数量匹配</li>
+<li>相比列表推导式更节省内存</li>
+</ul>
+<hr />
+<h3 id="filter-函数应用">3.2 filter() 函数应用</h3>
+<p>```python filter_demo.py # 基本元素筛选 nums = range(10) even =
+filter(lambda x: x%2 == 0, nums) print(list(even)) # [0,2,4,6,8]</p>
+<h1 id="嵌套条件筛选">嵌套条件筛选</h1>
+<p>def is_valid(word): return len(word) &gt; 3 and word.istitle()</p>
+<p>words = [“Apple”, “box”, “Cherry”, “dog”] valid_words =
+filter(is_valid, words) print(list(valid_words)) # [‘Apple’,
+‘Cherry’]</p>
+<h1 id="特殊值过滤">特殊值过滤</h1>
+<p>mixed = [0, False, ““, None, 5,”text”] truthy = filter(None, mixed) #
+过滤假值 print(list(truthy)) # [5, ‘text’]</p>
+<pre><code>
+#### 筛选技巧：
+| 筛选模式               | Lambda表达式                | 适用场景            |
+|------------------------|----------------------------|--------------------|
+| 数值条件              | `lambda x: x &gt; 100`       | 数据过滤          |
+| 类型检查              | `lambda x: isinstance(x, int)` | 数据清洗        |
+| 复合条件（与）        | `lambda x: x&gt;0 and x%2==0` | 组合筛选          |
+| 正则匹配              | 结合re模块                 | 文本处理          |
+
+---
+
+### 3.3 sorted() 函数应用
+
+```python sorted_demo.py
+# 基础排序
+names = [&quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;]
+print(sorted(names, key=len))  # [&#39;Bob&#39;, &#39;Alice&#39;, &#39;Charlie&#39;]
+
+# 复杂对象排序
+employees = [
+    {&quot;name&quot;: &quot;Wang&quot;, &quot;salary&quot;: 8500},
+    {&quot;name&quot;: &quot;Li&quot;, &quot;salary&quot;: 12000}
+]
+print(sorted(employees, key=lambda x: x[&quot;salary&quot;], reverse=True))
+
+# 多级排序策略
+students = [(&quot;Li&quot;, 85), (&quot;Zhang&quot;, 85), (&quot;Wang&quot;, 90)]
+print(sorted(students, key=lambda x: (-x[1], x[0])))
+# 成绩降序，姓名升序排列</code></pre>
+<h4 id="排序参数解析">排序参数解析：</h4>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 38%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr>
+<th>参数</th>
+<th>示例</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td><code>key=str.lower</code></td>
+<td>指定排序的基准转换函数</td>
+</tr>
+<tr>
+<td>reverse</td>
+<td><code>reverse=True</code></td>
+<td>是否逆向排序</td>
+</tr>
+<tr>
+<td>（自定义）</td>
+<td><code>key=cmp_to_key(比较器)</code></td>
+<td>Python3中废弃的cmp参数替代方案</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="函数组合应用实例">函数组合应用实例</h2>
+<p>```python combined_usage.py # 数据处理管道：map -&gt; filter -&gt;
+sorted data = [“Grade:85”, “Grade:92”, “Grade:100”]</p>
+<h1 id="步骤分解">步骤分解：</h1>
+<p>processed = map(lambda s: s.split(“:”)[1], data) # [‘85’, ‘invalid’,
+‘92’, ‘100A’] cleaned = filter(str.isdigit, processed) # [‘85’, ‘92’]
+scores = sorted(map(int, cleaned), reverse=True) # [92, 85]</p>
+<p>print(“有效成绩排序结果:”, scores)</p>
+<h1 id="使用推导式实现同样功能对比">使用推导式实现同样功能对比</h1>
+<p>alt_scores = sorted( [int(s.split(“:”)[1]) for s in data if
+s.split(“:”)[1].isdigit()][::-1] )</p>
+<pre><code>
+---
+
+## 性能与技巧提示
+
+```python performance_tips.py
+# 惰性求值优化：使用生成器表达式替代
+big_data = range(1000000)
+squared_iter = (x**2 for x in big_data)  # 不立即求值
+
+# 命名函数 vs lambda
+def price_format(price):
+    &quot;&quot;&quot;货币格式化函数&quot;&quot;&quot;
+    return f&quot;¥{price:.2f}&quot;
+
+prices = [15.8, 30, 45.67]
+# 推荐方式（更易维护）
+formatted = map(price_format, prices)
+
+# 排序键函数优化（使用operator模块）
+from operator import itemgetter, attrgetter
+
+users = [(&quot;Alice&quot;, 28), (&quot;Bob&quot;, 25)]
+sorted_by_age = sorted(users, key=itemgetter(1))  # 索引取元素
+
+class Product:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+products = [Product(&quot;A&quot;, 50), Product(&quot;B&quot;, 30)]
+sorted_products = sorted(products, key=attrgetter(&#39;price&#39;))</code></pre>
+<p>主要注意点：</p>
+<ol type="1">
+<li>Python3中<code>map/filter</code>返回迭代器，如需多次使用需转为列表</li>
+<li><code>sorted</code>的key函数应尽量简单以优化性能</li>
+<li>复杂的条件筛选推荐使用生成器表达式提升可读性</li>
+<li>大数据场景优先使用迭代器避免内存消耗</li>
+</ol>
+<h2 id="模块导入与标准库使用mathrandom">4.
+模块导入与标准库使用（math/random）</h2>
+<h3 id="模块导入方式详解">4.1 模块导入方式详解</h3>
+<p>```python imports_demo.py # 基础导入方式 import math
+print(math.sqrt(25)) # 5.0</p>
+<h1 id="别名导入">别名导入</h1>
+<p>import random as rd print(rd.randint(1, 10)) # 生成1-10随机整数</p>
+<h1 id="选择性导入">选择性导入</h1>
+<p>from math import pi, cos print(cos(pi)) # -1.0</p>
+<h1 id="模块重载开发调试用">模块重载（开发调试用）</h1>
+<p>import importlib importlib.reload(math)</p>
+<pre><code>
+#### 导入方式对比表：
+| 方法                | 语法示例                     | 适用场景                 | 内存影响 |
+|---------------------|-----------------------------|--------------------------|----------|
+| 完全导入            | `import math`               | 频繁使用多个类/函数      | 较大     |
+| 别名导入            | `import pandas as pd`       | 长模块名简化             | 中等     |
+| 选择性导入          | `from math import sqrt`     | 明确使用指定函数         | 较小     |
+| 动态导入            | `module = __import__(&#39;os&#39;)` | 运行时确定模块名         | 可变     |
+
+### 4.2 math模块核心应用
+```python math_operations.py
+import math
+
+# 数论函数
+print(&quot;平方根:&quot;, math.sqrt(256))       # 16.0
+print(&quot;阶乘:&quot;, math.factorial(5))      # 120
+print(&quot;最大公约数:&quot;, math.gcd(54, 24)) # 6
+
+# 指数对数
+print(&quot;自然对数:&quot;, math.log(math.e))    # 1.0
+print(&quot;幂运算:&quot;, math.pow(3, 4))       # 81.0
+
+# 三角函数
+angle = math.radians(60)  # 转弧度值
+print(&quot;余弦值:&quot;, math.cos(angle))      # ≈0.5
+
+# 特殊常数
+print(&quot;圆周率π:&quot;, math.pi)            # 3.141592653589793
+print(&quot;自然对数基数e:&quot;, math.e)       # 2.718281828459045
+
+# 实用函数
+print(&quot;向上取整:&quot;, math.ceil(3.2))     # 4
+print(&quot;向下取整:&quot;, math.floor(3.8))    # 3</code></pre>
+<h3 id="random模块随机应用">4.3 random模块随机应用</h3>
+<p>```python random_demo.py import random</p>
+<h1 id="基础随机数">基础随机数</h1>
+<p>print(“0-1随机浮点:”, random.random())<br />
+print(“范围整数:”, random.randint(10, 20))</p>
+<h1 id="序列操作">序列操作</h1>
+<p>colors = [“红”, “蓝”, “绿”, “黄”] print(“随机选择:”,
+random.choice(colors)) # 随机选一个 print(“随机样本:”,
+random.sample(colors, 2)) # 无重复抽取两个 random.shuffle(colors) #
+原地打乱顺序 print(“洗牌后:”, colors)</p>
+<h1 id="分布函数">分布函数</h1>
+<p>print(“正态分布:”, random.gauss(0, 1)) # 均值0，标准差1
+print(“均匀分布:”, random.uniform(3.5, 5.5)) # [3.5,5.5)均匀分布</p>
+<h1 id="密码生成应用">密码生成应用</h1>
+<p>def generate_password(length=8): chars =
+“ABCDEFGHJKLMNPQRSTUVWXYZ23456789” return ’’.join(random.choices(chars,
+k=length))</p>
+<p>print(“:”, generate_password())</p>
+<pre><code>
+### 4.4 联合作业示例
+```python geometry_demo.py
+import math
+import random
+
+class Circle:
+    def __init__(self, radius=None):
+        self.radius = radius or random.uniform(1, 10)
+    
+    @property
+    def area(self):
+        &quot;&quot;&quot;使用math库计算精确面积&quot;&quot;&quot;
+        return math.pi * self.radius ** 2
+    
+    @property
+    def diameter(self):
+        return 2 * self.radius
+
+# 生成随机圆实例
+circles = [Circle() for _ in range(5)]
+
+# 分析结果
+print(f&quot;{&#39;半径&#39;:&lt;8}{&#39;直径&#39;:&lt;8}{&#39;面积&#39;:&lt;12}&quot;)
+for circle in circles:
+    print(f&quot;{circle.radius:.2f}\t&quot;
+          f&quot;{circle.diameter:.2f}\t&quot;
+          f&quot;{circle.area:.4f}&quot;)</code></pre>
+<h3 id="标准库特性对比">标准库特性对比</h3>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 35%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr>
+<th>功能维度</th>
+<th>math模块</th>
+<th>random模块</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主要用途</td>
+<td>数学运算</td>
+<td>生成伪随机数</td>
+</tr>
+<tr>
+<td>精度保证</td>
+<td>最高精度计算</td>
+<td>基于伪随机算法</td>
+</tr>
+<tr>
+<td>线程安全</td>
+<td>线程安全</td>
+<td>共享Random实例时需注意同步</td>
+</tr>
+<tr>
+<td>性能特点</td>
+<td>优化计算性能</td>
+<td>中等生成速度</td>
+</tr>
+<tr>
+<td>常用开发场景</td>
+<td>科学计算/数据分析</td>
+<td>游戏开发/随机采样/加密相关</td>
+</tr>
+<tr>
+<td>特殊注意事项</td>
+<td>浮点数精度问题</td>
+<td>不可用于密码学安全场景</td>
+</tr>
+</tbody>
+</table>
+<h3 id="最佳实践提示">最佳实践提示</h3>
+<p>```python security_note.py # 加密安全提示 import secrets</p>
+<h1 id="不安全的随机random模块">不安全的随机（random模块）</h1>
+<p>print(“非安全随机:”, random.randint(1, 100))</p>
+<h1 id="安全的替代方案适用于密码学">安全的替代方案（适用于密码学）</h1>
+<p>print(“安全随机数:”, secrets.randbelow(100)) # 使用secrets模块</p>
+<h1 id="精度处理建议">精度处理建议</h1>
+<p>from decimal import Decimal correct_calculation = Decimal(math.pi) *
+Decimal(“2.718”) # 避免浮点误差累积</p>
+<pre><code>
+实际工程建议：
+
+1. math模块优先保留原始精度
+2. 随机种子设置使用`random.seed()`保证可复现性
+3. 多线程环境每个线程创建独立Random实例
+4. 安全敏感场景使用`secrets`模块替代`random`
+
+## 5. 文件读写操作（txt/csv）
+
+### 5.1 基础文本文件操作
+
+```python file_io_basic.py
+# 文本文件三种常用读写模式
+MODES = {
+    &#39;r&#39;: &#39;读取（默认模式）&#39;,
+    &#39;w&#39;: &#39;写入（覆盖）&#39;, 
+    &#39;a&#39;: &#39;追加&#39;,
+    &#39;r+&#39;: &#39;读写模式&#39;
+}
+
+# 标准操作流程建议
+def write_log(filename):
+    &quot;&quot;&quot;文件写入最佳实践&quot;&quot;&quot;
+    with open(filename, &#39;w&#39;, encoding=&#39;utf-8&#39;) as f:
+        f.write(&quot;==== 系统日志 ====\n&quot;)
+        f.writelines([f&quot;事件{i}: 已记录\n&quot; for i in range(3)])
+
+def read_log(filename):
+    &quot;&quot;&quot;多种读取方式对比&quot;&quot;&quot;
+    with open(filename, &#39;r&#39;, encoding=&#39;utf-8&#39;) as f:
+        # 方法1 全内容读取
+        # content = f.read()
+        
+        # 方法2 行读取优化
+        for line in f:
+            print(line.strip())
+            
+        # 方法3 按块读取（适合大文件）
+        # while True:
+        #     chunk = f.read(4096)
+        #     if not chunk: break
+        #     process(chunk)
+
+# 执行演示
+write_log(&#39;system.log&#39;)
+read_log(&#39;system.log&#39;)</code></pre>
+<p>输出结果：</p>
+<pre><code>==== 系统日志 ====
+事件0: 已记录
+事件1: 已记录
+事件2: 已记录</code></pre>
+<h3 id="csv文件数据操作">5.2 CSV文件数据操作</h3>
+<p>```python csv_operations.py import csv</p>
+<h1 id="写入csv文件包含标题">写入CSV文件（包含标题）</h1>
+<p>def write_student_csv(filename): data = [ {‘name’: ‘张三’, ‘math’:
+85, ‘english’: 92}, {‘name’: ‘李四’, ‘math’: 76, ‘english’: 88} ]</p>
+<pre><code>with open(filename, &#39;w&#39;, newline=&#39;&#39;, encoding=&#39;utf-8&#39;) as f:
+    writer = csv.DictWriter(f, fieldnames=[&#39;name&#39;, &#39;math&#39;, &#39;english&#39;])
+    writer.writeheader()
+    writer.writerows(data)</code></pre>
+<h1 id="读取csv文件带类型转换">读取CSV文件（带类型转换）</h1>
+<p>def read_student_csv(filename): with open(filename, ‘r’,
+encoding=‘utf-8-sig’) as f: # 处理BOM reader = csv.DictReader(f)
+student_data = [] for row in reader: student = { ‘name’: row[‘name’], #
+字符串转换为数值 ‘math’: float(row[‘math’]), ‘english’:
+float(row[‘english’]) } student_data.append(student) return
+student_data</p>
+<h1 id="执行示例">执行示例</h1>
+<p>write_student_csv(‘students.csv’) students =
+read_student_csv(‘students.csv’)
+print(f”李四的英语成绩：{students[1][‘english’]}“) # 88.0</p>
+<pre><code>
+#### CSV处理参数总结：
+| 参数          | 作用                    | 推荐值              |
+|---------------|-------------------------|---------------------|
+| delimiter       | 字段分隔符              | &#39;,&#39; (默认)         |
+| quoting       | 引用规则               | csv.QUOTE_MINIMAL |
+| newline       | 换行符                 | &#39;&#39; (系统默认)      |
+| encoding      | 编码格式               | utf-8/utf-8-sig    |
+
+### 5.3 大文件操作优化
+
+```python large_file_process.py
+# 逐行处理大型日志文件
+def filter_log(input_file, output_file, keyword):
+    &quot;&quot;&quot;过滤包含关键字的日志条目&quot;&quot;&quot;
+    with (open(input_file, &#39;r&#39;, encoding=&#39;utf-8&#39;) as infile,
+          open(output_file, &#39;w&#39;, encoding=&#39;utf-8&#39;) as outfile):
+        
+        for line in infile:
+            if keyword in line:
+                outfile.write(line)
+
+# CSV分块处理（1万行为单位）
+def batch_process_csv(filename):
+    from itertools import islice
+    
+    with open(filename, &#39;r&#39;) as f:
+        while True:
+            chunk = list(islice(f, 10000))
+            if not chunk:
+                break
+            process_chunk(chunk)
+            
+def process_chunk(rows):
+    &quot;&quot;&quot;模拟处理数据块&quot;&quot;&quot;
+    print(f&quot;处理{len(rows)}行数据&quot;)
+
+# 内存映射文件处理（需要精确控制时）
+import mmap
+def search_large_file(filename, pattern):
+    with open(filename, &#39;r&#39;) as f:
+        s = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)
+        return s.find(pattern.encode())</code></pre>
+<h3 id="文件操作错误处理矩阵">文件操作错误处理矩阵</h3>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 28%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>错误类型</th>
+<th>常规场景</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FileNotFoundError</td>
+<td>文件不存在读取</td>
+<td>try块检查或使用os.path.exists</td>
+</tr>
+<tr>
+<td>PermissionError</td>
+<td>没有文件权限</td>
+<td>检查文件属性或管理员权限</td>
+</tr>
+<tr>
+<td>UnicodeDecodeError</td>
+<td>编码错误</td>
+<td>指定正确编码格式（如GBK尝试）</td>
+</tr>
+<tr>
+<td>csv.Error</td>
+<td>CSV格式不兼容</td>
+<td>调整dialect参数或修正源文件</td>
+</tr>
+<tr>
+<td>IsADirectoryError</td>
+<td>路径指向目录</td>
+<td>检查文件路径合法性</td>
+</tr>
+</tbody>
+</table>
+<p>关键注意事项：</p>
+<ol type="1">
+<li>推荐使用<code>with</code>上下文管理器处理文件，确保自动关闭<br />
+</li>
+<li>CSV文件写入时指定<code>newline=''</code>避免空行问题<br />
+</li>
+<li>大文件处理使用迭代方式避免内存溢出<br />
+</li>
+<li>优先使用明确编码格式（推荐<code>utf-8-sig</code>适配Excel生成文件）</li>
+</ol>
+<h2 id="使用with语句管理资源">6. 使用with语句管理资源</h2>
+<h3 id="基础文件操作">6.1 基础文件操作</h3>
+<p>```python file_handling.py # 传统文件操作潜在问题 f =
+open(‘data.txt’, ‘w’) try: f.write(‘sample data’) #
+发生异常可能跳过close finally: f.close()</p>
+<h1 id="with语句改进版本">with语句改进版本</h1>
+<p>with open(‘data.txt’, ‘w’) as f: f.write(‘可靠的写入方式’) #
+自动处理关闭</p>
+<pre><code>
+#### with语句优点：
+
+- 确保资源正确释放
+- 自动化异常处理
+- 代码可读性更高
+- 支持多个上下文管理器
+
+### 6.2 管理多个资源
+
+```python multiple_resources.py
+# 同时处理两个文件
+with open(&#39;source.txt&#39;, &#39;r&#39;) as src, \
+     open(&#39;backup.txt&#39;, &#39;w&#39;) as dst:
+    content = src.read()
+    dst.write(content.upper())
+
+# 等效嵌套写法
+with open(&#39;source.txt&#39;) as src:
+    with open(&#39;backup.txt&#39;, &#39;w&#39;) as dst:
+        dst.write(src.read().lower())
+
+print(&quot;文件操作完成&quot;)  # 两个文件在此处已自动关闭</code></pre>
+<h3 id="自定义上下文管理器">6.3 自定义上下文管理器</h3>
+<p>```python custom_context.py class DatabaseConnection: def
+<strong>init</strong>(self, db_name): self.db = db_name</p>
+<pre><code>def __enter__(self):
+    print(f&quot;连接{self.db}数据库...&quot;)
+    return self  # 可返回连接对象
+    
+def __exit__(self, exc_type, exc_val, exc_tb):
+    print(f&quot;关闭{self.db}连接&quot;)
+    if exc_type:  # 处理异常
+        print(f&quot;错误发生: {exc_val}&quot;)</code></pre>
+<h1 id="使用场景">使用场景</h1>
+<p>with DatabaseConnection(‘users’) as conn: print(“执行数据库操作”) #
+raise ConnectionError(“模拟故障”) # 测试异常处理</p>
+<h1 id="contextlib简化实现">contextlib简化实现</h1>
+<p>from contextlib import contextmanager</p>
+<p><span class="citation"
+data-cites="contextmanager">@contextmanager</span> def
+open_config(file): print(“加载配置文件”) yield {‘config’: True}
+print(“保存配置变更”)</p>
+<p>with open_config(‘app.cfg’) as cfg: print(“当前配置:”, cfg)</p>
+<pre><code>
+### 6.4 异常处理与最佳实践
+
+```python error_handling.py
+class SafeFile:
+    def __init__(self, filename, mode):
+        self.file = open(filename, mode)
+        
+    def __enter__(self):
+        return self.file
+        
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.file.close()
+        if exc_type is not None:
+            print(f&quot;错误发生: {exc_val}&quot;)
+            # return True  # 阻止异常传播
+        print(&quot;资源已清理&quot;)
+
+try:
+    with SafeFile(&#39;data.log&#39;, &#39;a&#39;) as f:
+        f.write(&quot;系统启动\n&quot;)
+        raise ValueError(&quot;测试异常情况&quot;)
+except ValueError as e:
+    print(f&quot;捕获到异常: {e}&quot;)
+
+print(&quot;代码继续执行&quot;)</code></pre>
+<h3 id="上下文管理对比表">上下文管理对比表</h3>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 27%" />
+<col style="width: 29%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr>
+<th>特性</th>
+<th>传统try-finally</th>
+<th>with语句</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>资源释放保证</td>
+<td>手动实现</td>
+<td>自动处理</td>
+<td>任何需要清理的资源场景</td>
+</tr>
+<tr>
+<td>代码简洁度</td>
+<td>冗长</td>
+<td>简洁易读</td>
+<td>简单到复杂的上下文</td>
+</tr>
+<tr>
+<td>异常处理</td>
+<td>需要多层嵌套</td>
+<td>上下文管理器统一处理</td>
+<td>复杂异常管理</td>
+</tr>
+<tr>
+<td>多资源管理</td>
+<td>嵌套复杂</td>
+<td>单行多资源声明</td>
+<td>需要同时管理多个资源</td>
+</tr>
+<tr>
+<td>自定义支持</td>
+<td>需手工实现</td>
+<td>实现协议或使用装饰器</td>
+<td>需要封装资源逻辑</td>
+</tr>
+</tbody>
+</table>
+<h3 id="最佳实践指南-1">最佳实践指南</h3>
+<ol type="1">
+<li><strong>文件操作</strong>：始终使用with打开文件 ```python
+best_practice.py # 推荐写法 with open(‘data.csv’) as f:
+process(f.read())</li>
+</ol>
+<h1 id="避免写法">避免写法</h1>
+<p>f = open(‘data.csv’) data = f.read() f.close()</p>
+<pre><code>
+2. **多资源管理**：用逗号分隔多个上下文管理器
+
+```python multi_resource.py
+with (
+    open(&#39;input.txt&#39;) as src,
+    open(&#39;output.txt&#39;, &#39;w&#39;) as dst,
+    DatabaseConnection(&#39;logs&#39;) as conn
+):
+    dst.write(src.read())
+    conn.log_operation()
+</code></pre>
+<ol start="3" type="1">
+<li><strong>异常处理</strong></li>
+</ol>
+<p>```python exception_handling.py class Transaction: def
+<strong>enter</strong>(self): print(“开始事务”) return self</p>
+<pre><code>def __exit__(self, exc_type, *_):
+    if exc_type:
+        print(&quot;回滚事务&quot;)
+    else:
+        print(&quot;提交事务&quot;)
+    return True  # 阻止异常传播</code></pre>
+<p>with Transaction(): print(“执行数据库操作”) # raise
+ValueError(“事务失败”)</p>
+<pre><code>
+关键要点：
+
+1. with块结束后自动调用__exit__
+2. __exit__返回值控制是否传播异常
+3. contextlib简化常用资源的上下文管理
+4. 适用于任何需要&quot;准入-退出&quot;模式的场景
+
+特殊资源拓展应用：
+
+- 多线程锁管理
+- 数据库连接池
+- 临时目录操作
+- 网络套接字连接
+
+## 7. 异常处理（try-except-else-finally）
+
+### 7.1 基础异常捕获机制
+```python basic_exception.py
+# 除法计算异常处理
+def safe_division(a, b):
+    try:
+        result = a / b
+    except ZeroDivisionError:
+        print(&quot;错误：除数不能为零&quot;)
+        result = float(&#39;inf&#39;)  # 返回无穷大
+    except TypeError as e:
+        print(f&quot;类型错误：{e}&quot;)
+        result = None
+    else:
+        print(f&quot;{a}/{b} = {result}&quot;)  # 成功执行显示结果
+    finally:
+        print(&quot;计算操作完成&quot;)         # 总会执行清理工作
+    return result
+
+# 测试不同场景
+print(safe_division(10, 2))    # 正常情况
+print(safe_division(5, 0))     # 除零错误
+print(safe_division(&quot;10&quot;, 2))  # 类型错误</code></pre>
+<h4 id="执行结果">执行结果：</h4>
+<pre><code>10/2 = 5.0
+计算操作完成
+5.0
+
+错误：除数不能为零
+计算操作完成
+inf
+
+类型错误：unsupported operand type(s) for /: &#39;str&#39; and &#39;int&#39;
+计算操作完成
+None</code></pre>
+<h3 id="完整异常处理流程">7.2 完整异常处理流程</h3>
+<p>```python file_handling.py def process_file(filename): file = None
+try: file = open(filename, ‘r’, encoding=‘utf-8’) data = file.read()
+except FileNotFoundError: print(f”文件 {filename} 不存在”) except
+UnicodeDecodeError: print(“文件编码错误”) else:
+print(f”成功读取{len(data)}字节数据”) return data finally: if file: #
+确保文件关闭 file.close() print(“文件句柄已释放”)</p>
+<h1 id="故意调用不存在的文件">故意调用不存在的文件</h1>
+<p>content = process_file(‘ghost.txt’)</p>
+<pre><code>
+#### 代码说明：
+1. `try`块尝试执行可能出错的代码  
+2. `except`捕获特定异常并处理  
+3. `else`块处理无异常时的后续操作（数据转换等）  
+4. `finally`保证资源释放（如关闭文件）  
+
+### 7.3 异常层次与自定义异常
+```python custom_exceptions.py
+class InvalidAgeError(Exception):
+    &quot;&quot;&quot;自定义年龄异常&quot;&quot;&quot;
+    def __init__(self, age, message=&quot;年龄必须在1-120岁之间&quot;):
+        self.age = age
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return f&quot;{self.age} 岁 -&gt; {self.message}&quot;
+
+def register_user(age):
+    if not 1 &lt;= age &lt;= 120:
+        raise InvalidAgeError(age)
+    print(&quot;用户注册成功&quot;)
+
+try:
+    register_user(150)
+except InvalidAgeError as e:
+    print(f&quot;注册失败：{e}&quot;)  # 输出：150 岁 -&gt; 年龄必须在1-120岁之间</code></pre>
+<h4 id="python异常层次部分">Python异常层次（部分）：</h4>
+<pre><code>BaseException
+ ├── KeyboardInterrupt
+ ├── SystemExit
+ └── Exception
+      ├── ValueError
+      ├── FileNotFoundError
+      ├── TypeError
+      └── ...其他内置异常</code></pre>
+<h3 id="新的异常处理语法python-3.11">7.4 新的异常处理语法（Python
+3.11+）</h3>
+<p><code>python new_except_syntax.py try:     import non_exist_module except* ModuleNotFoundError as eg:  # 异常组处理     for err in eg.exceptions:         print(f"缺少模块: {err.name}")</code></p>
+<h3 id="错误处理模式对比表">错误处理模式对比表</h3>
+<table>
+<thead>
+<tr>
+<th>代码块</th>
+<th>执行时机</th>
+<th>典型应用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>try</td>
+<td>尝试执行可能出错的代码</td>
+<td>资源访问/数值计算</td>
+</tr>
+<tr>
+<td>except</td>
+<td>遇到指定异常时触发</td>
+<td>错误处理/恢复流程</td>
+</tr>
+<tr>
+<td>else</td>
+<td>无异常时执行</td>
+<td>数据转换/成功后的后续操作</td>
+</tr>
+<tr>
+<td>finally</td>
+<td>无论是否异常都会执行</td>
+<td>资源释放/状态复位</td>
+</tr>
+</tbody>
+</table>
+<h3 id="最佳实践建议">最佳实践建议</h3>
+<p>```python exception_best_practices.py # 1. 精确捕获特定异常 try:
+user_input = int(input(“输入数字：”)) except ValueError:
+print(“无法转换为整数”)</p>
+<h1 id="日志记录代替简单打印">2. 日志记录代替简单打印</h1>
+<p>import logging logging.basicConfig(filename=‘app.log’) try:
+risky_operation() except Exception as e: logging.exception(“操作异常:
+%s”, str(e))</p>
+<h1 id="上下文管理器结合异常处理">3. 上下文管理器结合异常处理</h1>
+<p>class DatabaseConnection: def <strong>enter</strong>(self):
+self.connect() def <strong>exit</strong>(self, exc_type, *_):
+self.close() if exc_type: self.rollback()</p>
+<h1 id="重启机制实现">4. 重启机制实现</h1>
+<p>max_retries = 3 for attempt in range(max_retries): try:
+connect_service() break except ConnectionError: if attempt ==
+max_retries-1: raise print(f”重试连接 ({attempt+1}/{max_retries})…“)</p>
+<pre><code>
+关键提示：
+
+1. 避免空的`except:` 会捕获所有异常，甚至`KeyboardInterrupt`
+2. 异常实例信息可通过`as`关键字获取
+3. `raise`不带参数重新抛出当前异常
+4. `assert`语句用于调试期的条件检查，生产代码建议显式检查
+
+将错误管理作为程序的重要功能组件进行设计，可以使代码更健壮且易于维护。
+
+## 8. 实践项目：小说词频统计
+
+```python word_freq.py
+import re
+from collections import Counter
+
+def read_novel(file_path):
+    &quot;&quot;&quot;读取并返回小说文本内容&quot;&quot;&quot;
+    try:
+        with open(file_path, &#39;r&#39;, encoding=&#39;utf-8&#39;) as f:
+            return f.read()
+    except FileNotFoundError:
+        print(f&quot;错误：文件 {file_path} 未找到&quot;)
+        exit(1)
+
+def clean_text(text):
+    &quot;&quot;&quot;清洗文本：转为小写、移除标点符号&quot;&quot;&quot;
+    text = text.lower()  # 统一小写
+    text = re.sub(r&#39;[^\w\s]&#39;, &#39;&#39;, text)  # 移除非字母数字字符
+    return re.sub(r&#39;\d+&#39;, &#39;&#39;, text)       # 移除数字
+
+def get_stopwords(stop_file=&#39;stopwords.txt&#39;):
+    &quot;&quot;&quot;加载停用词表，可传入自定义停用词文件&quot;&quot;&quot;
+    default_stopwords = {
+        &#39;the&#39;, &#39;and&#39;, &#39;to&#39;, &#39;of&#39;, &#39;a&#39;, &#39;in&#39;, &#39;that&#39;, &#39;was&#39;, &#39;he&#39;, &#39;it&#39;,
+        &#39;his&#39;, &#39;her&#39;, &#39;as&#39;, &#39;with&#39;, &#39;for&#39;, &#39;she&#39;, &#39;had&#39;, &#39;you&#39;
+    }
+    try:
+        with open(stop_file, &#39;r&#39;) as f:
+            return set(f.read().splitlines()) | default_stopwords
+    except FileNotFoundError:
+        return default_stopwords
+
+def analyze_frequency(text, top_n=20, stopwords=None):
+    &quot;&quot;&quot;分析词频并返回结果&quot;&quot;&quot;
+    words = text.split()  # 默认空格分词
+    if stopwords:
+        words = [w for w in words if w not in stopwords]
+    counter = Counter(words)
+    return counter.most_common(top_n)
+
+def main(file_path):
+    &quot;&quot;&quot;主流程控制函数&quot;&quot;&quot;
+    # 数据准备阶段
+    raw_text = read_novel(file_path)
+    cleaned_text = clean_text(raw_text)
+    
+    # 分析配置选项
+    stopwords = get_stopwords()
+    
+    # 统计分析
+    results = analyze_frequency(cleaned_text, top_n=30, stopwords=stopwords)
+    
+    # 结果呈现
+    print(f&quot;{&#39;单词&#39;:&lt;15}频率&quot;)
+    print(&quot;-&quot;*25)
+    for word, count in results:
+        print(f&quot;{word:&lt;15}{count}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    import sys
+    
+    if len(sys.argv) != 2:
+        print(&quot;用法: python word_freq.py 小说文件路径&quot;)
+        exit(1)
+    
+    main(sys.argv[1])</code></pre>
+<h3 id="代码执行示例">代码执行示例</h3>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python word_freq.py pride_and_prejudice.txt</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">单词</span>          频率</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-------------------------</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="ex">elizabeth</span>     785</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="ex">darcy</span>         525</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="ex">bennet</span>        443</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="ex">jane</span>          353</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="ex">bingley</span>       297</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="ex">...以下省略...</span></span></code></pre></div>
+<h3 id="关键实现解析">关键实现解析</h3>
+<h4 id="多层级文本清洗">1. 多层级文本清洗</h4>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_text(text):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;双重正则过滤确保文本规范&quot;&quot;&quot;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r&#39;</span><span class="pp">[^</span><span class="dv">\w\s</span><span class="pp">]</span><span class="vs">&#39;</span>, <span class="st">&#39;&#39;</span>, text)  <span class="co"># 删除标点符号</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r&#39;</span><span class="dv">\s</span><span class="op">+</span><span class="vs">&#39;</span>, <span class="st">&#39; &#39;</span>, text)     <span class="co"># 合并多余空格 </span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> text.strip().lower()</span></code></pre></div>
+<h4 id="可扩展的停用词系统">2. 可扩展的停用词系统</h4>
+<p><code>python stopwords.txt a an the and but ...</code></p>
+<h4 id="高效分析算法">3. 高效分析算法</h4>
+<p>使用<code>collections.Counter</code>比手动字典统计更快，其<code>most_common()</code>方法复杂度为O(n
+log k)</p>
+<h3 id="优化建议">优化建议</h3>
+<ol type="1">
+<li><strong>分词优化</strong>：</li>
+</ol>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize  <span class="co"># 更准确的分词</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> analyze_frequency(text):</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    words <span class="op">=</span> word_tokenize(text)  <span class="co"># 替换原生的split()</span></span></code></pre></div>
+<ol start="2" type="1">
+<li><strong>词干提取</strong>：</li>
+</ol>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.stem <span class="im">import</span> PorterStemmer</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>ps <span class="op">=</span> PorterStemmer()</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>processed <span class="op">=</span> [ps.stem(w) <span class="cf">for</span> w <span class="kw">in</span> words]</span></code></pre></div>
+<ol start="3" type="1">
+<li><strong>并行处理</strong>：</li>
+</ol>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ThreadPoolExecutor</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ThreadPoolExecutor() <span class="im">as</span> executor:</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    chunks <span class="op">=</span> [text[i:i<span class="op">+</span><span class="dv">10000</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(text), <span class="dv">10000</span>)]</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> executor.<span class="bu">map</span>(process_chunk, chunks)</span></code></pre></div>
+<h3 id="复杂度分析">复杂度分析</h3>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>时间复杂度</th>
+<th>空间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文件读取</td>
+<td>O(N)</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>文本清洗</td>
+<td>O(N)</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>词频统计</td>
+<td>O(N)</td>
+<td>O(M) 不同词数</td>
+</tr>
+<tr>
+<td>结果排序</td>
+<td>O(M log M)</td>
+<td>O(1)</td>
+</tr>
+</tbody>
+</table>
+<p>本实现可在标准配置计算机上处理超过100MB的文本文件，主要瓶颈在于内存加载。对于GB级文件建议采用分批处理方式。</p>
+<p><em>注：本示例代码需要安装NLTK库方可使用高级分词功能</em></p>
+</body>
+</html>
+

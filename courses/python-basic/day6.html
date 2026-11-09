@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Python 编程基础 · Day 6</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<link rel="stylesheet" href="course.css"></head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Python 编程基础 · Day 6</h1>
+</header>
+<h1 id="day-6python的数据可视化3学时">Day
+6：Python的数据可视化（3学时）</h1>
+<h2 id="matplotlib核心特点与实现原理">Matplotlib核心特点与实现原理</h2>
+<p><code>python matplotlib_architecture.py """ Matplotlib结构示例伪代码: Figure  ├─ Canvas (绘图画布) └─ Axes (坐标系)     ├─ Axis (坐标轴)     ├─ Line2D (折线)     ├─ Text (文本)     └─ ...其他图形元素 """</code></p>
+<h3 id="核心特点">核心特点</h3>
+<ol type="1">
+<li><p><strong>多层抽象架构</strong></p>
+<ul>
+<li><strong>Backend层</strong>：处理底层渲染（Agg/Qt/GTK等）</li>
+<li><strong>Artist层</strong>：管理图形元素（线、文本、形状）</li>
+<li><strong>Scripting层</strong>：提供pyplot快速绘图API</li>
+</ul></li>
+<li><p><strong>双模式接口</strong></p>
+<ul>
+<li><strong>MATLAB式</strong>：<code>plt.plot(x, y)</code> 快速绘图</li>
+<li><strong>面向对象式</strong>：显式控制Figure/Axes对象</li>
+</ul></li>
+<li><p><strong>丰富的输出支持</strong></p>
+<p><code>python export_demo.py  plt.savefig('output.png', dpi=300)  # 支持PNG/SVG/PDF等格式</code></p></li>
+<li><p><strong>可扩展性</strong></p>
+<ul>
+<li>通过<code>rcParams</code>全局配置样式</li>
+<li>支持LaTeX数学公式渲染</li>
+</ul></li>
+</ol>
+<h3 id="实现原理">实现原理</h3>
+<ol type="1">
+<li><p><strong>画布分层结构</strong></p>
+<ul>
+<li><strong>Figure</strong>：顶级容器，对应整个图像文件</li>
+<li><strong>Axes</strong>：真实绘图区域，包含坐标轴/刻度等</li>
+<li><strong>Axis</strong>：单个坐标轴的数值范围与刻度</li>
+</ul></li>
+<li><p><strong>渲染引擎流程</strong></p>
+<pre><code>用户调用绘图命令 → 创建Artist对象 → 
+Backend将对象转换为底层图形指令 → 
+输出到屏幕/文件</code></pre></li>
+<li><p><strong>坐标转换机制</strong></p>
+<ul>
+<li>数据坐标系 → 图像坐标系 → 显示坐标系</li>
+<li>支持自定义坐标变换（对数坐标等）</li>
+</ul></li>
+</ol>
+<h3 id="集成特性">集成特性</h3>
+<p>```python integration.py # 与Numpy无缝集成 x = np.linspace(0,
+2*np.pi) y = np.sin(x) plt.plot(x, y) # 直接绘制numpy数组</p>
+<h1 id="支持jupyter内嵌显示">支持Jupyter内嵌显示</h1>
+<p>%matplotlib inline</p>
+<pre><code>
+典型应用场景：
+
+- 科研论文图表制作
+- 数据探索性分析(EDA)
+- 实时数据监控仪表
+- GUI应用程序嵌入
+- 物理实验：电路特性曲线绘制
+- 金融分析：股票K线图绘制
+- 气象预测：温湿度等值线图
+- 生物信息：基因序列热力图
+
+### 1. 基础绘图功能详解
+
+```python line_plot.py
+# 线图基础示例
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 生成数据
+x = np.linspace(0, 2*np.pi, 100)
+y = np.sin(x)
+
+# 创建画布和坐标轴
+plt.figure(figsize=(8, 4))
+
+# 绘制折线图
+plt.plot(x, y, 
+         color=&#39;blue&#39;, 
+         linestyle=&#39;--&#39;,
+         linewidth=2,
+         marker=&#39;o&#39;,
+         markersize=5,
+         label=&#39;sin(x)&#39;)
+
+# 添加图表元素
+plt.title(&#39;三角函数示例&#39;, fontsize=14)
+plt.xlabel(&#39;X轴&#39;, fontsize=12)
+plt.ylabel(&#39;Y轴&#39;, fontsize=12)
+plt.legend()
+plt.grid(True)
+
+# 显示图表
+plt.show()</code></pre>
+<h4 id="基础线图绘制">1.1 基础线图绘制</h4>
+<p><code>python basic_line.py # 最简绘图示例 plt.plot([1, 2, 3, 4], [1, 4, 9, 16])  # X,Y坐标列表 plt.ylabel('平方值')           plt.show()</code></p>
+<h4 id="多曲线绘制">1.2 多曲线绘制</h4>
+<p><code>python multi_plot.py x = np.arange(0, 5, 0.1) plt.plot(x, x**2, label='Quadratic')    # 二次曲线 plt.plot(x, x**3, label='Cubic')         # 三次曲线 plt.plot(x, 2**x, linestyle=':', label='Exponential')  # 指数曲线 plt.legend(loc='upper left')</code></p>
+<h4 id="散点图绘制">1.3 散点图绘制</h4>
+<p>```python scatter_plot.py # 生成随机数据 np.random.seed(42) x =
+np.random.randn(50) y = x + np.random.normal(0, 0.3, 50)</p>
+<p>plt.scatter(x, y, c=‘red’, # 颜色 marker=‘^’, # 点形状 s=40, # 点大小
+alpha=0.7, # 透明度 edgecolors=‘black’) # 边缘颜色</p>
+<p>plt.title(‘带误差的散点分布’, pad=20) plt.show()</p>
+<pre><code>
+#### 1.4 双轴绘图
+```python twin_axis.py
+# 创建双Y轴系统
+fig, ax1 = plt.subplots()
+ax2 = ax1.twinx()
+
+x = np.arange(1, 11)
+ax1.bar(x, height=[20,34,55,12,66,24,55,33,22,15], 
+        color=&#39;skyblue&#39;, 
+        alpha=0.7, 
+        label=&#39;Sales&#39;)
+ax2.plot(x, [5.2,5.8,6.0,5.5,7.0,6.5,6.8,7.2,7.5,8.0], 
+         color=&#39;orange&#39;, 
+         marker=&#39;s&#39;, 
+         label=&#39;Growth Rate&#39;)
+
+ax1.set_xlabel(&#39;Quarter&#39;)
+ax1.set_ylabel(&#39;Sales Volume&#39;)
+ax2.set_ylabel(&#39;Growth Rate (%)&#39;)
+plt.title(&#39;销售数据双轴图表&#39;)
+lines1, labels1 = ax1.get_legend_handles_labels()
+lines2, labels2 = ax2.get_legend_handles_labels()
+plt.legend(lines1 + lines2, labels1 + labels2, loc=&#39;upper left&#39;)</code></pre>
+<p>技术要点说明： -
+<code>figure()</code>创建绘图画布，可控制尺寸/dpi参数 -
+<code>plot()</code>默认连接数据点形成折线图 -
+颜色支持名称/HEX/RGB格式（如<code>#ff0000</code>） -
+线型参数：<code>'-'</code>实线、<code>'--'</code>虚线、<code>':'</code>点线
+- <code>scatter()</code>支持多维数据可视化，可映射颜色/大小维度 -
+双轴绘图适用于单位不同的关联数据对比</p>
+<h2 id="图表定制功能详解">2. 图表定制功能详解</h2>
+<p>```python customization.py import matplotlib.pyplot as plt import
+numpy as np</p>
+<h1 id="基础数据准备">基础数据准备</h1>
+<p>x = np.linspace(0, 10, 100) y1 = np.sin(x) y2 = np.cos(x)</p>
+<h1 id="创建绘图对象">创建绘图对象</h1>
+<p>plt.figure(figsize=(10, 5), dpi=100) # 设置画布尺寸和分辨率</p>
+<pre><code>
+### 2.1 文本标注定制
+```python text_custom.py
+plt.title(&#39;Trigonometric Functions&#39;, 
+         fontsize=16,           # 字体大小
+         fontweight=&#39;bold&#39;,     # 字体粗细
+         pad=20)                # 标题与图表间距
+
+plt.xlabel(&#39;X Axis&#39;, 
+          fontsize=12, 
+          color=&#39;navy&#39;, 
+          labelpad=15)         # 坐标轴标签边距
+
+plt.ylabel(&#39;Y Axis&#39;, 
+          rotation=0,          # 将Y轴标签旋转为水平
+          fontsize=12,
+          position=(0, 0.95))  # 调整标签位置</code></pre>
+<h3 id="线条与颜色配置">2.2 线条与颜色配置</h3>
+<p>```python style_custom.py # 绘制两条曲线并设置样式 plt.plot(x, y1,
+color=‘#FF5733’, # 使用HEX颜色代码 linestyle=‘–’, # 设置虚线样式
+linewidth=2, # 线宽 marker=‘o’, # 数据点形状 markersize=6, # 点大小
+markevery=5, # 隔5个点显示标记 alpha=0.8, # 透明度 label=‘Sin(x)’)</p>
+<p>plt.plot(x, y2, color=‘steelblue’, linestyle=‘:’, linewidth=3,
+marker=‘^’, label=‘Cos(x)’)</p>
+<pre><code>
+### 2.3 图例配置
+```python legend_custom.py
+plt.legend(loc=&#39;upper right&#39;,      # 设置图例位置
+          fontsize=10,            # 字体大小
+          title=&#39;Function&#39;,       # 图例标题
+          title_fontsize=12,      # 标题字体大小
+          shadow=True,            # 添加阴影
+          framealpha=0.8,         # 背景透明度
+          edgecolor=&#39;black&#39;)      # 边框颜色</code></pre>
+<h3 id="网格与坐标轴">2.4 网格与坐标轴</h3>
+<p>```python axis_custom.py plt.grid(True, linestyle=‘:’, # 网格线型
+color=‘gray’, alpha=0.6) # 网格透明度</p>
+<p>plt.axis([0, 10, -1.2, 1.2]) # 显式设置坐标范围[xmin, xmax, ymin,
+ymax]</p>
+<p>plt.xticks(np.arange(0, 11, 2), # 设置X轴刻度位置 rotation=45, #
+刻度标签旋转角度 fontsize=10)</p>
+<p>plt.yticks([-1, 0, 1], # 设置Y轴刻度值 [‘Low’, ‘Zero’, ‘High’], #
+对应的标签文字 fontsize=10)</p>
+<pre><code>
+### 2.5 高级定制
+```python advanced_custom.py
+# 添加文本注释
+plt.text(3, 0.8, &#39;Critical Point&#39;, 
+        fontsize=12, 
+        color=&#39;red&#39;,
+        bbox=dict(facecolor=&#39;yellow&#39;, alpha=0.5))  # 文本框设置
+
+# 绘制参考线
+plt.axhline(y=0, color=&#39;black&#39;, linestyle=&#39;-&#39;, linewidth=1)  # 水平辅助线
+plt.axvline(x=np.pi, color=&#39;green&#39;, linestyle=&#39;--&#39;)  # 垂直辅助线
+
+# 颜色渐变的填充
+plt.fill_between(x, y1, y2, 
+                where=(y1 &gt; y2),    # 填充条件
+                color=&#39;skyblue&#39;, 
+                alpha=0.3, 
+                label=&#39;Area&#39;)</code></pre>
+<h1 id="保存与输出">保存与输出</h1>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">&#39;custom_plot.png&#39;</span>,  <span class="co"># 文件名 </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>           bbox_inches<span class="op">=</span><span class="st">&#39;tight&#39;</span>, <span class="co"># 裁剪多余空白</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>           dpi<span class="op">=</span><span class="dv">300</span>,            <span class="co"># 输出分辨率</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>           facecolor<span class="op">=</span><span class="st">&#39;white&#39;</span>)  <span class="co"># 背景颜色</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p>技术要点：</p>
+<ul>
+<li><code>figure()</code>参数控制画布属性，<code>dpi</code>影响输出质量</li>
+<li>RGB颜色支持十六进制格式（<code>#RRGGBB</code>）</li>
+<li>命名字体位置：<code>'upper right'</code>/<code>'lower center'</code>等组合</li>
+<li><code>where</code>参数可实现条件着色</li>
+<li><code>bbox_inches='tight'</code>自动裁剪多余空白区域</li>
+</ul>
+<h2 id="子图系统详解">3. 子图系统详解</h2>
+<p>```python subplot_basic.py import matplotlib.pyplot as plt import
+numpy as np</p>
+<h1 id="创建2x2子图画布">创建2x2子图画布</h1>
+<p>fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(10, 8), #
+总画布尺寸 sharex=True) # 共享X轴</p>
+<h1 id="第一子图折线图">第一子图：折线图</h1>
+<p>x = np.linspace(0, 10, 100) axs[0,0].plot(x, np.sin(x))
+axs[0,0].set_title(‘Sin Function’)</p>
+<h1 id="第二子图散点图">第二子图：散点图</h1>
+<p>x = np.random.rand(50) y = x + np.random.normal(0, 0.1, 50)
+axs[0,1].scatter(x, y) axs[0,1].grid(True)</p>
+<h1 id="第三子图柱状图">第三子图：柱状图</h1>
+<p>categories = [‘A’, ‘B’, ‘C’] values = [25, 40, 33]
+axs[1,0].bar(categories, values, color=[‘red’, ‘green’, ‘blue’])</p>
+<h1 id="第四子图饼图">第四子图：饼图</h1>
+<p>sizes = [35, 25, 15, 25] axs[1,1].pie(sizes, labels=[‘X’, ‘Y’, ‘Z’,
+‘W’], autopct=‘%1.1f%%’)</p>
+<p>plt.tight_layout() # 自动调整子图间距</p>
+<pre><code>
+### 3.1 基础子图布局
+```python add_subplot.py
+# 传统创建方式
+fig = plt.figure(figsize=(8, 4))
+ax1 = fig.add_subplot(2,2,1)  # 位置参数 (行,列,序号)
+ax2 = fig.add_subplot(2,2,2)
+ax3 = fig.add_subplot(2,2,(3,4))  # 合并最后两个单元格
+
+ax1.plot(np.random.rand(10))
+ax2.hist(np.random.randn(100), bins=20)
+ax3.scatter(np.arange(10), np.arange(10)**2)</code></pre>
+<h3 id="共享坐标轴">3.2 共享坐标轴</h3>
+<p>```python shared_axis.py # 共享坐标轴配置 fig, (ax1, ax2) =
+plt.subplots(1, 2, sharey=True, # 共享Y轴 gridspec_kw={‘wspace’:0.05}) #
+调整子图间距</p>
+<p>ax1.plot(np.arange(10), np.random.rand(10))
+ax2.scatter(np.arange(10), np.random.rand(10)) ax1.set_ylabel(‘Shared Y
+Axis’)</p>
+<pre><code>
+### 3.3 复杂布局
+```python gridspec_demo.py
+# 使用GridSpec复杂布局
+from matplotlib.gridspec import GridSpec
+
+fig = plt.figure(figsize=(12, 6))
+gs = GridSpec(3, 3, figure=fig)  # 3行3列网格
+
+# 创建不同形状的子图
+ax_main = fig.add_subplot(gs[0:2, 0:2])    # 占据前两行两列
+ax_right = fig.add_subplot(gs[0:2, 2])     # 右侧窄列
+ax_bottom = fig.add_subplot(gs[2, 0:3])    # 底部整行
+
+# 主图热力图
+data = np.random.rand(10,10)
+ax_main.imshow(data, cmap=&#39;viridis&#39;)
+
+# 右图颜色条
+plt.colorbar(ax_main.images[0], cax=ax_right)
+
+# 底部柱状图
+ax_bottom.bar(np.arange(10), np.random.rand(10))</code></pre>
+<h3 id="子图嵌套">3.4 子图嵌套</h3>
+<p>```python nested_subplot.py # 主图包含子图 fig = plt.figure() main_ax
+= fig.add_subplot(111) inset_ax = main_ax.inset_axes([0.6, 0.6, 0.35,
+0.35]) # [x,y,width,height]</p>
+<p>main_ax.plot(np.linspace(0, 20, 100), np.sin(np.linspace(0, 20,
+100))) inset_ax.plot(np.linspace(0, 5, 50), np.cos(np.linspace(0, 5,
+50)), color=‘red’)</p>
+<pre><code>
+关键参数说明：
+- `subplots()`参数：
+  - `nrows/ncols`：行列数量
+  - `sharex/sharey`：共享坐标轴
+  - `constrained_layout`：自动布局优化
+- `GridSpec`参数：
+  - `width_ratios`/`height_ratios`：行列比例
+  - `left`/`right`等：边缘留白控制
+- `tight_layout()`相关参数：
+  - `pad`：整体边距
+  - `wspace/hspace`：子图水平/垂直间距
+
+常见应用场景：
+- 多维度数据并行对比
+- 训练过程监控面板
+- 地理信息多图联动
+- 数据-缩略图联合显示
+
+## 4. 图表类型实践
+
+```python bar_chart.py
+# 柱状图与分组柱状图
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 基础柱状图
+categories = [&#39;Apple&#39;, &#39;Banana&#39;, &#39;Orange&#39;]
+sales = [45, 32, 28]
+plt.bar(categories, sales, 
+       color=&#39;skyblue&#39;, 
+       edgecolor=&#39;black&#39;,
+       width=0.6)
+
+# 分组柱状图示例
+x = np.arange(3)  # 生成刻度位置
+width = 0.35  # 柱宽
+
+plt.bar(x - width/2, [20, 35, 30], width, label=&#39;2022&#39;)
+plt.bar(x + width/2, [25, 32, 28], width, label=&#39;2023&#39;)
+plt.xticks(x, categories)  # 设置分类标签</code></pre>
+<p>```python pie_chart.py # 饼图定制示例 sizes = [35, 25, 20, 20] labels
+= [‘Action’, ‘Comedy’, ‘Drama’, ‘Sci-Fi’] explode = (0.1, 0, 0, 0) #
+突出显示第一项</p>
+<p>plt.pie(sizes, labels=labels, autopct=‘%1.1f%%’, # 显示百分比
+startangle=90, # 起始角度 shadow=True, # 添加阴影 explode=explode, #
+突出特定扇区 colors=[‘#ff9999’,‘#66b3ff’,‘#99ff99’,‘#ffcc99’])</p>
+<p>plt.axis(‘equal’) # 保持圆形</p>
+<pre><code>
+```python histogram_demo.py
+# 直方图（数据分布分析）
+data = np.random.normal(170, 10, 250)  # 生成正态分布数据
+
+plt.hist(data, 
+        bins=15,              # 分组数量
+        color=&#39;teal&#39;,
+        edgecolor=&#39;black&#39;,    # 边缘线
+        alpha=0.7,           # 透明度
+        density=True)        # 显示密度曲线
+
+plt.xlabel(&#39;Height (cm)&#39;)
+plt.ylabel(&#39;Frequency&#39;)
+plt.title(&#39;Height Distribution&#39;)</code></pre>
+<p>```python scatter_advanced.py # 高级散点图（多维度可视化） x =
+np.random.rand(50) y = x * 2 + np.random.normal(0, 0.2, 50) sizes =
+np.random.randint(10, 200, 50) # 点尺寸数据 colors = np.random.rand(50)
+# 颜色数据</p>
+<p>plt.scatter(x, y, s=sizes, # 尺寸映射 c=colors, # 颜色映射
+cmap=‘viridis’, # 颜色方案 alpha=0.6, # 透明度 edgecolors=‘black’)</p>
+<p>plt.colorbar(label=‘Value’) # 添加颜色条</p>
+<pre><code>
+```python boxplot_example.py
+# 箱线图（数据分布统计）
+data = [np.random.normal(0, std, 100) for std in range(1, 4)]
+
+plt.boxplot(data, 
+           notch=True,          # 缺口显示中位置信区间
+           patch_artist=True,   # 填充颜色
+           boxprops=dict(facecolor=&#39;lightblue&#39;))
+
+plt.xticks([1, 2, 3], [&#39;Group 1&#39;, &#39;Group 2&#39;, &#39;Group 3&#39;])
+plt.ylabel(&#39;Measurement&#39;)</code></pre>
+<p>图表类型适用场景： 1.
+<strong>柱状图</strong>：分类数据对比（如商品销量对比） 2.
+<strong>饼图</strong>：占比关系可视化（如预算分配） 3.
+<strong>直方图</strong>：数据分布分析（如考试成绩分布） 4.
+<strong>散点图</strong>：变量关系研究（如身高体重关系） 5.
+<strong>箱线图</strong>：数据离群值检测（如质量检测数据）</p>
+<p>技术要点： - 柱状图<code>width</code>参数控制不同数据系列间距 -
+饼图<code>autopct='%.1f%%'</code>自动添加百分比标签 -
+直方图<code>density=True</code>可显示概率密度曲线 -
+散点图<code>cmap</code>参数支持多种色谱（viridis, plasma等） -
+箱线图可显示中位数/四分位/离群值等统计特征</p>
+<h2 id="实战项目电影数据可视化">5. 实战项目：电影数据可视化</h2>
+<h3 id="数据加载与清洗">5.1 数据加载与清洗</h3>
+<p>```python load_movie_data.py # 纯Python实现CSV数据加载 import csv
+import numpy as np</p>
+<p>def load_data(filename): “““加载清洗后的电影数据”“” valid_data = []
+with open(filename, encoding=‘utf-8’) as f: reader = csv.reader(f)
+next(reader) # 跳过标题行</p>
+<pre><code>    for row in reader:
+        try:
+            # 解析年份、评分、类型
+            year = int(row[0]) if row[0] else None
+            rating = float(row[1])
+            genres = row[2].split(&#39;|&#39;) if row[2] else []
+            
+            if year and 1900 &lt; year &lt; 2023:  # 数据有效性检查
+                valid_data.append((year, rating, genres))
+                
+        except ValueError:
+            continue  # 跳过格式错误行
+return valid_data</code></pre>
+<p>movie_data = load_data(‘movies.csv’) ratings = np.array([d[1] for d
+in movie_data])</p>
+<pre><code>
+### 5.2 评分分布直方图
+```python rating_histogram.py
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(8,4.5))
+plt.hist(ratings, 
+        bins=np.arange(0, 10.5, 0.5),  # 每0.5分一个区间
+        edgecolor=&#39;white&#39;,
+        color=&#39;#2196F3&#39;)
+
+plt.title(&#39;电影评分分布直方图&#39;, fontsize=14)
+plt.xlabel(&#39;IMDb评分 (0-10分)&#39;, fontsize=12)
+plt.ylabel(&#39;电影数量&#39;, fontsize=12)
+plt.grid(axis=&#39;y&#39;, alpha=0.3)
+plt.xticks(np.arange(0, 11, 1))
+plt.savefig(&#39;rating_dist.png&#39;)</code></pre>
+<h3 id="年度趋势折线图">5.3 年度趋势折线图</h3>
+<p>```python year_trend.py # 统计年产量数据 year_counts = {} for item in
+movie_data: year = item[0] year_counts[year] = year_counts.get(year, 0)
++ 1</p>
+<h1 id="转换为排序后的数组">转换为排序后的数组</h1>
+<p>years = np.array(sorted(year_counts.keys())) counts =
+np.array([year_counts[y] for y in years])</p>
+<p>plt.figure(figsize=(10, 5)) plt.plot(years, counts, marker=‘o’,
+color=‘#4CAF50’, linewidth=2) plt.fill_between(years, counts,
+color=‘#C8E6C9’, alpha=0.3) plt.title(‘2000-2022年电影产量变化趋势’,
+fontsize=14) plt.xlabel(‘年份’, fontsize=12) plt.ylabel(‘年产量’,
+fontsize=12) plt.grid(linestyle=‘:’)</p>
+<pre><code>
+### 5.4 类型分布饼图
+```python genre_piechart.py
+# 统计类型分布
+genre_counter = {}
+for item in movie_data:
+    for genre in item[2]:
+        genre_counter[genre] = genre_counter.get(genre, 0) + 1
+
+# 获取前5大类型
+sorted_genres = sorted(genre_counter.items(), key=lambda x: x[1], reverse=True)[:5]
+labels = [g[0] for g in sorted_genres]
+sizes = [g[1] for g in sorted_genres]
+explode = (0.1, 0, 0, 0, 0)  # 突出第一个类别
+
+plt.figure(figsize=(8,8))
+plt.pie(sizes, 
+       labels=labels,
+       autopct=&#39;%1.1f%%&#39;,
+       startangle=90,
+       explode=explode,
+       shadow=True,
+       colors=[&#39;#FF5722&#39;,&#39;#03A9F4&#39;,&#39;#FFC107&#39;,&#39;#8BC34A&#39;,&#39;#9C27B0&#39;])
+plt.title(&#39;电影类型分布 (Top 5)&#39;, fontsize=14)</code></pre>
+<p>项目实现要点： 1. 数据加载完全使用csv模块实现 2.
+数据清洗使用列表解析和异常处理 3. 统计计数使用字典代替Pandas 4.
+保存可视化结果为图片文件 5. 输出标准的科研图表格式</p>
+</body>
+</html>
+

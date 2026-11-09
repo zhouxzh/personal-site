@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Python 编程基础 · Day 1</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+<link rel="stylesheet" href="course.css"></head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Python 编程基础 · Day 1</h1>
+</header>
+<h1 id="day-1编程环境搭建与基础语法3学时">Day
+1：编程环境搭建与基础语法（3学时）</h1>
+<h2 id="python简介与开发环境搭建anaconda">1.
+Python简介与开发环境搭建（Anaconda）</h2>
+<h3 id="python核心特性演示">1.1 Python核心特性演示</h3>
+<p>```python features_demo.py # 动态类型系统演示 variable = 3.1415
+print(type(variable)) # 输出: &lt;class ‘float’&gt; variable = “圆周率”
+print(type(variable)) # 输出: &lt;class ‘str’&gt;</p>
+<h1 id="多重赋值功能">多重赋值功能</h1>
+<p>a, b, c = 1, “two”, [3,4,5] print(f”{a}-{b}-{c}“) # 输出: 1-two-[3,
+4, 5]</p>
+<h1 id="字典推导式示例">字典推导式示例</h1>
+<p>squares = {x: x**2 for x in range(5)} print(squares) # 输出: {0: 0,
+1: 1, 2: 4, 3: 9, 4: 16}</p>
+<pre><code>
+#### 主要版本特性对比：
+
+| 特性               | Python 3.10+                   | Python 2.7              |
+|--------------------|--------------------------------|-------------------------|
+| 字符串默认编码      | UTF-8                         | ASCII                   |
+| print语法          | 函数形式print()               | 语句形式print           |
+| 整除运算符          | 3.10新增模式匹配              | 无                      |
+
+### 1.2 Anaconda安装配置
+
+#### 各平台安装步骤：
+
+**Windows：**
+
+1. 访问[官网](https://www.anaconda.com)下载安装包
+2. 双击.exe文件运行安装向导
+3. 建议勾选&quot;Add Anaconda to PATH&quot;选项
+
+**macOS：**
+
+```bash install_mac.sh
+# 推荐使用Homebrew安装
+brew install --cask anaconda
+# 配置环境变量
+echo &#39;export PATH=&quot;/usr/local/anaconda3/bin:$PATH&quot;&#39; &gt;&gt; ~/.zshrc</code></pre>
+<p><strong>Linux：</strong></p>
+<p><code>bash install_linux.sh # 下载安装脚本 wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh # 运行安装程序 bash Anaconda3-2023.09-0-Linux-x86_64.sh</code></p>
+<h3 id="conda环境管理">1.3 Conda环境管理</h3>
+<p>```bash conda_env.sh # 创建新环境 conda create –name ds_env
+python=3.10</p>
+<h1 id="激活环境">激活环境</h1>
+<p>conda activate ds_env</p>
+<h1 id="查看已安装包">查看已安装包</h1>
+<p>conda list</p>
+<h1 id="导出环境配置">导出环境配置</h1>
+<p>conda env export &gt; environment.yml</p>
+<h1 id="克隆环境">克隆环境</h1>
+<p>conda create –clone ds_env –name ds_env_backup</p>
+<pre><code>
+#### 常用命令速查：
+
+| 功能                   | 命令                                  |
+|------------------------|---------------------------------------|
+| 搜索包                 | `conda search numpy`                  |
+| 安装包                 | `conda install pandas matplotlib`     |
+| 更新conda本体          | `conda update -n base conda`          |
+| 删除环境               | `conda remove --name old_env --all`   |
+
+### 1.4 开发工具配置
+
+```bash spyder_config.sh
+# 安装科学计算全家桶
+conda install numpy pandas scikit-learn</code></pre>
+<h4 id="vscode集成配置">VSCode集成配置：</h4>
+<ol type="1">
+<li>安装Python扩展插件</li>
+<li>选择Anaconda解释器路径（Ctrl+Shift+P → Python: Select
+Interpreter）</li>
+<li>推荐安装的扩展：
+<ul>
+<li>Pylance（语法检查）</li>
+<li>Jupyter（笔记本支持）</li>
+<li>Python Indent（缩进辅助）</li>
+</ul></li>
+</ol>
+<h3 id="环境验证脚本">1.5 环境验证脚本</h3>
+<p>```python verify_env.py import sys, platform</p>
+<p>print(f”Python版本: {sys.version}“) print(f”操作系统:
+{platform.system()} {platform.release()}“) print(”核心库版本:“)
+print(f”- NumPy: {np.__version__}“) if ‘numpy’ in sys.modules else None
+print(f”- Pandas: {pd.__version__}“) if ‘pandas’ in sys.modules else
+None</p>
+<h1 id="输出示例">输出示例：</h1>
+<p>““” Python版本: 3.10.12 | packaged by conda-forge | (main, Jun 23
+2023, 22:40:32) [GCC 12.3.0] 操作系统: Linux 5.15.0-78-generic
+核心库版本: - NumPy: 1.25.2 - Pandas: 2.1.0 ““”</p>
+<pre><code>
+### 1.6 项目结构规范
+
+```text project_structure/
+data_analysis_project/  
+├── data/                 # 原始数据
+│   ├── raw/             
+│   └── processed/       
+├── docs/                 # 文档资料
+├── notebooks/            # 分析笔记
+├── src/                  # 源代码
+│   ├── utils/           # 工具函数
+│   └── main.py          
+├── tests/                # 单元测试
+├── environment.yml       # 环境配置
+└── README.md             # 项目说明</code></pre>
+<h4 id="依赖管理示例">依赖管理示例：</h4>
+<p><code>yaml environment.yml name: data_analysis channels:   - conda-forge   - defaults dependencies:   - python=3.10   - pandas=2.1.0   - numpy=1.25   - matplotlib=3.7   - pip=23.2   - pip:     - requests==2.31.0     - python-dotenv==1.0.0</code></p>
+<h3 id="包管理最佳实践">1.7 包管理最佳实践</h3>
+<p>```bash package_management.sh # 优先使用conda安装 conda install
+scipy=1.11</p>
+<h1 id="conda未收录的包使用pip">conda未收录的包使用pip</h1>
+<p>pip install torch torchvision</p>
+<h1 id="导出精确环境配置">导出精确环境配置</h1>
+<p>conda list –export &gt; conda_requirements.txt pip freeze &gt;
+pip_requirements.txt</p>
+<h1 id="安装开发模式包">安装开发模式包</h1>
+<p>pip install -e . # 安装当前目录的包</p>
+<pre><code>
+#### 注意事项：
+
+1. 避免混合使用conda和pip安装同一包的多个版本
+2. conda优先安装来自conda-forge的软件包
+3. 复杂环境建议在创建时指定主要依赖版本
+4. 定期使用`conda update --all`更新所有包
+
+本配置方案已在以下平台验证通过：
+
+- Windows 11 (64位) with Conda 23.7.4
+- Ubuntu 22.04 LTS with Miniconda 23.5.2
+- macOS Ventura 13.5 with Anaconda 2023.09
+遇到安装问题时可以尝试清除缓存：`conda clean --all -y`
+
+## 2. 变量与数据类型（整型/浮点/字符串/布尔）
+
+### 2.1 基本数据类型表示
+
+```python variables_basic.py
+# 整型示例
+age = 25                   # 十进制
+binary_num = 0b1101        # 二进制 (13)
+hex_num = 0x1a             # 十六进制 (26)
+
+# 浮点型示例
+price = 3.1415            
+sci_num = 2.5e-3          # 0.0025
+
+# 字符串示例
+name = &quot;DeepSeek&quot;         
+multiline = &#39;&#39;&#39;第一行
+第二行&#39;&#39;&#39;
+raw_str = r&quot;换行符:\n不会转义&quot;
+
+# 布尔型示例
+is_valid = True           
+is_empty = False</code></pre>
+<h4 id="数据类型特征对比">数据类型特征对比：</h4>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>可变性</th>
+<th>示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>整型(int)</td>
+<td>不可变</td>
+<td>0b1010 (10进制10)</td>
+<td>任意大整数</td>
+</tr>
+<tr>
+<td>浮点(float)</td>
+<td>不可变</td>
+<td>3e8 (300000000)</td>
+<td>遵循IEEE754双精度</td>
+</tr>
+<tr>
+<td>字符串(str)</td>
+<td>不可变</td>
+<td>“hello0A9”</td>
+<td>支持Unicode字符</td>
+</tr>
+<tr>
+<td>布尔(bool)</td>
+<td>不可变</td>
+<td>1 &lt; 2 → True</td>
+<td>bool为int子类</td>
+</tr>
+</tbody>
+</table>
+<h3 id="变量操作与转换">2.2 变量操作与转换</h3>
+<p>```python type_operations.py # 类型转换示例 quantity = “123”
+print(int(quantity) + 5) # 128</p>
+<p>pi_str = str(3.1415926) # “3.1415926” mix_type = 15 + 3.0 #
+自动转换为浮点型</p>
+<h1 id="浮点精度处理">浮点精度处理</h1>
+<p>from decimal import Decimal precise_float = Decimal(‘0.1’) +
+Decimal(‘0.2’)</p>
+<h1 id="布尔转换规则">布尔转换规则</h1>
+<p>values = [0, 1, ““,”Hello”, [], [1]] print([bool(v) for v in values])
+# [False, True, False, True, False, True]</p>
+<pre><code>
+#### 转换方法总结：
+
+1. **显式转换**  
+   - `int()`：浮点截断取整，有效数字字符串转换  
+   - `float()`：支持科学记数法转换  
+   - `str()`：所有对象都可转换  
+   - `bool()`：0/空值为False，其余为True
+
+### 2.3 字符串格式化操作
+
+```python string_formatting.py
+# 多种格式化方式对比
+name = &quot;Alice&quot;
+age = 28
+
+# 1. % 格式化
+print(&quot;%s今年%d岁&quot; % (name, age)) 
+
+# 2. format方法
+print(&quot;{}今年{}岁&quot;.format(name, age))
+
+# 3. f-string（Python 3.6+）
+print(f&quot;{name.upper()}明年{age+1}岁&quot;)
+
+# 4. 模板字符串
+from string import Template
+t = Template(&quot;$name的BMI是$bmi&quot;)
+print(t.substitute(name=name, bmi=22.5))</code></pre>
+<h4 id="字符串常用方法">字符串常用方法：</h4>
+<p>```python string_methods.py text = ” Python编程指南 ”
+print(text.strip()) # 去两端空格 → “Python编程指南”
+print(text.split(“编”)) # [’ Python’, ‘程指南’] print(“3.14”.isdigit())
+# False print(“abc123”.isalnum()) # True
+print(“deepseek”.startswith(“d”)) # True</p>
+<h1 id="拼接与重复">拼接与重复</h1>
+<p>header = “=” * 20 + ” 菜单 ” + “=” * 20</p>
+<pre><code>
+### 2.4 数值操作规范
+
+```python numeric_operations.py
+# 数值类型验证
+assert (5).real == 5, &quot;整型的实部等于自身&quot;
+assert isinstance(3+4j, complex), &quot;复数类型检测&quot;
+
+# 安全除法操作
+print(7//3)    # 整除 → 2
+print(7%3)     # 取模 → 1
+print(divmod(7,3))  # (2, 1)
+
+# 数值精度控制
+print(0.1 + 0.2 == 0.3)        # False（精度问题）
+print(round(2.675, 2))         # 2.67（银行家舍入法）</code></pre>
+<h4 id="数学运算符优先级从高到低">数学运算符优先级（从高到低）：</h4>
+<ol type="1">
+<li><code>**</code>（幂运算）</li>
+<li><code>* / // %</code></li>
+<li><code>+ -</code></li>
+</ol>
+<h3 id="数据类型验证测试">2.5 数据类型验证测试</h3>
+<p>```python type_validation.py # 参数类型检查 def
+calculate_area(radius): if not isinstance(radius, (int, float)): raise
+TypeError(“必须输入数字类型”) return 3.1415926 * radius**2</p>
+<h1 id="字典类型映射">字典类型映射</h1>
+<p>type_map = { int: “整数”, float: “浮点数”, str: “字符串” }</p>
+<p>sample_data = [10, 3.14, “test”, True] for item in sample_data:
+print(f”值 {item} 类型：{type_map.get(type(item), ‘其他’)}“) # 输出: #
+值 10 类型：整数 # 值 3.14 类型：浮点数 # 值 test 类型：字符串 # 值 True
+类型：其他</p>
+<pre><code>
+## 3. 输入输出与简单运算（print/input/运算符）
+
+### 3.1 输入输出基础函数
+
+```python basic_io.py
+# print基本用法
+print(&quot;欢迎来到DeepSeek编程世界！&quot;)  # 换行输出
+print(2024, &quot;人工智能&quot;, True)        # 输出多个对象
+print(*[&quot;A&quot;, &quot;B&quot;, &quot;C&quot;], sep=&quot;-&quot;)   # 解包参数：A-B-C
+
+# input接收输入
+name = input(&quot;请输入姓名：&quot;)
+print(f&quot;你好，{name}！&quot;)
+
+# 数学运算输出
+r = float(input(&quot;输入圆半径：&quot;))
+print(&quot;周长:&quot;, 2 * 3.14159 * r)
+print(&quot;面积:&quot;, 3.14159 * r ** 2)</code></pre>
+<h4 id="输出格式化控制">输出格式化控制：</h4>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sep</td>
+<td>指定分隔符（默认空格）</td>
+<td>print(1,2, sep=“→”) → 1→2</td>
+</tr>
+<tr>
+<td>end</td>
+<td>结尾字符（默认）</td>
+<td>print(“同一行”, end=““)</td>
+</tr>
+<tr>
+<td>file</td>
+<td>指定输出目标</td>
+<td>print(“错误”, file=sys.stderr)</td>
+</tr>
+<tr>
+<td>flush</td>
+<td>强制刷新缓冲区</td>
+<td>进度条场景常用</td>
+</tr>
+</tbody>
+</table>
+<h3 id="类型转换与运算">3.2 类型转换与运算</h3>
+<p>```python type_conversion.py # 输入转换示例 age =
+int(input(“年龄：”)) # 转为整数 price = float(input(“价格：”)) #
+转为浮点数 valid = bool(input(“是否有效：”)) #
+空字符串转False，其他为True</p>
+<h1 id="运算优先级演示">运算优先级演示</h1>
+<p>result = 5 + 3 * 2 ** 3 // 4 # 等同于5 + ((3 * (2**3)) // 4)
+print(“计算结果:”, result) # 输出 5 + (24//4) = 11</p>
+<h1 id="复合赋值运算">复合赋值运算</h1>
+<p>count = 10 count += 5 # 等效于count = count + 5 count **= 2 #
+现在count = 15^2 = 225</p>
+<pre><code>
+#### 运算符优先级表（部分）：
+
+| 优先级 | 运算符                            |
+|--------|-----------------------------------|
+| 1      | **（幂运算）                     |
+| 2      | ~ + -（一元加减和按位取反）      |
+| 3      | * / // %（乘除运算）            |
+| 4      | + -（加减运算）                 |
+| 5      | &lt;&lt; &gt;&gt;（位移动）                 |
+
+### 3.3 完整用户交互案例
+
+```python bmi_calculator.py
+&quot;&quot;&quot;
+BMI计算器 v1.0
+BMI = 体重kg / (身高m)^2
+标准范围：
+  低于18.5 → 体重过轻
+  18.5-24 → 正常
+  25-28 → 过重
+  28-32 → 肥胖
+&quot;&quot;&quot;
+print(&quot;=&quot; * 20)
+height = float(input(&quot;输入身高(m)：&quot;))
+weight = float(input(&quot;输入体重(kg)：&quot;))
+
+bmi = weight / height**2
+print(f&quot;\nBMI计算结果: {bmi:.1f}&quot;)  # 保留1位小数
+
+if bmi &lt; 18.5:
+    status = &quot;过轻&quot;
+elif 18.5 &lt;= bmi &lt; 24:
+    status = &quot;正常&quot;
+elif 24 &lt;= bmi &lt; 28:
+    status = &quot;过重&quot;
+else:
+    status = &quot;肥胖&quot;
+
+print(f&quot;健康状态: {status}&quot;)</code></pre>
+<h3 id="基础运算演示">3.4 基础运算演示</h3>
+<p>```python math_operators.py # 算术运算符 print(10 + 3) # 13 → 加法
+print(10 - 2.5) # 7.5 → 减法 print(2 ** 4) # 16 → 幂运算</p>
+<h1 id="比较运算符">比较运算符</h1>
+<p>print(5 == 5.0) # True → 值等判断 print(5 is 5.0) # False →
+类型不同</p>
+<h1 id="逻辑运算短路特性">逻辑运算短路特性</h1>
+<p>result = False and (1/0) # 不会触发ZeroDivisionError，因为短路
+print(“安全通过短路测试:”, result)</p>
+<pre><code>
+#### 特殊数学运算：
+
+```python advanced_math.py
+import math
+
+# 绝对值运算
+print(abs(-3.14))      # 3.14
+
+# 商余同时获取
+print(divmod(35, 6))   # (5, 5)
+
+# 分数运算示例
+from fractions import Fraction
+half = Fraction(1, 2)
+quarter = Fraction(1, 4)
+print(half + quarter)  # 3/4
+
+# 数组运算
+import numpy as np
+arr = np.array([1,2,3])
+print(arr * 2)              # [2 4 6]</code></pre>
+<h3 id="错误处理示例">3.5 错误处理示例</h3>
+<p>```python input_validation.py # 安全数字输入函数 def
+get_number(prompt, type_=float): while True: try: return
+type_(input(prompt)) except ValueError:
+print(“输入错误，请重新输入数值”)</p>
+<p>age = get_number(“年龄：”, int) price = get_number(“商品价格：”)
+print(f”总价：{price * 1.1:.2f}“) # 计算含税价格 ```</p>
+<p>关键要点包括：</p>
+<ol type="1">
+<li>输入优先使用类型转换保证数据有效性</li>
+<li>复杂运算注意优先级，推荐使用括号明确顺序</li>
+<li>格式化输出提升可读性</li>
+<li>区分==值比较和is对象身份比较</li>
+</ol>
+<p>实际工程中建议在重要计算场景中：</p>
+<ul>
+<li>使用decimal模块处理精度敏感计算</li>
+<li>配置静态类型检查工具（mypy）</li>
+<li>增加异常处理保障程序健壮性</li>
+</ul>
+<h2 id="课后任务">4. 课后任务</h2>
+<ul>
+<li>安装Anaconda并完成第一个Python程序</li>
+</ul>
+</body>
+</html>
+

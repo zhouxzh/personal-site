@@ -1,0 +1,9 @@
+node_modules/
+.vuepress/.cache/
+.vuepress/.temp/
+.vuepress/dist/
+npm-debug.log*
+__pycache__/
+*.pyc
+projects/*
+!projects/README.md

@@ -1,21 +1,24 @@
-# Embedded course snapshots
+# Course Sites
 
-The directories in this folder are static course-site snapshots published beneath `zhouxianzhong.cn`.
+Static course pages published beneath `zhouxianzhong.cn/courses/`.
+The public directory is available at `/courses/`.
 
-| Path | Source repository | Published path |
-| --- | --- | --- |
-| `vlsi-testing-technology/` | `zhouxzh/vlsi-testing-technology` | `/courses/vlsi-testing-technology/` |
-| `microelectronic-device-modeling/` | `zhouxzh/microelectronic-device-modeling-sim` | `/courses/microelectronic-device-modeling/` |
+| Published path | Editable source in this repository |
+| --- | --- |
+| `/courses/python-basic/` | `course-materials/python-basic/` |
+| `/courses/python-data-analysis/` | `course-materials/python-data-analysis/` |
+| `/courses/fpga-system-design/` | `course-materials/fpga-system-design/` |
+| `/courses/embedded-system-design/` | `course-materials/embedded-system-design/` |
+| `/courses/vlsi-testing-technology/` | `course-materials/vlsi-testing-technology/` |
+| `/courses/microelectronic-device-modeling/` | `course-materials/microelectronic-device-modeling/` |
+| `/courses/reinforcement-learning/` | `course-materials/reinforcement-learning/` |
+| `/courses/python-scientific-computing/` | `course-materials/python-scientific-computing/` |
 
-Each snapshot includes the generated VuePress site, course assets, and presentation HTML. The original repositories remain the editable source of truth.
+The `course-materials/` directories hold the migrated source files. The root
+`build.mjs` copies the published pages from `courses/` to `dist/courses/`.
 
-## Updating a course snapshot
-
-1. Clone or update the source repository outside this repository.
-2. Change the VuePress `base` setting to its published path in the table above.
-3. Build the course with `pnpm run docs:build`.
-4. Replace the corresponding directory in `courses/` with the generated `src/.vuepress/dist/` directory.
-5. Rewrite any remaining old GitHub Pages absolute URLs to the matching `https://zhouxianzhong.cn/courses/.../` address.
-6. Run `npm run build` in the repository root and verify the course routes before committing.
-
-The root `build.mjs` copies the course snapshots into `dist/courses/` for Cloudflare Workers Static Assets deployment.
+For VuePress courses, install dependencies in the source directory and run its
+`docs:build` script. Copy the generated `.vuepress/dist/` directory into the
+matching `courses/<slug>/` snapshot before running the root build. Python Basic
+lesson pages are generated from the Markdown files with Pandoc. Keep book
+licenses and attribution files with the translated material.

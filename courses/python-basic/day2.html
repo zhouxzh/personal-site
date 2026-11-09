@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Python 编程基础 · Day 2</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<link rel="stylesheet" href="course.css"></head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Python 编程基础 · Day 2</h1>
+</header>
+<h1 id="day-2python程序控制基础3学时"><strong>Day
+2：Python程序控制基础（3学时）</strong></h1>
+<h2 id="分支结构详解">分支结构详解</h2>
+<h3 id="单分支if结构应用场景">单分支if结构应用场景</h3>
+<p>适用场景：当只需要处理条件成立的情况时使用</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 示例：年龄验证</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">18</span>:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;您已成年，可以进入！&quot;</span>)</span></code></pre></div>
+<h3 id="双分支if-else结构执行流程">双分支if-else结构执行流程</h3>
+<p>执行流程：条件成立执行if代码块，否则执行else代码块</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 示例：奇偶判断</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="dv">15</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> num <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;</span><span class="sc">{</span>num<span class="sc">}</span><span class="ss">是偶数&quot;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;</span><span class="sc">{</span>num<span class="sc">}</span><span class="ss">是奇数&quot;</span>)</span></code></pre></div>
+<h3 id="多分支if-elif-else嵌套规则">多分支if-elif-else嵌套规则</h3>
+<p>规则说明：</p>
+<ol type="1">
+<li>按从上到下的顺序检查条件</li>
+<li>第一个满足条件的代码块将被执行</li>
+<li>elif可以有多个，else可选</li>
+<li>使用缩进定义代码块范围</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 示例：成绩等级评定</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="dv">85</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> score <span class="op">&gt;=</span> <span class="dv">90</span>:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;A&quot;</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="dv">80</span> <span class="op">&lt;=</span> score <span class="op">&lt;</span> <span class="dv">90</span>:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;B&quot;</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="dv">70</span> <span class="op">&lt;=</span> score <span class="op">&lt;</span> <span class="dv">80</span>:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;C&quot;</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;D&quot;</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 嵌套示例：用户登录验证</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>username <span class="op">=</span> <span class="st">&quot;admin&quot;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>password <span class="op">=</span> <span class="st">&quot;123456&quot;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> username <span class="op">==</span> <span class="st">&quot;admin&quot;</span>:</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> password <span class="op">==</span> <span class="st">&quot;123456&quot;</span>:</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;登录成功！&quot;</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;密码错误&quot;</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;用户名不存在&quot;</span>)</span></code></pre></div>
+<h3 id="条件表达式与短路运算原理">条件表达式与短路运算原理</h3>
+<h4 id="条件表达式三元运算">条件表达式（三元运算）</h4>
+<p>语法：<code>结果 = 值1 if 条件 else 值2</code></p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 示例：返回较大值</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> <span class="dv">10</span>, <span class="dv">20</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>max_value <span class="op">=</span> a <span class="cf">if</span> a <span class="op">&gt;</span> b <span class="cf">else</span> b</span></code></pre></div>
+<h4 id="短路运算原理">短路运算原理</h4>
+<p>逻辑运算符执行规则：</p>
+<ul>
+<li>在 <code>and</code>
+运算中，如果前项为False，直接返回False不检查后项</li>
+<li>在 <code>or</code>
+运算中，如果前项为True，直接返回True不检查后项</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 短路运算示例</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_list(lst):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">len</span>(lst) <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> lst[<span class="dv">0</span>] <span class="op">==</span> <span class="st">&quot;Python&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 当传入空列表时不会触发索引错误，因为len(lst) &gt; 0为False导致直接返回False</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_list([]))  <span class="co"># 安全地返回False</span></span></code></pre></div>
+<h2 id="循环结构深度解析">2. 循环结构深度解析</h2>
+<h3 id="for循环工作机制及迭代协议">2.1 for循环工作机制及迭代协议</h3>
+<p>Python的for循环基于迭代协议实现，通过调用可迭代对象的<code>__iter__()</code>方法获取迭代器，然后不断调用迭代器的<code>__next__()</code>方法获取值。</p>
+<p>```python iteration_protocol.py class FibonacciGenerator:
+“““自定义斐波那契数列迭代器”“” def <strong>init</strong>(self,
+max_count): self.max = max_count self.count = 0 self.a, self.b = 0,
+1</p>
+<pre><code>def __iter__(self):
+    return self
+
+def __next__(self):
+    if self.count &gt;= self.max:
+        raise StopIteration
+    result = self.a
+    self.a, self.b = self.b, self.a + self.b
+    self.count += 1
+    return result</code></pre>
+<p>print(“斐波那契数列迭代演示:”) for num in FibonacciGenerator(5):
+print(num, end=’ ’) # 输出：0 1 1 2 3</p>
+<h1 id="等效的底层实现机制">等效的底层实现机制</h1>
+<p>print(“:”) iterator = iter(FibonacciGenerator(3)) while True: try:
+print(next(iterator), end=’ ’) # 输出：0 1 1 except StopIteration:
+break</p>
+<pre><code>
+#### 关键特点：
+
+- `iter()`函数调用对象的`__iter__()`方法
+- `next()`函数触发`__next__()`方法执行
+- `StopIteration`异常由迭代器主动抛出
+
+### 2.2 序列类型遍历技巧
+
+Python提供多种便捷的遍历工具：
+
+```python traversal_techniques.py
+colors = [&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]
+hex_codes = [&#39;#FF0000&#39;, &#39;#00FF00&#39;, &#39;#0000FF&#39;]
+
+# 带索引遍历（常规写法 vs 优化写法）
+print(&quot;索引遍历对比:&quot;)
+# 传统方式
+for i in range(len(colors)):
+    print(f&quot;{i}: {colors[i]}&quot;)
+
+# 改进方式（避免使用len()）
+for index, color in enumerate(colors, start=10):
+    print(f&quot;{index}-{color}&quot;)  # 索引从10开始
+
+# 并行遍历多个序列
+print(&quot;\n多序列遍历:&quot;)
+for color, code in zip(colors, hex_codes):
+    print(f&quot;{color.center(10)} -&gt; {code}&quot;)
+
+# 字典遍历最佳实践
+print(&quot;\n字典遍历:&quot;)
+inventory = {&#39;apples&#39;: 25, &#39;oranges&#39;: 18}
+for item, quantity in inventory.items():
+    print(f&quot;商品：{item.upper()}，库存：{quantity:+}&quot;)</code></pre>
+<h4 id="遍历优化技巧">遍历优化技巧：</h4>
+<ul>
+<li>使用反向迭代器<code>reversed()</code>逆向遍历序列</li>
+<li>嵌套结构使用<code>itertools.product</code>代替多重循环</li>
+<li>迭代器切片使用<code>itertools.islice</code></li>
+</ul>
+<h3 id="range函数参数模式详解">2.3 range()函数参数模式详解</h3>
+<p>range函数支持三种参数组合：</p>
+<p>```python range_demo.py # 单参数模式（停止值） print(“range(5):,
+list(range(5))) # [0,1,2,3,4]</p>
+<h1 id="双参数模式起始停止">双参数模式（起始，停止）</h1>
+<p>print(“range(3,7):, list(range(3,7))) # [3,4,5,6]</p>
+<h1 id="三参数模式起始停止步长">三参数模式（起始，停止，步长）</h1>
+<p>print(“range(10,0,-2):”, list(range(10,0,-2))) # [10,8,6,4,2]</p>
+<h1 id="常见应用场景">常见应用场景</h1>
+<p>print(“:”) # 生成等差数列 step_sequence = [x * 0.5 for x in range(0,
+5)] # 0.0,0.5,1.0,…2.0</p>
+<h1 id="创建索引映射字典">创建索引映射字典</h1>
+<p>index_map = {k:v for v,k in enumerate(reversed(range(10)))}</p>
+<h1 id="生成网格坐标">生成网格坐标</h1>
+<p>grid = [(x,y) for y in range(5) for x in range(5)]</p>
+<pre><code>
+#### 特殊模式说明：
+
+- 负步长时起始值必须大于结束值
+- 浮点数步长推荐使用`numpy.arange()`
+- 内存优化：range对象不存储完整列表
+
+### 2.4 循环控制关键词深度应用
+
+控制流关键词显著提升循环灵活性：
+
+```python control_flow.py
+# break应用：数据有效性校验
+print(&quot;数值有效性验证:&quot;)
+valid_numbers = []
+while True:
+    value = input(&quot;输入数值（q退出）: &quot;)
+    if value.lower() == &#39;q&#39;:
+        break
+    if not value.isdigit():
+        print(&quot;无效输入！&quot;)
+        continue
+    valid_numbers.append(int(value))
+    print(f&quot;最新队列：{valid_numbers}&quot;)
+
+# 带有else的循环结构
+print(&quot;\n素数检测优化:&quot;)
+def is_prime(n):
+    if n &lt;= 1:
+        return False
+    for i in range(2, int(n**0.5)+1):
+        if n % i == 0:
+            print(f&quot;找到因数 {i}&quot;)
+            break
+    else:
+        return True
+    return False
+
+print(&quot;127是素数吗？&quot;, is_prime(127))
+
+# continue的高级应用：跳过复合条件
+print(&quot;\n复杂跳过逻辑:&quot;)
+for num in range(100):
+    if num % 3 == 0 or num % 5 == 1:
+        continue
+    if num &gt; 50:
+        break
+    print(num, end=&#39; &#39;)</code></pre>
+<h4 id="控制流规范">控制流规范：</h4>
+<ol type="1">
+<li><strong>break使用准则</strong>
+<ul>
+<li>最多跳出当前循环层</li>
+<li>常用在搜索场景（找到即退出）</li>
+</ul></li>
+<li><strong>continue适用场景</strong>
+<ul>
+<li>预处理时过滤无效数据</li>
+<li>跳过不需要处理的边界条件</li>
+</ul></li>
+<li><strong>else扩展模式</strong>
+<ul>
+<li>while…else常用于重试机制</li>
+<li>可与异常处理结合形成安全验证</li>
+</ul></li>
+</ol>
+<h3 id="高级循环范式">高级循环范式</h3>
+<p>```python advanced_patterns.py # 循环中的状态保持 def
+sliding_window(items, size=3): “““滑动窗口生成器”“” return
+(items[i:i+size] for i in range(len(items)-size+1))</p>
+<h1
+id="无限循环模式需设计合理退出条件">无限循环模式（需设计合理退出条件）</h1>
+<p>import time def status_monitor(interval=1): “““系统状态监测”“” while
+True: # 获取系统状态的伪代码 status = check_system_status()<br />
+if status == ‘ERROR’: print(“检测到系统错误！”) break
+time.sleep(interval)</p>
+<h1 id="并行迭代与条件判断的混合应用">并行迭代与条件判断的混合应用</h1>
+<p>matrix = [[1,2,3], [4,5,6], [7,8,9]] if any(10 in row for row in
+matrix): print(“矩阵中包含10”) else: print(“矩阵中无10”)</p>
+<h1 id="生成器表达式实现高效处理">生成器表达式实现高效处理</h1>
+<p>large_data = (x**2 for x in range(1000000) if x%100 == 0)</p>
+<pre><code>
+## 迭代模式进阶
+
+### while循环与计数器模式
+
+while循环适用于不确定迭代次数的场景，常配合计数器或状态标志使用：
+
+```python while_counter.py
+# 密码重试机制
+max_attempts = 3
+attempt = 0
+
+while attempt &lt; max_attempts:
+    password = input(&quot;请输入密码：&quot;)
+    if password == &quot;deepseek&quot;:
+        print(&quot;验证成功！&quot;)
+        break
+    attempt += 1
+    print(f&quot;剩余尝试次数：{max_attempts - attempt}&quot;)
+else:
+    print(&quot;账户已锁定，请联系管理员&quot;)
+
+# 计数器优化方案
+from itertools import count
+print(&quot;\n自动计数器：&quot;)
+for idx in count(1):
+    if idx &gt; 5:
+        break
+    print(f&quot;执行第{idx}次操作&quot;)  # 输出1-5</code></pre>
+<h4 id="使用规范">使用规范：</h4>
+<ol type="1">
+<li>始终确保循环条件最终会变为False</li>
+<li>复杂计数器建议使用<code>itertools.count</code></li>
+<li>资源访问推荐<code>while</code>+<code>try...except</code>模式</li>
+<li>优先考虑<code>for</code>循环处理可迭代对象</li>
+</ol>
+<h3 id="死循环预防与退出机制">3.2 死循环预防与退出机制</h3>
+<p>常见安全退出策略实现：</p>
+<p>```python safe_loop.py # 超时退出机制 import time timeout = 5
+start_time = time.time()</p>
+<p>print(“数据处理监控：”) while True: if time.time() - start_time &gt;
+timeout: print(“！”) break</p>
+<pre><code># 模拟数据处理
+print(&quot;.&quot;, end=&quot;&quot;, flush=True)
+time.sleep(0.5)</code></pre>
+<h1 id="最大重试次数限制">最大重试次数限制</h1>
+<p>max_retries = 3 retries = 0 print(“：”) while retries &lt;
+max_retries: if connect_to_server(): # 假设的连接函数 print(“连接成功”)
+break retries += 1 print(f”第{retries}次重试…“) else:
+print(”服务器不可达”)</p>
+<h1 id="用户中断处理">用户中断处理</h1>
+<p>print(“：”) try: while True: data = receive_stream_data() if
+process_data(data): print(“处理完成”) break except KeyboardInterrupt:
+print(“”)</p>
+<pre><code>
+#### 安全防护策略：
+
+- 强制设置最大迭代上限
+- 检查系统时间防止无限阻塞
+- 使用回调函数作为退出条件
+- 捕捉系统信号实现优雅退出
+
+### 3.3 循环嵌套与复杂度控制
+
+优化深层嵌套循环的方法：
+
+```python loop_nesting.py
+# 原始四层嵌套结构
+matrix_3d = [[[1,2], [3,4]], [[5,6], [7,8]]]
+found = False
+for i in range(len(matrix_3d)):
+    for j in range(len(matrix_3d[i])):
+        for k in range(len(matrix_3d[i][j])):
+            if matrix_3d[i][j][k] == 5:
+                found = True
+                print(f&quot;找到5在[{i}][{j}][{k}]&quot;)
+                break
+        if found: break
+    if found: break
+
+# 优化后的扁平化处理
+from itertools import product
+print(&quot;\n优化版三维遍历：&quot;)
+for i, j, k in product(*[range(2), range(2), range(2)]):
+    if matrix_3d[i][j][k] == 5:
+        print(f&quot;找到5在[{i}][{j}][{k}]&quot;)
+        break
+
+# 职责分离优化
+def search_value(matrix, target):
+    &quot;&quot;&quot;将搜索逻辑封装为函数&quot;&quot;&quot;
+    for i, layer in enumerate(matrix):
+        for j, row in enumerate(layer):
+            for k, val in enumerate(row):
+                if val == target:
+                    return (i, j, k)
+    return None
+
+print(&quot;\n函数封装结果：&quot;, search_value(matrix_3d, 5))</code></pre>
+<h4 id="复杂度控制原则">复杂度控制原则：</h4>
+<ol type="1">
+<li>嵌套层级不超过3层</li>
+<li>使用笛卡尔积展开多重循环</li>
+<li>合理运用提前返回(return/break)</li>
+<li>将内部循环封装为函数</li>
+</ol>
+<h3 id="列表解析式语法糖应用">3.4 列表解析式语法糖应用</h3>
+<p>高效数据集处理范式：</p>
+<p>```python list_comprehension.py # 传统循环转换 squares = [] for x in
+range(10): if x % 2 == 0: squares.append(x**2)</p>
+<h1 id="等效列表解析式">等效列表解析式</h1>
+<p>squares = [x**2 for x in range(10) if x % 2 == 0]</p>
+<h1 id="多条件嵌套">多条件嵌套</h1>
+<p>matrix = [[1,2,3], [4,5,6], [7,8,9]] flatten = [num for row in matrix
+for num in row if num &gt; 3]</p>
+<p>print(“矩阵过滤结果:”, flatten) # [4,5,6,7,8,9]</p>
+<h1 id="字典推导式应用">字典推导式应用</h1>
+<p>users = [‘Alice’, ‘Bob’, ‘Charlie’] user_map = {name: idx*10 for idx,
+name in enumerate(users, 1)} print(“用户字典:”, user_map) # {‘Alice’:10,
+‘Bob’:20, …}</p>
+<h1 id="生成器表达式优化内存">生成器表达式优化内存</h1>
+<p>big_data = (x<strong>2 for x in range(1000000)) print(“：”) import
+sys print(“列表占用：”, sys.getsizeof([x**2 for x in range(1000000)])) #
+~8MB print(“生成器占用：”, sys.getsizeof((x</strong>2 for x in
+range(1000000)))) # ~128B</p>
+<pre><code>
+#### 解析式选择指南：
+
+| 类型                | 语法              | 内存特征   | 典型场景              |
+|---------------------|-------------------|------------|-----------------------|
+| 列表解析式          | [...]            | 立即计算   | 中小型数据集处理      |
+| 生成器表达式         | (...)            | 惰性计算   | 大数据流处理          |
+| 字典解析式           | {k:v for...}     | 立即计算   | 快速构建字典          |
+| 集合解析式           | {x for...}       | 立即计算   | 去重操作              |
+| 嵌套解析式           | [...]            | 立即计算   | 多维数据筛选          |
+
+### 高级模式示例
+
+```python advanced_generator.py
+# 多层嵌套解析式
+chessboard = [(x,y) 
+    for x in &#39;ABCDEDGH&#39; 
+    for y in range(1,9) 
+    if (ord(x)-64+y) % 3 ==0]
+
+# 海象运算符应用
+import random
+samples = [result for _ in range(10) 
+          if (result := random.randint(0,100)) &gt; 50]
+
+# 矩阵转置
+matrix = [[1,2], [3,4], [5,6]]
+transposed = [[row[i] for row in matrix] 
+             for i in range(len(matrix[0]))]</code></pre>
+<p>关键思想总结：</p>
+<ol type="1">
+<li><strong>模式选择</strong>：有限迭代用<code>for</code>，条件驱动用<code>while</code></li>
+<li><strong>安全迭代</strong>：所有while循环必须具备退出条件</li>
+<li><strong>复杂度控制</strong>：使用工具函数分解嵌套结构</li>
+<li><strong>语法糖应用</strong>：适度使用解析式保持可读性</li>
+</ol>
+<h2 id="课后练习">课后练习：</h2>
+<ul>
+<li>编程实现成绩等级评定系统</li>
+<li>制作九九乘法表生成器</li>
+<li>开发质数判断工具</li>
+</ul>
+</body>
+</html>
+

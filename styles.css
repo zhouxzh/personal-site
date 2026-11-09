@@ -158,6 +158,9 @@ h1, h2, h3, p { margin-top: 0; }
 .detail-link:hover, .detail-link:focus-visible { border-color: var(--accent-dark); color: var(--accent-dark); }
 .courses-section { background: var(--surface); margin-left: -42px; margin-right: -42px; padding-left: 42px; padding-right: 42px; }
 .resource-row { grid-template-columns: 42px minmax(0, 1fr) auto; }
+.resource-group-title { align-items: baseline; border-bottom: 1px solid var(--line); color: var(--ink); display: flex; font-size: 17px; justify-content: space-between; margin: 0; padding: 23px 0 12px; }
+.resource-group-title span { color: var(--muted); font-size: 12px; font-weight: 600; }
+.resource-index-link { margin: 24px 0 0; }
 
 .profile-section { padding-bottom: 96px; }
 .profile-links { border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(2, 1fr); }
@@ -171,6 +174,7 @@ h1, h2, h3, p { margin-top: 0; }
 
 .outputs-toolbar { align-items: center; display: flex; flex-wrap: wrap; gap: 18px; margin: -8px 0 35px; }
 .outputs-toolbar > span { color: var(--muted); font-size: 12px; }
+.output-subheading { font-size: 18px; margin: 0 0 16px; }
 .publication-list { border-top: 1px solid var(--line); margin-bottom: 64px; }
 .publication-item { align-items: start; border-bottom: 1px solid var(--line); display: grid; gap: 24px; grid-template-columns: 54px minmax(0, 1fr) auto; padding: 23px 0; }
 .publication-year { color: var(--accent-dark); font-size: 12px; font-weight: 850; padding-top: 2px; }
