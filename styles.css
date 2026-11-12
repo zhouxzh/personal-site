@@ -200,7 +200,7 @@ h1, h2, h3, p { margin-top: 0; }
 .contact-actions { align-items: center; display: flex; flex-wrap: wrap; gap: 24px; }
 .domain-button { align-items: center; background: var(--accent); border: 0; color: var(--ink); cursor: pointer; display: inline-flex; font-size: clamp(22px, 2.7vw, 36px); font-weight: 850; gap: 25px; justify-content: space-between; padding: 14px 18px 14px 20px; text-align: left; transition: background 160ms ease, transform 160ms ease; }
 .domain-button:hover, .domain-button:focus-visible { background: #bdd13d; transform: translateY(-2px); }
-.domain-button span:last-child { font-size: 27px; font-weight: 400; }
+.domain-button span:last-child { font-size: 12px; font-weight: 800; letter-spacing: 1px; }
 .email-link { border-bottom: 1px solid var(--ink); font-size: 14px; font-weight: 800; padding-bottom: 7px; }
 .email-link:hover, .email-link:focus-visible { border-color: var(--accent-dark); color: var(--accent-dark); }
 .copy-feedback { color: var(--muted); font-size: 13px; margin: 13px 0 0; min-height: 1.5em; }

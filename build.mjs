@@ -1,10 +1,21 @@
 import { cp, mkdir, rm } from 'node:fs/promises';
 
 const outputDirectory = new URL('./dist/', import.meta.url);
-await rm(outputDirectory, { recursive: true, force: true });
+try {
+  await rm(outputDirectory, { recursive: true, force: true });
+} catch (error) {
+  if (error?.code === 'EBUSY' || error?.code === 'EPERM') {
+    throw new Error(
+      'Cannot replace dist/ because another process is using it. Stop the local preview server, then run the build again.',
+      { cause: error },
+    );
+  }
+
+  throw error;
+}
 await mkdir(outputDirectory);
 
-for (const file of ['index.html', 'styles.css', 'script.js', '_headers']) {
+for (const file of ['index.html', 'styles.css', 'script.js', 'favicon.ico', '_headers']) {
   await cp(new URL(`./${file}`, import.meta.url), new URL(`./${file}`, outputDirectory));
 }
 

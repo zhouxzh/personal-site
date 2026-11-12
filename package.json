@@ -3,6 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "node build.mjs"
+    "build": "node build.mjs",
+    "verify": "node scripts/verify-site.mjs",
+    "test": "npm run build && npm run verify"
   }
 }
