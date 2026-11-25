@@ -62,12 +62,12 @@ footer: '第 5 章 · 逻辑诊断'
 # 每节课使用同一张教学模板
 
 <div class="lesson-template">
-  <div><strong>1 · 工单</strong><span>先出现一个必须做决定的生产或调试问题。</span></div>
-  <div><strong>2 · 概念</strong><span>只引入解决该问题需要的对象、定义和图。</span></div>
-  <div><strong>3 · 机制</strong><span>把一个算法拆成可以口头复述的状态转换。</span></div>
-  <div><strong>4 · 手算</strong><span>用小型响应表、位流或候选表走完一次。</span></div>
-  <div><strong>5 · 边界</strong><span>说明方法何时失效，以及报告不能证明什么。</span></div>
-  <div><strong>6 · 离堂</strong><span>完成一道迁移题，并留下通往下一课的问题。</span></div>
+  <div><strong>1 · 工单 0–5′</strong><span>先出现一个必须做决定的生产或调试问题。</span></div>
+  <div><strong>2 · 概念 5–15′</strong><span>只引入解决该问题需要的对象、定义和图。</span></div>
+  <div><strong>3 · 机制 15–24′</strong><span>把一个算法拆成可以口头复述的状态转换。</span></div>
+  <div><strong>4 · 手算 24–34′</strong><span>用小型响应表、位流或候选表走完一次。</span></div>
+  <div><strong>5 · 边界 34–40′</strong><span>说明方法何时失效，以及报告不能证明什么。</span></div>
+  <div><strong>6 · 离堂 40–45′</strong><span>完成一道迁移题，并留下通往下一课的问题。</span></div>
 </div>
 
 <div class="formula">
@@ -286,16 +286,18 @@ footer: '第 5 章 · 逻辑诊断'
 
 | 指标 | 回答的问题 | 可能的误导 |
 |---|---|---|
-| 诊断分辨率 | 报告了多少候选？ | 候选少，但可能全部漏掉真实位置 |
-| 首次命中 | 真实缺陷第一次出现在排名第几？ | 只对带排名工具有意义 |
-| Top-N 命中 | 前 N 个候选里是否包含真实缺陷？ | 多缺陷芯片需要按根因数评价 |
+| 诊断分辨率 | 报告了多少候选？ | 候选少，但可能全部漏掉真实位置；对纯排名列表没有意义 |
+| 首次命中 | 第一个真实缺陷出现在排名第几？ | 只对带排名工具有意义 |
+| Top-N 命中 | 前 N 个候选中命中多少个真实缺陷？ | 多缺陷芯片要按根因数评价 |
 | 成功率 | 物理检查一次能命中多少芯片？ | 与允许检查时间和资源有关 |
 | 运行时间 | 是否能在生产决策周期内完成？ | 快但定位不准没有工程价值 |
 
 <div class="formula">
-  <span class="formula-label">基本定义</span>
+  <span class="formula-label">候选集合型工具</span>
   Diagnostic resolution R = |C|，C 为候选集合
 </div>
+
+<p class="small">若工具只输出完整排名而不输出候选集合，分辨率没有直接定义；应改用首次命中与 Top-N 命中。</p>
 
 <span class="source">[1] 7.1 节，印刷页 400–401</span>
 
@@ -387,12 +389,12 @@ footer: '第 5 章 · 逻辑诊断'
 
 <div class="bitstream">
   <span class="label">g = expected</span>0 0 0 0 1<br>
-  <span class="label">X = observed</span>0 <span class="fault-bit">1</span> <span class="fault-bit">1</span> <span class="fault-bit">0</span> 1<br>
-  <span class="label">mismatch</span>· ↑ ↑ ↑ ·
+  <span class="label">X = observed</span>0 <span class="fault-bit">1</span> <span class="fault-bit">1</span> 0 1<br>
+  <span class="label">mismatch</span>· ↑ ↑ · ·
 </div>
 
 <div class="worked-box">
-  <div class="worked-step"><b>1</b><p><strong>比较</strong> X 与 g，得到失败向量 v2、v3、v4。</p></div>
+  <div class="worked-step"><b>1</b><p><strong>比较</strong> X 与 g，得到失败向量 v2、v3。</p></div>
   <div class="worked-step"><b>2</b><p><strong>筛选</strong> 候选签名必须至少在相同向量上产生对应的失配。</p></div>
   <div class="worked-step"><b>3</b><p><strong>报告</strong> 不能只报“v2 失败”，还要报失败输出和候选集合。</p></div>
 </div>
@@ -691,12 +693,12 @@ footer: '第 5 章 · 逻辑诊断'
   <div class="readout">
     <h3>如何读图</h3>
     <ul>
-      <li>模型输出为 1，失败芯片输出为 0。</li>
-      <li>OR 输出为 0，两路扇入都要解释。</li>
-      <li>AND 输出为 1，A、B 都维持输出。</li>
-      <li>NAND 输出为 1，只有 C=0 是控制输入。</li>
+      <li>从无故障模型的 z=0 反向追踪；失败芯片 z=1。</li>
+      <li>OR 输出为 0，两路扇入共同维持输出。</li>
+      <li>AND 输出为 0，只有 A=0 是控制输入。</li>
+      <li>NAND 输出为 0，C、D 两个输入都必须为 1。</li>
     </ul>
-    <p>D=1 是非控制输入，不应仅因在同一门上就被保留。</p>
+    <p>B=1 是非控制输入，不应仅因在同一门上就被保留。</p>
   </div>
 </div>
 
@@ -706,13 +708,13 @@ footer: '第 5 章 · 逻辑诊断'
 
 <div class="candidate-strip">
   <span class="candidate keep">A</span>
-  <span class="candidate keep">B</span>
+  <span class="candidate drop">B</span>
   <span class="candidate keep">C</span>
-  <span class="candidate drop">D</span>
+  <span class="candidate keep">D</span>
 </div>
 
 <div class="worked-box">
-  <div class="worked-step"><b>1</b><p><strong>单向量</strong> 反向追踪得到 {A,B,C}；这只是“可能影响输出”，还不是最终根因。</p></div>
+  <div class="worked-step"><b>1</b><p><strong>单向量</strong> 反向追踪得到 {A,C,D}；这只是“可能影响输出”，还不是最终根因。</p></div>
   <div class="worked-step"><b>2</b><p><strong>多向量</strong> 在单故障假设下对所有失败向量取交集；若交集为空，转向多故障。</p></div>
   <div class="worked-step"><b>3</b><p><strong>下一步</strong> 对候选逐一注入故障值，检查能否复现实际 syndrome。</p></div>
 </div>
@@ -817,8 +819,8 @@ footer: '第 5 章 · 逻辑诊断'
 
 <div class="flow">
   <div class="flow-step">结构裁剪</div>
-  <div class="flow-step">寻找可解释主候选</div>
-  <div class="flow-step">移走已解释输出</div>
+  <div class="flow-step">寻找词级主候选</div>
+  <div class="flow-step">删除被解释输出的完整扇入锥</div>
   <div class="flow-step">剩余依赖图分区</div>
   <div class="flow-step">逐块重复诊断</div>
 </div>
@@ -829,8 +831,8 @@ footer: '第 5 章 · 逻辑诊断'
     <p>多缺陷没有出现前，无法准确决定哪些候选属于同一个诊断块。</p>
   </div>
   <div class="concept">
-    <h3>分区指标</h3>
-    <p>候选块越小越容易评估，但过滤规则过强会误删被 aliasing 掩盖的真实根因。</p>
+    <h3>删除范围</h3>
+    <p>删除词级主候选已经完整解释的失配输出所对应的整个扇入锥，而不是只删输出节点；否则共享结构仍会把诊断块粘在一起。</p>
   </div>
 </div>
 
@@ -843,7 +845,7 @@ footer: '第 5 章 · 逻辑诊断'
 <div class="grid-3">
   <div class="concept">
     <h3>SIC 点</h3>
-    <p>该信号能对其可达输出组中的失败提供部分修复，说明它可能是独立原因。</p>
+    <p>对每一个失败向量，该信号可达的全部失配输出都能被部分修复。它仍可能是 aliasing 候选，不等于结构上独立。</p>
   </div>
   <div class="concept">
     <h3>主候选</h3>
@@ -910,7 +912,7 @@ footer: '第 5 章 · 逻辑诊断'
 
 ---
 
-# 桥接故障诊断：单点修复表如何组合成多重集
+# 桥接故障诊断：单点修复表如何组合成信号集合
 
 <div class="grid-2">
   <div class="concept">
@@ -919,15 +921,15 @@ footer: '第 5 章 · 逻辑诊断'
   </div>
   <div class="concept">
     <h3>SLAT 的第二层</h3>
-    <p>寻找覆盖全部失败向量的候选多重集；先从单点开始，再尝试两点或更高阶组合。</p>
+    <p>寻找其 SLAT 向量并集覆盖全部失败向量的候选信号组（fault multiplet）；先从单点开始，再尝试两点或更高阶组合。</p>
   </div>
 </div>
 
 <div class="flow">
   <div class="flow-step">失败向量</div>
   <div class="flow-step">单点可修复表</div>
-  <div class="flow-step">集合覆盖</div>
-  <div class="flow-step">候选多重集</div>
+  <div class="flow-step">SLAT 向量并集</div>
+  <div class="flow-step">故障多重项</div>
 </div>
 
 <p>桥接缺陷在不同测试条件下可能表现为不同受害者信号，因此不能简单把它当作一个固定型故障。</p>
@@ -1211,10 +1213,10 @@ footer: '第 5 章 · 逻辑诊断'
 # 为什么“剖面”能定位
 
 <div class="timeline">
-  <div><strong>SI 端</strong><span>测试图形从这里进入，靠近输入的一段受移位路径影响。</span></div>
-  <div><strong>故障点</strong><span>错误位在此注入，之后的触发器频率特征发生偏转。</span></div>
-  <div><strong>SO 端</strong><span>故障后的信号继续传播，曲线回到较稳定的趋势。</span></div>
-  <div><strong>可疑位置</strong><span>平滑后做加权边缘检测，把最大变化处排到候选前面。</span></div>
+  <div><strong>SI 端</strong><span>测试图形从这里进入；SI-to-fault 段会受到故障移位路径的强烈影响。</span></div>
+  <div><strong>故障点</strong><span>错误位在此注入，频率差异主要出现在故障位置之前的 SI 侧。</span></div>
+  <div><strong>SO 端</strong><span>fault-to-SO 段大体保持无故障剖面的趋势，而不是在故障后出现新的强偏转。</span></div>
+  <div><strong>可疑位置</strong><span>平滑后做加权边缘检测，在 SI-side 变化处给出候选触发器排序。</span></div>
 </div>
 
 <div class="callout warning">信号剖面依赖功能序列质量和统计样本；单次仿真或错误的位序约定可能制造虚假曲线。</div>
@@ -1304,11 +1306,11 @@ footer: '第 5 章 · 逻辑诊断'
   <div class="readout">
     <h3>如何读图</h3>
     <ul>
-      <li>每一行是一条扫描链。</li>
-      <li>每一列是一个扫描切片/时间窗口。</li>
-      <li>X/Y/Z 掩码选择链、切片和操作模式。</li>
+      <li>每一列是一条扫描链。</li>
+      <li>每一行是一个扫描切片/时间窗口。</li>
+      <li>X 选择链集合，Y 是切片下界，Z 是切片上界。</li>
     </ul>
-    <p>红色单元是错误响应位置；诊断通过多次分区运行把它与其他单元分开。</p>
+    <p>红色单元是错误响应位置；诊断通过多次自适应分区把它与其他链、其他切片分开。</p>
   </div>
 </div>
 

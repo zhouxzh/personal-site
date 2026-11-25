@@ -39,10 +39,10 @@
 
     <rect x="770" y="104" width="300" height="198" rx="10" fill="#edf3f1" stroke="#0d766e" stroke-width="3"/>
     <text x="920" y="143" text-anchor="middle" font-size="21" font-weight="700" fill="#084e4a">实测失败签名</text>
-    <text x="920" y="193" text-anchor="middle" font-family="Consolas, monospace" font-size="30" font-weight="700" fill="#d5632e">0 1 0 1 0</text>
+    <text x="920" y="193" text-anchor="middle" font-family="Consolas, monospace" font-size="30" font-weight="700" fill="#d5632e">0 1 1 0 1</text>
     <text x="920" y="238" text-anchor="middle" font-size="18" fill="#475c64">与无故障签名逐位比较</text>
     <rect x="798" y="257" width="244" height="28" rx="14" fill="#12323a"/>
-    <text x="920" y="277" text-anchor="middle" font-size="16" fill="#ffffff">失配向量：v2, v3, v4</text>
+    <text x="920" y="277" text-anchor="middle" font-size="16" fill="#ffffff">失配向量：v2, v3</text>
     <path d="M746 202 H758" stroke="#d5632e" stroke-width="4"/>
   </g>
 </svg>

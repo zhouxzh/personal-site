@@ -1,59 +1,58 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 560" role="img" aria-labelledby="title desc">
-  <title id="title">扫描单元矩阵与确定性掩码</title>
-  <desc id="desc">扫描链与扫描切片组成二维矩阵，X 选择链集合，Y 选择切片区间，Z 选择操作，从而分区定位出错单元。</desc>
+  <title id="title">扫描链与扫描切片矩阵以及确定性掩码</title>
+  <desc id="desc">矩阵的列表示扫描链，行表示扫描切片。X 选择扫描链集合，Y 是切片下界，Z 是切片上界。</desc>
   <rect width="1160" height="560" fill="#ffffff"/>
   <text x="580" y="40" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="28" font-weight="700" fill="#16262c">把“时间 × 空间”变成可分区矩阵</text>
 
   <g font-family="Microsoft YaHei, sans-serif">
-    <g transform="translate(85 105)">
-      <text x="225" y="-16" text-anchor="middle" font-size="19" font-weight="700" fill="#084e4a">扫描切片（时间方向）</text>
-      <text x="-28" y="165" text-anchor="middle" font-size="19" font-weight="700" fill="#084e4a" transform="rotate(-90 -28 165)">扫描链</text>
+    <g transform="translate(130 105)">
+      <text x="225" y="-18" text-anchor="middle" font-size="19" font-weight="700" fill="#084e4a">扫描链（空间方向）</text>
+      <text x="-82" y="150" text-anchor="middle" font-size="19" font-weight="700" fill="#084e4a" transform="rotate(-90 -82 150)">扫描切片（时间方向）</text>
 
       <g>
-        <rect x="0" y="0" width="60" height="270" fill="#083e3b"/>
-        <text x="30" y="146" text-anchor="middle" font-size="16" fill="#ffffff" transform="rotate(-90 30 146)">Chain X</text>
+        <rect x="0" y="0" width="450" height="240" fill="#f7faf9" stroke="#cfdcd7" stroke-width="2"/>
+        <g fill="#d7e8e3">
+          <rect x="0" y="0" width="90" height="60"/><rect x="90" y="0" width="90" height="60"/><rect x="180" y="0" width="90" height="60"/><rect x="270" y="0" width="90" height="60"/><rect x="360" y="0" width="90" height="60"/>
+          <rect x="0" y="60" width="90" height="60"/><rect x="90" y="60" width="90" height="60"/><rect x="180" y="60" width="90" height="60"/><rect x="270" y="60" width="90" height="60"/><rect x="360" y="60" width="90" height="60"/>
+          <rect x="0" y="120" width="90" height="60"/><rect x="90" y="120" width="90" height="60"/><rect x="180" y="120" width="90" height="60"/><rect x="270" y="120" width="90" height="60"/><rect x="360" y="120" width="90" height="60"/>
+          <rect x="0" y="180" width="90" height="60"/><rect x="90" y="180" width="90" height="60"/><rect x="180" y="180" width="90" height="60"/><rect x="270" y="180" width="90" height="60"/><rect x="360" y="180" width="90" height="60"/>
+        </g>
+        <g fill="#a53b35">
+          <rect x="180" y="60" width="90" height="60"/>
+          <rect x="180" y="120" width="90" height="60"/>
+        </g>
+        <g stroke="#ffffff" stroke-width="3">
+          <path d="M90 0V240M180 0V240M270 0V240M360 0V240M0 60H450M0 120H450M0 180H450"/>
+        </g>
       </g>
-      <g>
-        <rect x="60" y="0" width="60" height="270" fill="#e6f0ed"/>
-        <rect x="120" y="0" width="60" height="270" fill="#d7e8e3"/>
-        <rect x="180" y="0" width="60" height="270" fill="#c6ded7"/>
-        <rect x="240" y="0" width="60" height="270" fill="#b5d4cc"/>
-        <rect x="300" y="0" width="60" height="270" fill="#a4cabf"/>
+
+      <g fill="none">
+        <rect x="92" y="-8" width="266" height="256" stroke="#0d766e" stroke-width="4"/>
+        <rect x="92" y="54" width="266" height="132" stroke="#b58a24" stroke-width="4" stroke-dasharray="10 6"/>
       </g>
-      <g stroke="#ffffff" stroke-width="4">
-        <rect x="250" y="45" width="50" height="35" fill="#a53b35"/>
-        <rect x="260" y="85" width="50" height="35" fill="#a53b35"/>
-        <rect x="270" y="125" width="50" height="35" fill="#a53b35"/>
+
+      <g fill="#344a50" font-size="17" text-anchor="middle">
+        <text x="45" y="282">C1</text><text x="135" y="282">C2</text><text x="225" y="282">C3</text><text x="315" y="282">C4</text><text x="405" y="282">C5</text>
+        <text x="-22" y="36">S1</text><text x="-22" y="96">S2</text><text x="-22" y="156">S3</text><text x="-22" y="216">S4</text>
       </g>
-      <g stroke="#0d766e" stroke-width="3" fill="none">
-        <rect x="55" y="40" width="260" height="125"/>
-        <rect x="250" y="35" width="20" height="135"/>
-      </g>
-      <text x="185" y="310" text-anchor="middle" font-size="18" fill="#344a50">C1</text>
-      <text x="245" y="310" text-anchor="middle" font-size="18" fill="#344a50">C2</text>
-      <text x="305" y="310" text-anchor="middle" font-size="18" fill="#344a50">C3</text>
-      <text x="365" y="310" text-anchor="middle" font-size="18" fill="#344a50">C4</text>
-      <text x="425" y="310" text-anchor="middle" font-size="18" fill="#344a50">…</text>
-      <text x="30" y="-20" fill="#344a50" font-size="16">S1</text>
-      <text x="30" y="10" fill="#344a50" font-size="16">S2</text>
-      <text x="30" y="40" fill="#344a50" font-size="16">S3</text>
     </g>
 
-    <rect x="600" y="103" width="465" height="112" rx="10" fill="#edf3f1" stroke="#0d766e" stroke-width="2"/>
-    <text x="632" y="139" font-size="21" font-weight="700" fill="#084e4a">X：选择哪些扫描链</text>
-    <text x="632" y="171" font-size="18" fill="#344a50">相当于先截取若干行</text>
-    <text x="632" y="199" font-size="16" fill="#62757c">多次选择可做链级二分搜索</text>
+    <rect x="625" y="88" width="455" height="112" rx="10" fill="#edf3f1" stroke="#0d766e" stroke-width="2"/>
+    <text x="655" y="124" font-size="21" font-weight="700" fill="#084e4a">X：选择扫描链集合</text>
+    <text x="655" y="156" font-size="18" fill="#344a50">选择矩阵的若干列</text>
+    <text x="655" y="184" font-size="16" fill="#62757c">多次选择可做链级二分搜索</text>
 
-    <rect x="600" y="236" width="465" height="112" rx="10" fill="#f7f4e9" stroke="#b58a24" stroke-width="2"/>
-    <text x="632" y="272" font-size="21" font-weight="700" fill="#8b6a1d">Y：选择连续切片区间</text>
-    <text x="632" y="304" font-size="18" fill="#5b5138">相当于截取若干列</text>
-    <text x="632" y="332" font-size="16" fill="#756749">用于恢复失败时间信息</text>
+    <rect x="625" y="220" width="455" height="112" rx="10" fill="#f7f4e9" stroke="#b58a24" stroke-width="2"/>
+    <text x="655" y="256" font-size="21" font-weight="700" fill="#8b6a1d">Y：选择切片下界</text>
+    <text x="655" y="288" font-size="18" fill="#5b5138">指定时间窗口起始行</text>
+    <text x="655" y="316" font-size="16" fill="#756749">用于排除下界之前的切片</text>
 
-    <rect x="600" y="369" width="465" height="112" rx="10" fill="#f8eeee" stroke="#a53b35" stroke-width="2"/>
-    <text x="632" y="405" font-size="21" font-weight="700" fill="#a53b35">Z：选择操作模式</text>
-    <text x="632" y="437" font-size="18" fill="#5d3734">采集全部 / 指定链 / 指定区间</text>
-    <text x="632" y="465" font-size="16" fill="#7c4c48">不同 Z 模式组合多次 MISR 运行</text>
+    <rect x="625" y="352" width="455" height="112" rx="10" fill="#f8eeee" stroke="#a53b35" stroke-width="2"/>
+    <text x="655" y="388" font-size="21" font-weight="700" fill="#a53b35">Z：选择切片上界</text>
+    <text x="655" y="420" font-size="18" fill="#5d3734">指定时间窗口结束行</text>
+    <text x="655" y="448" font-size="16" fill="#7c4c48">Y/Z 共同限定连续切片区间</text>
 
-    <text x="320" y="500" text-anchor="middle" font-size="17" fill="#a53b35">红色单元：实际捕获错误的扫描切片</text>
+    <rect x="150" y="470" width="860" height="52" rx="8" fill="#12323a"/>
+    <text x="580" y="503" text-anchor="middle" font-size="19" fill="#ffffff">红色单元：错误响应；X 管空间分区，Y/Z 管时间分区</text>
   </g>
 </svg>

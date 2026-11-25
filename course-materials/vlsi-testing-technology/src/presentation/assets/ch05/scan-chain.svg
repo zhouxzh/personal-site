@@ -49,10 +49,10 @@
     <text x="590" y="456" text-anchor="middle" font-size="17" fill="#5b5138">捕获模式把每个扫描单元的前级逻辑响应装入触发器</text>
 
     <g stroke="#0d766e" stroke-width="3" fill="none">
-      <path d="M273 313 V390" marker-end="url(#capturearrow)"/>
-      <path d="M463 313 V390" marker-end="url(#capturearrow)"/>
-      <path d="M653 313 V390" marker-end="url(#capturearrow)"/>
-      <path d="M843 313 V390" marker-end="url(#capturearrow)"/>
+      <path d="M273 390 V320" marker-end="url(#capturearrow)"/>
+      <path d="M463 390 V320" marker-end="url(#capturearrow)"/>
+      <path d="M653 390 V320" marker-end="url(#capturearrow)"/>
+      <path d="M843 390 V320" marker-end="url(#capturearrow)"/>
     </g>
 
     <g font-size="17">
