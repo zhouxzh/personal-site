@@ -24,7 +24,7 @@ Never edit generated files in `dist/` or generated presentation HTML in `courses
 | Python 数据分析 | `/courses/python-data-analysis/` | `course-materials/python-data-analysis/` | `README.md`, `syllabus.md`, `assignments/`, `data/`, `scripts/`; upstream teaching references listed in `README.md` |
 | FPGA 系统设计 | `/courses/fpga-system-design/` | `course-materials/fpga-system-design/` | `presentation/`, `course-design/`, `verilog/`, `FPGA-Program/`; source pages under `src/` |
 | 嵌入式系统设计 | `/courses/embedded-system-design/` | `course-materials/embedded-system-design/` | `README.md`, `presentation/`, `2026课程设计/`, `homework/`, `参考案例/`, `学生作品展示/` |
-| VLSI 测试技术 | `/courses/vlsi-testing-technology/` | `course-materials/vlsi-testing-technology/` | `src/references/README.md`; `src/plan/README.md`; `src/presentation/`; private archive indexed in `course-materials/vlsi-testing-technology/REFERENCE_INDEX.md` |
+| VLSI 测试技术 | `/courses/vlsi-testing-technology/` | `course-materials/vlsi-testing-technology/` | `src/references/README.md`; `src/plan/README.md`; `PRESENTATION.md`; `src/presentation/`; private archive indexed in `course-materials/vlsi-testing-technology/REFERENCE_INDEX.md` |
 | 微电子器件建模与仿真 | `/courses/microelectronic-device-modeling/` | `course-materials/microelectronic-device-modeling/` | `src/README.md`, `src/plan/README.md`, `PRESENTATION.md`, `src/presentation/` |
 | 强化学习学习笔记 | `/courses/reinforcement-learning/` | `course-materials/reinforcement-learning/` | `reinforcement_learning.pdf`, `reinforcement_learning.html`, `reinforcement_learning.ipynb`; LaTeX source in `reinforcement_learning.tex` |
 | Python 科学计算中文译本 | `/courses/python-scientific-computing/` | `course-materials/python-scientific-computing/` | `Readme.md`; upstream DOI and citation; `LICENSE`, `LICENSE.TXT`; book sources in `book/` |
@@ -58,7 +58,8 @@ Historical `reference/presentation-v1/` files are not the current presentation s
 ## VLSI Presentation Rules
 
 - Keep exactly 8 numbered Marp sources, one for each chapter.
-- Each chapter must contain three continuous 45-minute theory sections and total 32-33 slides.
+- Each chapter must contain three continuous 45-minute theory sections. Most chapters currently use 32-33 slides; chapter 5 deliberately uses 73 slides so each session has an independent story, foundational concepts, diagrams, a worked example, limitations, and a transfer task.
+- The chapter 5 design template and its GitHub inspiration boundaries are documented in `course-materials/vlsi-testing-technology/PRESENTATION.md`.
 - Do not reintroduce experiments, EDA operation walkthroughs, instrument measurements, or course projects into this pure-theory course.
 - Keep the central question of each chapter visible and connect all three sections to it.
 - Distinguish verified results, material claims, and unresolved evidence. Never infer measured performance, yield, reliability, or test coverage from a layout photograph alone.

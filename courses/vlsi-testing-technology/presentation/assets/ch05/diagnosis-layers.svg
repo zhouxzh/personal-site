@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 520" role="img" aria-labelledby="title desc">
+  <title id="title">测试、逻辑诊断与物理失效分析的分工</title>
+  <desc id="desc">制造测试输出通过或失败，逻辑诊断把失败数据缩小为候选缺陷位置，物理失效分析再验证真实根因。</desc>
+  <rect width="1160" height="520" fill="#ffffff"/>
+  <text x="580" y="40" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="28" font-weight="700" fill="#16262c">三层工作回答三个不同问题</text>
+
+  <g font-family="Microsoft YaHei, sans-serif">
+    <rect x="42" y="86" width="300" height="276" rx="10" fill="#edf3f1" stroke="#0d766e" stroke-width="3"/>
+    <rect x="42" y="86" width="300" height="56" rx="10" fill="#084e4a"/>
+    <text x="192" y="123" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">制造测试</text>
+    <text x="72" y="181" font-size="20" font-weight="700" fill="#16262c">问题</text>
+    <text x="72" y="211" font-size="18" fill="#475c64">这颗芯片通过吗？</text>
+    <text x="72" y="252" font-size="20" font-weight="700" fill="#16262c">输入</text>
+    <text x="72" y="282" font-size="18" fill="#475c64">测试图形 + 预期响应</text>
+    <text x="72" y="323" font-size="20" font-weight="700" fill="#16262c">输出</text>
+    <text x="72" y="353" font-size="18" fill="#475c64">PASS / FAIL + 失败图形</text>
+
+    <rect x="430" y="86" width="300" height="276" rx="10" fill="#edf3f1" stroke="#0d766e" stroke-width="3"/>
+    <rect x="430" y="86" width="300" height="56" rx="10" fill="#0d766e"/>
+    <text x="580" y="123" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">逻辑诊断</text>
+    <text x="460" y="181" font-size="20" font-weight="700" fill="#16262c">问题</text>
+    <text x="460" y="211" font-size="18" fill="#475c64">哪些位置/机制可能解释失败？</text>
+    <text x="460" y="252" font-size="20" font-weight="700" fill="#16262c">输入</text>
+    <text x="460" y="282" font-size="18" fill="#475c64">无故障网表 + 失败响应</text>
+    <text x="460" y="323" font-size="20" font-weight="700" fill="#16262c">输出</text>
+    <text x="460" y="353" font-size="18" fill="#475c64">候选集合 + 排序 + 证据</text>
+
+    <rect x="818" y="86" width="300" height="276" rx="10" fill="#f7f4e9" stroke="#b58a24" stroke-width="3"/>
+    <rect x="818" y="86" width="300" height="56" rx="10" fill="#8b6a1d"/>
+    <text x="968" y="123" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">物理失效分析</text>
+    <text x="848" y="181" font-size="20" font-weight="700" fill="#16262c">问题</text>
+    <text x="848" y="211" font-size="18" fill="#475c64">真实缺陷机制是什么？</text>
+    <text x="848" y="252" font-size="20" font-weight="700" fill="#16262c">输入</text>
+    <text x="848" y="282" font-size="18" fill="#475c64">候选位置 + FA 设备</text>
+    <text x="848" y="323" font-size="20" font-weight="700" fill="#16262c">输出</text>
+    <text x="848" y="353" font-size="18" fill="#475c64">切片、图像与根因结论</text>
+  </g>
+
+  <g stroke="#d5632e" stroke-width="5" fill="none">
+    <path d="M342 224 H420" marker-end="url(#arrow)"/>
+    <path d="M730 224 H808" marker-end="url(#arrow)"/>
+  </g>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#d5632e"/>
+    </marker>
+  </defs>
+
+  <rect x="190" y="410" width="780" height="66" rx="8" fill="#f8eeee" stroke="#a53b35" stroke-width="2"/>
+  <text x="580" y="451" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="22" font-weight="700" fill="#a53b35">逻辑诊断缩小搜索区域，但不能代替物理证据</text>
+</svg>

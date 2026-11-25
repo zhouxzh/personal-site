@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 560" role="img" aria-labelledby="title desc">
+  <title id="title">故障响应签名与候选匹配</title>
+  <desc id="desc">五个测试向量下，无故障响应和五个候选故障响应组成签名矩阵；实测失败签名与 f5 匹配。</desc>
+  <rect width="1160" height="560" fill="#ffffff"/>
+  <text x="580" y="42" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="28" font-weight="700" fill="#16262c">把失败响应转换为可比较的“字迹”</text>
+
+  <g font-family="Microsoft YaHei, sans-serif" font-size="19">
+    <rect x="70" y="82" width="650" height="390" rx="8" fill="#f7faf9" stroke="#cfdcd7"/>
+    <text x="94" y="120" font-size="20" font-weight="700" fill="#084e4a">候选故障的响应签名</text>
+
+    <g transform="translate(94 150)">
+      <rect width="180" height="48" fill="#084e4a"/>
+      <text x="90" y="31" text-anchor="middle" fill="#ffffff" font-weight="700">故障 / 向量</text>
+      <g fill="#084e4a">
+        <rect x="180" width="84" height="48"/><rect x="264" width="84" height="48"/><rect x="348" width="84" height="48"/><rect x="432" width="84" height="48"/><rect x="516" width="84" height="48"/>
+      </g>
+      <g fill="#ffffff" text-anchor="middle" font-weight="700">
+        <text x="222" y="31">v1</text><text x="306" y="31">v2</text><text x="390" y="31">v3</text><text x="474" y="31">v4</text><text x="558" y="31">v5</text>
+      </g>
+      <g fill="#ffffff" font-weight="700">
+        <rect x="0" y="48" width="180" height="52"/><rect x="0" y="100" width="180" height="52"/><rect x="0" y="152" width="180" height="52"/><rect x="0" y="204" width="180" height="52"/><rect x="0" y="256" width="180" height="52"/><rect x="0" y="308" width="180" height="52"/>
+      </g>
+      <g fill="#16262c" font-weight="700">
+        <text x="18" y="80">无故障</text><text x="18" y="132">f1</text><text x="18" y="184">f2</text><text x="18" y="236">f3</text><text x="18" y="288">f4</text><text x="18" y="340">f5</text>
+      </g>
+      <g fill="#16262c" text-anchor="middle" font-size="21">
+        <text x="222" y="80">0</text><text x="306" y="80">0</text><text x="390" y="80">0</text><text x="474" y="80">0</text><text x="558" y="80">1</text>
+        <text x="222" y="132">0</text><text x="306" y="132">1</text><text x="390" y="132">1</text><text x="474" y="132">1</text><text x="558" y="132">1</text>
+        <text x="222" y="184">1</text><text x="306" y="184">1</text><text x="390" y="184">1</text><text x="474" y="184">0</text><text x="558" y="184">1</text>
+        <text x="222" y="236">1</text><text x="306" y="236">0</text><text x="390" y="236">0</text><text x="474" y="236">1</text><text x="558" y="236">1</text>
+        <text x="222" y="288">0</text><text x="306" y="288">0</text><text x="390" y="288">1</text><text x="474" y="288">0</text><text x="558" y="288">0</text>
+        <text x="222" y="340">0</text><text x="306" y="340">1</text><text x="390" y="340">1</text><text x="474" y="340">0</text><text x="558" y="340">1</text>
+      </g>
+      <g stroke="#cfdcd7" fill="none">
+        <path d="M0 48H600M0 100H600M0 152H600M0 204H600M0 256H600M0 308H600M0 360H600"/>
+        <path d="M180 0V360M264 0V360M348 0V360M432 0V360M516 0V360M600 0V360"/>
+      </g>
+    </g>
+
+    <rect x="770" y="104" width="300" height="198" rx="10" fill="#edf3f1" stroke="#0d766e" stroke-width="3"/>
+    <text x="920" y="143" text-anchor="middle" font-size="21" font-weight="700" fill="#084e4a">实测失败签名</text>
+    <text x="920" y="193" text-anchor="middle" font-family="Consolas, monospace" font-size="30" font-weight="700" fill="#d5632e">0 1 0 1 0</text>
+    <text x="920" y="238" text-anchor="middle" font-size="18" fill="#475c64">与无故障签名逐位比较</text>
+    <rect x="798" y="257" width="244" height="28" rx="14" fill="#12323a"/>
+    <text x="920" y="277" text-anchor="middle" font-size="16" fill="#ffffff">失配向量：v2, v3, v4</text>
+    <path d="M746 202 H758" stroke="#d5632e" stroke-width="4"/>
+  </g>
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 560" role="img" aria-labelledby="title desc">
+  <title id="title">逻辑 BIST 的响应压缩与诊断信息恢复</title>
+  <desc id="desc">PRPG 产生测试图形，多个扫描链把响应送入 MISR 压缩为签名；诊断需要恢复失败向量时间窗口和出错扫描单元空间位置。</desc>
+  <rect width="1160" height="560" fill="#ffffff"/>
+  <text x="580" y="40" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="28" font-weight="700" fill="#16262c">压缩签名丢失了“哪一拍、哪一位”</text>
+
+  <defs>
+    <marker id="bistarrow" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto">
+      <path d="M0,0 L11,5.5 L0,11 z" fill="#0d766e"/>
+    </marker>
+  </defs>
+
+  <g font-family="Microsoft YaHei, sans-serif">
+    <rect x="55" y="218" width="160" height="100" rx="10" fill="#084e4a"/>
+    <text x="135" y="258" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">PRPG</text>
+    <text x="135" y="288" text-anchor="middle" font-size="16" fill="#a7e3db">生成伪随机图形</text>
+
+    <g>
+      <rect x="300" y="120" width="360" height="42" rx="7" fill="#edf3f1" stroke="#0d766e" stroke-width="2"/>
+      <rect x="300" y="180" width="360" height="42" rx="7" fill="#edf3f1" stroke="#0d766e" stroke-width="2"/>
+      <rect x="300" y="240" width="360" height="42" rx="7" fill="#edf3f1" stroke="#0d766e" stroke-width="2"/>
+      <rect x="300" y="300" width="360" height="42" rx="7" fill="#edf3f1" stroke="#0d766e" stroke-width="2"/>
+      <text x="480" y="148" text-anchor="middle" font-size="17" fill="#084e4a">scan chain 1</text>
+      <text x="480" y="208" text-anchor="middle" font-size="17" fill="#084e4a">scan chain 2</text>
+      <text x="480" y="268" text-anchor="middle" font-size="17" fill="#084e4a">…</text>
+      <text x="480" y="328" text-anchor="middle" font-size="17" fill="#084e4a">scan chain N</text>
+    </g>
+
+    <rect x="735" y="195" width="170" height="140" rx="12" fill="#f7f4e9" stroke="#b58a24" stroke-width="3"/>
+    <text x="820" y="242" text-anchor="middle" font-size="23" font-weight="700" fill="#8b6a1d">MISR</text>
+    <text x="820" y="274" text-anchor="middle" font-size="16" fill="#5b5138">多输入签名寄存器</text>
+    <text x="820" y="303" text-anchor="middle" font-size="16" fill="#5b5138">压缩多拍响应</text>
+
+    <rect x="980" y="218" width="120" height="94" rx="10" fill="#a53b35"/>
+    <text x="1040" y="256" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">签名</text>
+    <text x="1040" y="286" text-anchor="middle" font-size="16" fill="#f7ddda">FAIL</text>
+
+    <path d="M215 268 H285" stroke="#0d766e" stroke-width="4" fill="none" marker-end="url(#bistarrow)"/>
+    <path d="M660 268 H720" stroke="#0d766e" stroke-width="4" fill="none" marker-end="url(#bistarrow)"/>
+    <path d="M905 268 H965" stroke="#0d766e" stroke-width="4" fill="none" marker-end="url(#bistarrow)"/>
+
+    <rect x="105" y="425" width="450" height="86" rx="10" fill="#f8eeee" stroke="#a53b35" stroke-width="2"/>
+    <text x="330" y="460" text-anchor="middle" font-size="20" font-weight="700" fill="#a53b35">时间信息缺失</text>
+    <text x="330" y="488" text-anchor="middle" font-size="17" fill="#5d3734">哪一批测试向量首次产生错误响应？</text>
+
+    <rect x="605" y="425" width="450" height="86" rx="10" fill="#f7f4e9" stroke="#b58a24" stroke-width="2"/>
+    <text x="830" y="460" text-anchor="middle" font-size="20" font-weight="700" fill="#8b6a1d">空间信息缺失</text>
+    <text x="830" y="488" text-anchor="middle" font-size="17" fill="#5b5138">哪个扫描单元捕获了错误响应？</text>
+  </g>
+</svg>

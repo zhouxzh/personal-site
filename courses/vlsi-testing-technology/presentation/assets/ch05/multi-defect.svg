@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 560" role="img" aria-labelledby="title desc">
+  <title id="title">多缺陷诊断中的独立块与重叠扇入锥</title>
+  <desc id="desc">三个失败输出对应两个真实缺陷；两个缺陷扇入锥重叠，因此简单按输出分组会把多个根因混在一起。</desc>
+  <rect width="1160" height="560" fill="#ffffff"/>
+  <text x="580" y="40" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="28" font-weight="700" fill="#16262c">多缺陷芯片：失配输出不等于独立故障</text>
+
+  <g font-family="Microsoft YaHei, sans-serif">
+    <circle cx="315" cy="285" r="180" fill="#cfe5df" fill-opacity="0.75" stroke="#0d766e" stroke-width="3"/>
+    <circle cx="505" cy="225" r="170" fill="#e9dfc5" fill-opacity="0.72" stroke="#b58a24" stroke-width="3"/>
+    <circle cx="700" cy="315" r="170" fill="#ead0cc" fill-opacity="0.7" stroke="#a53b35" stroke-width="3"/>
+
+    <text x="210" y="190" font-size="20" font-weight="700" fill="#084e4a">输出 z1 的扇入锥</text>
+    <text x="500" y="115" font-size="20" font-weight="700" fill="#8b6a1d">输出 z2 的扇入锥</text>
+    <text x="700" y="420" text-anchor="middle" font-size="20" font-weight="700" fill="#8d322d">z3 扇入锥</text>
+
+    <circle cx="385" cy="260" r="17" fill="#a53b35"/>
+    <circle cx="600" cy="295" r="17" fill="#a53b35"/>
+    <text x="385" y="234" text-anchor="middle" font-size="17" font-weight="700" fill="#a53b35">缺陷 A</text>
+    <text x="600" y="269" text-anchor="middle" font-size="17" font-weight="700" fill="#a53b35">缺陷 B</text>
+
+    <rect x="805" y="92" width="290" height="360" rx="10" fill="#f7faf9" stroke="#cfdcd7"/>
+    <text x="950" y="130" text-anchor="middle" font-size="21" font-weight="700" fill="#084e4a">诊断算法的两种误判</text>
+    <rect x="835" y="158" width="230" height="112" rx="8" fill="#f8eeee"/>
+    <text x="950" y="190" text-anchor="middle" font-size="18" font-weight="700" fill="#a53b35">只取交集</text>
+    <text x="950" y="220" text-anchor="middle" font-size="16" fill="#5d3734">多缺陷时可能裁掉真实根因</text>
+    <text x="950" y="248" text-anchor="middle" font-size="16" fill="#5d3734">甚至得到空集合</text>
+    <rect x="835" y="291" width="230" height="124" rx="8" fill="#edf3f1"/>
+    <text x="950" y="323" text-anchor="middle" font-size="18" font-weight="700" fill="#084e4a">只按输出分区</text>
+    <text x="950" y="353" text-anchor="middle" font-size="16" fill="#344a50">两个独立根因可能被放进</text>
+    <text x="950" y="379" text-anchor="middle" font-size="16" fill="#344a50">同一个依赖诊断块</text>
+
+    <rect x="82" y="485" width="996" height="50" rx="8" fill="#12323a"/>
+    <text x="580" y="518" text-anchor="middle" font-size="20" fill="#ffffff">正确方向：先解释一部分 syndrome，再重新分区并逐块定位</text>
+  </g>
+</svg>

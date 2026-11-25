@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 560" role="img" aria-labelledby="title desc">
+  <title id="title">扫描单元矩阵与确定性掩码</title>
+  <desc id="desc">扫描链与扫描切片组成二维矩阵，X 选择链集合，Y 选择切片区间，Z 选择操作，从而分区定位出错单元。</desc>
+  <rect width="1160" height="560" fill="#ffffff"/>
+  <text x="580" y="40" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="28" font-weight="700" fill="#16262c">把“时间 × 空间”变成可分区矩阵</text>
+
+  <g font-family="Microsoft YaHei, sans-serif">
+    <g transform="translate(85 105)">
+      <text x="225" y="-16" text-anchor="middle" font-size="19" font-weight="700" fill="#084e4a">扫描切片（时间方向）</text>
+      <text x="-28" y="165" text-anchor="middle" font-size="19" font-weight="700" fill="#084e4a" transform="rotate(-90 -28 165)">扫描链</text>
+
+      <g>
+        <rect x="0" y="0" width="60" height="270" fill="#083e3b"/>
+        <text x="30" y="146" text-anchor="middle" font-size="16" fill="#ffffff" transform="rotate(-90 30 146)">Chain X</text>
+      </g>
+      <g>
+        <rect x="60" y="0" width="60" height="270" fill="#e6f0ed"/>
+        <rect x="120" y="0" width="60" height="270" fill="#d7e8e3"/>
+        <rect x="180" y="0" width="60" height="270" fill="#c6ded7"/>
+        <rect x="240" y="0" width="60" height="270" fill="#b5d4cc"/>
+        <rect x="300" y="0" width="60" height="270" fill="#a4cabf"/>
+      </g>
+      <g stroke="#ffffff" stroke-width="4">
+        <rect x="250" y="45" width="50" height="35" fill="#a53b35"/>
+        <rect x="260" y="85" width="50" height="35" fill="#a53b35"/>
+        <rect x="270" y="125" width="50" height="35" fill="#a53b35"/>
+      </g>
+      <g stroke="#0d766e" stroke-width="3" fill="none">
+        <rect x="55" y="40" width="260" height="125"/>
+        <rect x="250" y="35" width="20" height="135"/>
+      </g>
+      <text x="185" y="310" text-anchor="middle" font-size="18" fill="#344a50">C1</text>
+      <text x="245" y="310" text-anchor="middle" font-size="18" fill="#344a50">C2</text>
+      <text x="305" y="310" text-anchor="middle" font-size="18" fill="#344a50">C3</text>
+      <text x="365" y="310" text-anchor="middle" font-size="18" fill="#344a50">C4</text>
+      <text x="425" y="310" text-anchor="middle" font-size="18" fill="#344a50">…</text>
+      <text x="30" y="-20" fill="#344a50" font-size="16">S1</text>
+      <text x="30" y="10" fill="#344a50" font-size="16">S2</text>
+      <text x="30" y="40" fill="#344a50" font-size="16">S3</text>
+    </g>
+
+    <rect x="600" y="103" width="465" height="112" rx="10" fill="#edf3f1" stroke="#0d766e" stroke-width="2"/>
+    <text x="632" y="139" font-size="21" font-weight="700" fill="#084e4a">X：选择哪些扫描链</text>
+    <text x="632" y="171" font-size="18" fill="#344a50">相当于先截取若干行</text>
+    <text x="632" y="199" font-size="16" fill="#62757c">多次选择可做链级二分搜索</text>
+
+    <rect x="600" y="236" width="465" height="112" rx="10" fill="#f7f4e9" stroke="#b58a24" stroke-width="2"/>
+    <text x="632" y="272" font-size="21" font-weight="700" fill="#8b6a1d">Y：选择连续切片区间</text>
+    <text x="632" y="304" font-size="18" fill="#5b5138">相当于截取若干列</text>
+    <text x="632" y="332" font-size="16" fill="#756749">用于恢复失败时间信息</text>
+
+    <rect x="600" y="369" width="465" height="112" rx="10" fill="#f8eeee" stroke="#a53b35" stroke-width="2"/>
+    <text x="632" y="405" font-size="21" font-weight="700" fill="#a53b35">Z：选择操作模式</text>
+    <text x="632" y="437" font-size="18" fill="#5d3734">采集全部 / 指定链 / 指定区间</text>
+    <text x="632" y="465" font-size="16" fill="#7c4c48">不同 Z 模式组合多次 MISR 运行</text>
+
+    <text x="320" y="500" text-anchor="middle" font-size="17" fill="#a53b35">红色单元：实际捕获错误的扫描切片</text>
+  </g>
+</svg>

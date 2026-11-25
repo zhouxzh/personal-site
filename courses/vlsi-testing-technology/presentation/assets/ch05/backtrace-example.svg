@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 560" role="img" aria-labelledby="title desc">
+  <title id="title">逻辑门候选反向追踪</title>
+  <desc id="desc">无故障模型中 OR 输出为 1，失败芯片为 0。反向追踪保留受当前值影响的输入 A、B、C，排除保持非控制值的 D。</desc>
+  <rect width="1160" height="560" fill="#ffffff"/>
+  <text x="580" y="40" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="28" font-weight="700" fill="#16262c">“哪个输入能翻转输出”比口诀更可靠</text>
+
+  <defs>
+    <marker id="wire" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#364b52"/>
+    </marker>
+    <marker id="back" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d5632e"/>
+    </marker>
+  </defs>
+
+  <g font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#16262c">
+    <text x="90" y="112" font-weight="700">A = 1</text>
+    <text x="90" y="168" font-weight="700">B = 1</text>
+    <text x="90" y="306" font-weight="700">C = 0</text>
+    <text x="90" y="362" font-weight="700">D = 1</text>
+
+    <path d="M150 105 H255 V145 H320" stroke="#364b52" stroke-width="3" fill="none" marker-end="url(#wire)"/>
+    <path d="M150 161 H255 V185 H320" stroke="#364b52" stroke-width="3" fill="none" marker-end="url(#wire)"/>
+    <path d="M150 299 H255 V290 H320" stroke="#364b52" stroke-width="3" fill="none" marker-end="url(#wire)"/>
+    <path d="M150 355 H255 V330 H320" stroke="#364b52" stroke-width="3" fill="none" marker-end="url(#wire)"/>
+
+    <rect x="320" y="135" width="120" height="70" rx="8" fill="#edf3f1" stroke="#0d766e" stroke-width="3"/>
+    <text x="380" y="176" text-anchor="middle" font-size="24" font-weight="700" fill="#084e4a">AND</text>
+    <text x="380" y="230" text-anchor="middle">g1 = 1</text>
+
+    <rect x="320" y="280" width="120" height="70" rx="8" fill="#edf3f1" stroke="#0d766e" stroke-width="3"/>
+    <text x="380" y="321" text-anchor="middle" font-size="24" font-weight="700" fill="#084e4a">NAND</text>
+    <text x="380" y="375" text-anchor="middle">g2 = 1</text>
+
+    <path d="M440 170 H555 V225 H650" stroke="#364b52" stroke-width="3" fill="none" marker-end="url(#wire)"/>
+    <path d="M440 315 H555 V255 H650" stroke="#364b52" stroke-width="3" fill="none" marker-end="url(#wire)"/>
+
+    <rect x="650" y="185" width="110" height="110" rx="8" fill="#f7f4e9" stroke="#b58a24" stroke-width="3"/>
+    <text x="705" y="230" text-anchor="middle" font-size="25" font-weight="700" fill="#8b6a1d">OR</text>
+    <text x="705" y="265" text-anchor="middle" font-size="18">good = 1</text>
+    <path d="M760 240 H850" stroke="#364b52" stroke-width="3" fill="none" marker-end="url(#wire)"/>
+    <text x="875" y="235" font-weight="700">失败芯片 z = 0</text>
+    <text x="875" y="263" fill="#a53b35" font-weight="700">失配输出</text>
+
+    <rect x="160" y="416" width="250" height="82" rx="8" fill="#f8eeee" stroke="#a53b35" stroke-width="2"/>
+    <text x="285" y="448" text-anchor="middle" font-weight="700" fill="#a53b35">OR = 0</text>
+    <text x="285" y="477" text-anchor="middle" font-size="17" fill="#5d3734">两路扇入都必须为 0</text>
+
+    <rect x="455" y="416" width="250" height="82" rx="8" fill="#edf3f1" stroke="#0d766e" stroke-width="2"/>
+    <text x="580" y="446" text-anchor="middle" font-weight="700" fill="#084e4a">AND = 1 → 保留 A、B</text>
+    <text x="580" y="477" text-anchor="middle" font-size="17" fill="#344a50">NAND = 1 → 仅保留 C=0</text>
+
+    <rect x="750" y="416" width="270" height="82" rx="8" fill="#12323a"/>
+    <text x="885" y="448" text-anchor="middle" font-weight="700" fill="#a7e3db">候选集合</text>
+    <text x="885" y="477" text-anchor="middle" font-size="20" fill="#ffffff">{A, B, C}，排除 D</text>
+  </g>
+</svg>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 560" role="img" aria-labelledby="title desc">
+  <title id="title">扫描链的移入、捕获与移出</title>
+  <desc id="desc">扫描输入依次连接四个扫描单元和扫描输出；测试时先移入，再捕获组合逻辑响应，最后移出观察。</desc>
+  <rect width="1160" height="560" fill="#ffffff"/>
+  <text x="580" y="40" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="28" font-weight="700" fill="#16262c">扫描链把内部状态变成可移动的位流</text>
+
+  <defs>
+    <marker id="scanarrow" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto">
+      <path d="M0,0 L11,5.5 L0,11 z" fill="#d5632e"/>
+    </marker>
+    <marker id="capturearrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0d766e"/>
+    </marker>
+  </defs>
+
+  <g font-family="Microsoft YaHei, sans-serif">
+    <rect x="55" y="235" width="96" height="60" rx="8" fill="#12323a"/>
+    <text x="103" y="272" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">SI</text>
+
+    <g>
+      <rect x="210" y="218" width="126" height="94" rx="9" fill="#edf3f1" stroke="#0d766e" stroke-width="3"/>
+      <text x="273" y="252" text-anchor="middle" font-size="18" font-weight="700" fill="#084e4a">扫描单元</text>
+      <text x="273" y="281" text-anchor="middle" font-size="16" fill="#344a50">SC1</text>
+      <path d="M336 252 H390" stroke="#d5632e" stroke-width="4" fill="none" marker-end="url(#scanarrow)"/>
+
+      <rect x="400" y="218" width="126" height="94" rx="9" fill="#edf3f1" stroke="#0d766e" stroke-width="3"/>
+      <text x="463" y="252" text-anchor="middle" font-size="18" font-weight="700" fill="#084e4a">扫描单元</text>
+      <text x="463" y="281" text-anchor="middle" font-size="16" fill="#344a50">SC2</text>
+      <path d="M526 252 H580" stroke="#d5632e" stroke-width="4" fill="none" marker-end="url(#scanarrow)"/>
+
+      <rect x="590" y="218" width="126" height="94" rx="9" fill="#edf3f1" stroke="#0d766e" stroke-width="3"/>
+      <text x="653" y="252" text-anchor="middle" font-size="18" font-weight="700" fill="#084e4a">扫描单元</text>
+      <text x="653" y="281" text-anchor="middle" font-size="16" fill="#344a50">SC3</text>
+      <path d="M716 252 H770" stroke="#d5632e" stroke-width="4" fill="none" marker-end="url(#scanarrow)"/>
+
+      <rect x="780" y="218" width="126" height="94" rx="9" fill="#edf3f1" stroke="#0d766e" stroke-width="3"/>
+      <text x="843" y="252" text-anchor="middle" font-size="18" font-weight="700" fill="#084e4a">扫描单元</text>
+      <text x="843" y="281" text-anchor="middle" font-size="16" fill="#344a50">SC4</text>
+      <path d="M906 252 H975" stroke="#d5632e" stroke-width="4" fill="none" marker-end="url(#scanarrow)"/>
+    </g>
+
+    <rect x="984" y="235" width="110" height="60" rx="8" fill="#12323a"/>
+    <text x="1039" y="272" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">SO</text>
+
+    <path d="M151 265 H195" stroke="#d5632e" stroke-width="4" fill="none" marker-end="url(#scanarrow)"/>
+
+    <rect x="185" y="392" width="810" height="82" rx="14" fill="#f7f4e9" stroke="#b58a24" stroke-width="3"/>
+    <text x="590" y="429" text-anchor="middle" font-size="22" font-weight="700" fill="#8b6a1d">组合逻辑模块</text>
+    <text x="590" y="456" text-anchor="middle" font-size="17" fill="#5b5138">捕获模式把每个扫描单元的前级逻辑响应装入触发器</text>
+
+    <g stroke="#0d766e" stroke-width="3" fill="none">
+      <path d="M273 313 V390" marker-end="url(#capturearrow)"/>
+      <path d="M463 313 V390" marker-end="url(#capturearrow)"/>
+      <path d="M653 313 V390" marker-end="url(#capturearrow)"/>
+      <path d="M843 313 V390" marker-end="url(#capturearrow)"/>
+    </g>
+
+    <g font-size="17">
+      <rect x="72" y="108" width="300" height="60" rx="8" fill="#f8eeee"/>
+      <text x="222" y="134" text-anchor="middle" font-weight="700" fill="#a53b35">1 · Shift in</text>
+      <text x="222" y="156" text-anchor="middle" fill="#5d3734">逐拍把测试值移入</text>
+
+      <rect x="431" y="108" width="300" height="60" rx="8" fill="#edf3f1"/>
+      <text x="581" y="134" text-anchor="middle" font-weight="700" fill="#084e4a">2 · Capture</text>
+      <text x="581" y="156" text-anchor="middle" fill="#344a50">打一拍时钟装入响应</text>
+
+      <rect x="790" y="108" width="300" height="60" rx="8" fill="#f7f4e9"/>
+      <text x="940" y="134" text-anchor="middle" font-weight="700" fill="#8b6a1d">3 · Shift out</text>
+      <text x="940" y="156" text-anchor="middle" fill="#5b5138">移出并与期望比较</text>
+    </g>
+  </g>
+</svg>
