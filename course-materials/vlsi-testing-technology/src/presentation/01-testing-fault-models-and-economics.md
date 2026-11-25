@@ -796,8 +796,8 @@ source: '课程定位见 src/plan/README.md；理论依据为[1] 第 1 章（印
 
 [1] L.-T. Wang, C.-W. Wu, and X. Wen, Eds., *VLSI Test Principles and Architectures: Design for Testability*. San Francisco, CA, USA: Morgan Kaufmann, 2006.
 
-[2] 周贤中. 55 nm eFlash 存算一体 AI 芯片流片与测试资料: 第 2023-01 号[未公开课程资料]. 2023.
+[2] 周贤中. 55 nm eFlash 存算一体 AI 芯片流片与测试资料: 第 2023-01 号[未公开课程资料]. 广州: 广东工业大学, 2023.
 
-[3] 周贤中. 1200 V/50 A IGBT 与 0.5 μm 700 V BCD 栅极驱动芯片流片资料: 第 2024-02 号[未公开课程资料]. 2024.
+[3] 周贤中. 1200 V/50 A IGBT 与 0.5 μm 700 V BCD 栅极驱动芯片流片资料: 第 2024-02 号[未公开课程资料]. 广州: 广东工业大学, 2024.
 
 <p class="small">文中 [1] 的章、节和印刷页码均指上述 2006 年版教材；[2]、[3] 为授课教师个人流片案例，公开课件只引用结论和图片，不公开原始测试记录。</p>

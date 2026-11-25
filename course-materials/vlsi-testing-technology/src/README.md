@@ -329,8 +329,8 @@ toc: false
   <div class="course-reference">
     <strong>主要参考文献</strong>
     <p>[1] L.-T. Wang, C.-W. Wu, and X. Wen, Eds., <i>VLSI Test Principles and Architectures: Design for Testability</i>. San Francisco, CA, USA: Morgan Kaufmann, 2006.<br>
-    [2] 周贤中. <i>55 nm eFlash 存算一体 AI 芯片流片与测试技术报告</i>[R]. 2023. 未公开.<br>
-    [3] 周贤中. <i>1200 V/50 A IGBT 与 0.5 μm 700 V BCD 栅极驱动芯片流片技术报告</i>[R]. 2024. 未公开.</p>
+    [2] 周贤中. <i>55 nm eFlash 存算一体 AI 芯片流片与测试技术报告</i>[R]. 广州: 广东工业大学, 2023. 未公开.<br>
+    [3] 周贤中. <i>1200 V/50 A IGBT 与 0.5 μm 700 V BCD 栅极驱动芯片流片技术报告</i>[R]. 广州: 广东工业大学, 2024. 未公开.</p>
     <p>现代标准、开放课程和近年专著统一列于[参考资料](./references/)。</p>
   </div>
 </section>

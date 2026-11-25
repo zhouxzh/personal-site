@@ -400,9 +400,9 @@ eFlash 素材可支持版图、流片流程和测试/量产阶段的讨论，但
 
 [1] L.-T. Wang, C.-W. Wu, and X. Wen, Eds., *VLSI Test Principles and Architectures: Design for Testability*. San Francisco, CA, USA: Morgan Kaufmann, 2006.
 
-[2] 周贤中. 55 nm eFlash 存算一体 AI 芯片流片与测试技术报告[R]. 2023. 未公开.
+[2] 周贤中. 55 nm eFlash 存算一体 AI 芯片流片与测试技术报告[R]. 广州: 广东工业大学, 2023. 未公开.
 
-[3] 周贤中. 1200 V/50 A IGBT 与 0.5 μm 700 V BCD 栅极驱动芯片流片技术报告[R]. 2024. 未公开.
+[3] 周贤中. 1200 V/50 A IGBT 与 0.5 μm 700 V BCD 栅极驱动芯片流片技术报告[R]. 广州: 广东工业大学, 2024. 未公开.
 
 [4] IEEE, *IEEE Standard for Test Access Port and Boundary-Scan Architecture*, IEEE Std 1149.1-2013, 2013.
 
