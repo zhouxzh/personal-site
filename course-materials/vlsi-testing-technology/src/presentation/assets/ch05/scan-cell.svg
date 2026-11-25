@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 520" role="img" aria-labelledby="title desc">
+  <title id="title">MUX-D 扫描触发器</title>
+  <desc id="desc">扫描触发器的输入多路选择器在功能模式选择 D，在扫描模式选择 SI；时钟共同驱动触发器，Q 驱动功能逻辑并连接到下一扫描单元。</desc>
+  <rect width="1160" height="520" fill="#ffffff"/>
+  <text x="580" y="40" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="28" font-weight="700" fill="#16262c">一个扫描触发器在功能输入与移位输入之间切换</text>
+
+  <g font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#16262c">
+    <text x="95" y="185" font-weight="700">D · 功能输入</text>
+    <text x="95" y="305" font-weight="700">SI · 扫描输入</text>
+    <path d="M230 175 H390 V220 H470" stroke="#0d766e" stroke-width="4" fill="none" marker-end="url(#sc1)"/>
+    <path d="M230 295 H390 V255 H470" stroke="#b58a24" stroke-width="4" fill="none" marker-end="url(#sc2)"/>
+    <defs>
+      <marker id="sc1" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 z" fill="#0d766e"/></marker>
+      <marker id="sc2" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 z" fill="#b58a24"/></marker>
+      <marker id="sc3" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 z" fill="#364b52"/></marker>
+    </defs>
+
+    <path d="M470 175 L550 238 L470 300 Z" fill="#edf3f1" stroke="#0d766e" stroke-width="3"/>
+    <text x="494" y="245" text-anchor="middle" font-size="19" font-weight="700" fill="#084e4a">MUX</text>
+    <path d="M390 360 H470 V238" stroke="#d5632e" stroke-width="4" fill="none" marker-end="url(#sc3)"/>
+    <text x="400" y="389" fill="#d5632e" font-weight="700">SE · scan enable</text>
+
+    <path d="M550 238 H640" stroke="#364b52" stroke-width="4" fill="none" marker-end="url(#sc3)"/>
+    <rect x="640" y="172" width="210" height="132" rx="12" fill="#12323a"/>
+    <text x="745" y="218" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">DFF</text>
+    <text x="745" y="254" text-anchor="middle" font-size="17" fill="#a7e3db">capture on clock</text>
+    <path d="M690 360 V304" stroke="#364b52" stroke-width="4" fill="none" marker-end="url(#sc3)"/>
+    <text x="710" y="387" font-weight="700">CLK</text>
+
+    <path d="M850 238 H970" stroke="#364b52" stroke-width="4" fill="none" marker-end="url(#sc3)"/>
+    <text x="990" y="218" font-weight="700">Q → logic</text>
+    <text x="990" y="250" fill="#62757c">and scan successor</text>
+
+    <rect x="125" y="425" width="910" height="54" rx="8" fill="#f7f4e9" stroke="#b58a24" stroke-width="2"/>
+    <text x="580" y="459" text-anchor="middle" font-size="19" fill="#5b5138">SE=0：捕获功能逻辑的 D；SE=1：从 SI 移位，Q 再送往下一位</text>
+  </g>
+</svg>

@@ -46,7 +46,7 @@ src/presentation/07-boundary-scan-core-and-mixed-signal-testing.md
 src/presentation/08-nanometer-test-trends-and-high-speed-io.md
 ```
 
-They replace `reference/presentation-v1/`. The current decks total 303 slides. Chapter 5 was rebuilt from 33 to 73 slides so that its three 45-minute sessions each contain an independent engineering story, foundational concepts, diagrams, a worked example, limitations, and a transfer checkpoint. The first-version audit found only 159 slides, about 95 substantive theory slides, a theoretical-capacity shortfall, and discontinuous chapter-7 and chapter-8 lecture sequences. Those findings are historical and must not be used to describe the current decks.
+They replace `reference/presentation-v1/`. The current decks total 320 slides. Chapter 5 was rebuilt from 33 to 90 slides so that its three 45-minute sessions each contain an independent engineering story, foundational concepts, diagrams, a worked example, limitations, and a transfer checkpoint. The first-version audit found only 159 slides, about 95 substantive theory slides, a theoretical-capacity shortfall, and discontinuous chapter-7 and chapter-8 lecture sequences. Those findings are historical and must not be used to describe the current decks.
 
 ## Citation And Evidence Rules
 

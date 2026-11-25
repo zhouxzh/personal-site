@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 520" role="img" aria-labelledby="title desc">
+  <title id="title">D 符号表示无故障电路与故障电路的一对值</title>
+  <desc id="desc">相同输入同时送到无故障电路和故障电路。D 表示无故障值为 1、故障值为 0；D-bar 表示无故障值为 0、故障值为 1。</desc>
+  <rect width="1160" height="520" fill="#ffffff"/>
+  <text x="580" y="40" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="28" font-weight="700" fill="#16262c">D 不是第三个逻辑电平，而是两个电路值的一对</text>
+
+  <g font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#16262c">
+    <rect x="70" y="105" width="210" height="92" rx="10" fill="#edf3f1" stroke="#0d766e" stroke-width="3"/>
+    <text x="175" y="142" text-anchor="middle" font-weight="700">同一输入向量</text>
+    <text x="175" y="172" text-anchor="middle" fill="#62757c">primary inputs + scan values</text>
+
+    <path d="M280 151 H405 V202 H505" stroke="#0d766e" stroke-width="4" fill="none" marker-end="url(#darrow)"/>
+    <path d="M280 151 H405 V318 H505" stroke="#a53b35" stroke-width="4" fill="none" marker-end="url(#darrow2)"/>
+    <defs>
+      <marker id="darrow" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 z" fill="#0d766e"/></marker>
+      <marker id="darrow2" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 z" fill="#a53b35"/></marker>
+    </defs>
+
+    <rect x="505" y="155" width="250" height="100" rx="10" fill="#edf3f1" stroke="#0d766e" stroke-width="3"/>
+    <text x="630" y="193" text-anchor="middle" font-size="23" font-weight="700" fill="#084e4a">无故障 CUD</text>
+    <text x="630" y="226" text-anchor="middle" fill="#62757c">value = good</text>
+
+    <rect x="505" y="270" width="250" height="100" rx="10" fill="#f8eeee" stroke="#a53b35" stroke-width="3"/>
+    <text x="630" y="308" text-anchor="middle" font-size="23" font-weight="700" fill="#a53b35">故障电路</text>
+    <text x="630" y="341" text-anchor="middle" fill="#7c4c48">value = faulty</text>
+
+    <path d="M755 205 H895" stroke="#0d766e" stroke-width="4" fill="none" marker-end="url(#darrow)"/>
+    <path d="M755 320 H895" stroke="#a53b35" stroke-width="4" fill="none" marker-end="url(#darrow2)"/>
+
+    <rect x="900" y="150" width="190" height="225" rx="12" fill="#f7f4e9" stroke="#b58a24" stroke-width="3"/>
+    <text x="995" y="186" text-anchor="middle" font-size="22" font-weight="700" fill="#8b6a1d">配对记号</text>
+    <text x="995" y="239" text-anchor="middle" font-size="42" font-weight="700" fill="#d5632e">D = 1 / 0</text>
+    <text x="995" y="284" text-anchor="middle" font-size="20" fill="#5b5138">good = 1, faulty = 0</text>
+    <text x="995" y="334" text-anchor="middle" font-size="42" font-weight="700" fill="#d5632e">D̄ = 0 / 1</text>
+    <text x="995" y="365" text-anchor="middle" font-size="18" fill="#5b5138">good = 0, faulty = 1</text>
+
+    <rect x="140" y="420" width="880" height="58" rx="9" fill="#12323a"/>
+    <text x="580" y="456" text-anchor="middle" font-size="20" fill="#ffffff">故障需要先被激活成 D/D̄，再沿敏化路径传播到可观察输出</text>
+  </g>
+</svg>

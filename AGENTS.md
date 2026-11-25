@@ -58,7 +58,7 @@ Historical `reference/presentation-v1/` files are not the current presentation s
 ## VLSI Presentation Rules
 
 - Keep exactly 8 numbered Marp sources, one for each chapter.
-- Each chapter must contain three continuous 45-minute theory sections. Most chapters currently use 32-33 slides; chapter 5 deliberately uses 73 slides so each session has an independent story, foundational concepts, diagrams, a worked example, limitations, and a transfer task.
+- Each chapter must contain three continuous 45-minute theory sections. Most chapters currently use 32-33 slides; chapter 5 deliberately uses 90 slides so each session has an independent story, foundational concepts, diagrams, a worked example, limitations, and a transfer task.
 - The chapter 5 design template and its GitHub inspiration boundaries are documented in `course-materials/vlsi-testing-technology/PRESENTATION.md`.
 - Do not reintroduce experiments, EDA operation walkthroughs, instrument measurements, or course projects into this pure-theory course.
 - Keep the central question of each chapter visible and connect all three sections to it.

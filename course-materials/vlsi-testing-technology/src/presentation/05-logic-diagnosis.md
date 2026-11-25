@@ -190,23 +190,6 @@ footer: '第 5 章 · 逻辑诊断'
 
 ---
 
-# 本课结束时，你要能完成一份最小诊断报告
-
-<div class="lecture-roadmap">
-  <div>区分测试与诊断</div>
-  <div>写出签名</div>
-  <div>构造字典</div>
-  <div>计算分辨率</div>
-  <div>说明信息损失</div>
-</div>
-
-<div class="exercise">
-  <h3>离堂能力</h3>
-  <p>给定一个无故障响应、一个失败响应和五条候选签名，写出候选集合、诊断分辨率，并解释为什么“候选很少”仍可能意味着诊断不可信。</p>
-</div>
-
----
-
 # 测试判定和逻辑诊断的输入、输出不同
 
 <div class="compare">
@@ -282,6 +265,32 @@ footer: '第 5 章 · 逻辑诊断'
 
 ---
 
+# 无故障基线、失败向量与通过向量都属于证据
+
+<div class="grid-3">
+  <div class="concept">
+    <h3>无故障基线 z<sub>C</sub></h3>
+    <p>由无故障模型在相同输入下仿真得到。它是所有比较的参照，不是“实际硅片一定正确”的证明。</p>
+  </div>
+  <div class="concept">
+    <h3>失败向量</h3>
+    <p>至少一个输出对出现不一致的向量。失败向量定义的是观测事件，不等同于某个故障已经存在。</p>
+  </div>
+  <div class="concept">
+    <h3>通过向量</h3>
+    <p>没有输出失配，但可排除会在该向量上产生新失配的候选，因此必须参与候选筛选。</p>
+  </div>
+</div>
+
+<div class="formula">
+  <span class="formula-label">失配输出</span>
+  z<sub>C</sub>(v) ≠ z<sub>F</sub>(v) 说明该输出对在该向量下失配
+</div>
+
+<span class="source">[1] 7.1 节，Definitions 7.1–7.3，印刷页 400、406</span>
+
+---
+
 # 诊断质量不是单一分数
 
 | 指标 | 回答的问题 | 可能的误导 |
@@ -344,6 +353,35 @@ footer: '第 5 章 · 逻辑诊断'
 </div>
 
 <span class="source">[1] 7.2.1 节，印刷页 401–405</span>
+
+---
+
+# 字典有两个时间尺度：离线构建，在线查询
+
+<div class="compare">
+  <div class="compare-panel">
+    <h3>离线阶段</h3>
+    <ul>
+      <li>固定 CUD、故障模型和测试集。</li>
+      <li>对每个建模故障执行故障仿真。</li>
+      <li>保存响应签名或构建诊断树。</li>
+      <li>成本主要是一次性的仿真时间和存储。</li>
+    </ul>
+  </div>
+  <div class="compare-panel highlight">
+    <h3>在线阶段</h3>
+    <ul>
+      <li>输入一颗失败芯片的观测 syndrome。</li>
+      <li>沿字典或诊断树匹配候选。</li>
+      <li>输出候选集合或排名。</li>
+      <li>成本主要是查询和后续分析。</li>
+    </ul>
+  </div>
+</div>
+
+<div class="callout warning">离线字典不会自动适配网表、测试集或压缩结构的变化。变化后必须重建或重新验证。</div>
+
+<span class="source">[1] 7.2.1 节，印刷页 401–403</span>
 
 ---
 
@@ -430,6 +468,32 @@ footer: '第 5 章 · 逻辑诊断'
 
 ---
 
+# 等价、支配和“当前测试集下不可区分”不是一回事
+
+<div class="grid-3">
+  <div class="concept">
+    <h3>故障等价</h3>
+    <p>两个故障对所有可能输入产生完全相同的无故障/故障输出关系，可以在故障集合中折叠。</p>
+  </div>
+  <div class="concept">
+    <h3>故障支配</h3>
+    <p>检测某个故障的测试集合也覆盖另一个故障时，后者在前者被检测的条件下不必单独考虑。</p>
+  </div>
+  <div class="concept">
+    <h3>诊断等价</h3>
+    <p>两个故障在当前测试集下签名相同。换一组向量后可能被区分，因此这种等价是相对于 V 的。</p>
+  </div>
+</div>
+
+<div class="formula">
+  <span class="formula-label">关键区别</span>
+  物理模型等价 ≠ 当前测试集不可区分
+</div>
+
+<span class="source">[1] 7.2.1 节与例 7.1，印刷页 402–405</span>
+
+---
+
 # 诊断树把候选集合一层层切开
 
 <div class="flow">
@@ -457,6 +521,26 @@ footer: '第 5 章 · 逻辑诊断'
 
 ---
 
+# 诊断树实例：每个分支都是一次证据检查
+
+<div class="bitstream">
+  <span class="label">full set</span>{f1, f2, f3, f4, f5}<br>
+  <span class="label">v1 = 0?</span>{f1, f4, f5} | {f2, f3}<br>
+  <span class="label">next test</span>继续按 v2、v3、v4 的响应分裂
+</div>
+
+<div class="worked-box">
+  <div class="worked-step"><b>1</b><p><strong>检查 v1</strong> 只按该输出值把全部候选分成两个组。</p></div>
+  <div class="worked-step"><b>2</b><p><strong>沿匹配分支</strong> 继续检查下一个能区分当前组的向量。</p></div>
+  <div class="worked-step"><b>3</b><p><strong>到达叶子</strong> 叶子可以只有一个故障，也可能是一组诊断等价故障。</p></div>
+</div>
+
+<div class="callout">观测签名 <code>0 1 1 0 1</code> 沿诊断树最终只能到达 f5；这是教材例 7.1 的模型内结论。</div>
+
+<span class="source">[1] 7.2.1 节，例 7.1 与图 7.2，印刷页 402–403</span>
+
+---
+
 # 从完整响应到通过/失败字典：存储下降，信息也下降
 
 <div class="compare">
@@ -475,6 +559,31 @@ footer: '第 5 章 · 逻辑诊断'
 <div class="misconception">
   <strong>常见误解：</strong>字典越小，只是查询越快，分辨率不变。事实是，过度压缩可能把原本可区分的候选合并。
 </div>
+
+---
+
+# 检测字典只记录“何时、哪些位失败”
+
+<div class="compare">
+  <div class="compare-panel">
+    <h3>检测信息</h3>
+    <p>每个故障记录形如：</p>
+    <div class="formula">t1:10, t2:10, t4:10</div>
+    <p>表示该故障在这些测试编号和输出位型上产生失败。</p>
+  </div>
+  <div class="compare-panel highlight">
+    <h3>drop-on-k</h3>
+    <p>收集到 k 个失败记录后停止继续保存，降低字典规模。</p>
+    <p>代价是某些原本可区分的候选可能被合并。</p>
+  </div>
+</div>
+
+<div class="formula">
+  <span class="formula-label">检测字典规模量级</span>
+  O(F · log V · k · O)
+</div>
+
+<span class="source">[1] 例 7.4，印刷页 405</span>
 
 ---
 
@@ -513,6 +622,33 @@ footer: '第 5 章 · 逻辑诊断'
   <div class="concept"><h3>何时停止</h3><p>候选组大小满足 FA 队列需要，或达到存储上限。</p></div>
   <div class="concept"><h3>如何验收</h3><p>用原始完整字典对照，确认恢复后的组确实被拆开。</p></div>
 </div>
+
+---
+
+# 候选排名不等于概率分布
+
+<div class="compare">
+  <div class="compare-panel">
+    <h3>字典排名能表达</h3>
+    <ul>
+      <li>哪个候选的签名与观测更一致。</li>
+      <li>哪些候选已被某些测试向量排除。</li>
+      <li>物理失效分析应先检查谁。</li>
+    </ul>
+  </div>
+  <div class="compare-panel highlight">
+    <h3>字典排名不能直接表达</h3>
+    <ul>
+      <li>候选是真实缺陷的统计概率。</li>
+      <li>未建模的桥接或多缺陷概率。</li>
+      <li>制造工艺、版图或封装因素造成的先验。</li>
+    </ul>
+  </div>
+</div>
+
+<div class="callout warning">除非额外建立并验证概率模型，否则排名只是一条可解释的检查顺序，不是“候选 A 有 80% 概率”。</div>
+
+<span class="source">[1] 7.1–7.2.1 节，印刷页 400–405</span>
 
 ---
 
@@ -640,6 +776,79 @@ footer: '第 5 章 · 逻辑诊断'
 
 ---
 
+# 先声明故障假设阶数，再选择算法
+
+<div class="grid-3">
+  <div class="concept">
+    <h3>单故障</h3>
+    <p>所有失配由一个根因解释；多个失配输出扇入锥取交集，分辨率高但假设强。</p>
+  </div>
+  <div class="concept">
+    <h3>多故障</h3>
+    <p>不同失配可由不同根因解释；先用并集保留候选，再尝试分区和原因消解。</p>
+  </div>
+  <div class="concept">
+    <h3>多重项 / 桥接</h3>
+    <p>一个物理桥接可能涉及多个信号，单个固定型故障不足以表达其行为。</p>
+  </div>
+</div>
+
+<div class="callout warning">算法结果不能脱离假设解读。“只报一个候选”可能来自强假设，不来自芯片证据充分。</div>
+
+<span class="source">[1] 7.2.2–7.2.5 节，印刷页 405–427</span>
+
+---
+
+# D 符号：同一个逻辑值对象同时记录两条电路
+
+<div class="figure-explainer">
+  <figure>
+    <img src="assets/ch05/d-symbol.svg" alt="D 和 D-bar 分别表示无故障与故障电路的一对值">
+  </figure>
+  <div class="readout">
+    <h3>如何读图</h3>
+    <ul>
+      <li>同样的输入同时作用于无故障和故障模型。</li>
+      <li><code>D=1/0</code> 表示正常为 1、故障为 0。</li>
+      <li><code>D̄=0/1</code> 表示正常为 0、故障为 1。</li>
+    </ul>
+    <p>D 不是第三个电压电平，而是一个便于推理的双电路状态记号。</p>
+  </div>
+</div>
+
+<span class="source">[1] 故障传播与敏化基础见第 4 章，印刷页 161–248；诊断反向追踪见 7.2.2 节，印刷页 405–409</span>
+
+---
+
+# 任何故障可见都要经过激活、传播、区分
+
+<div class="flow">
+  <div class="flow-step">激活故障</div>
+  <div class="flow-step">产生 D / D̄</div>
+  <div class="flow-step">敏化路径</div>
+  <div class="flow-step">到达输出</div>
+  <div class="flow-step">与期望区分</div>
+</div>
+
+<div class="grid-3">
+  <div class="concept">
+    <h3>激活</h3>
+    <p>给故障位置施加能使其错误值显现的输入条件。</p>
+  </div>
+  <div class="concept">
+    <h3>传播</h3>
+    <p>沿路径给其他输入非控制值，让 D/D̄ 影响下游信号。</p>
+  </div>
+  <div class="concept">
+    <h3>区分</h3>
+    <p>使故障响应与无故障响应不同；仅激活但被掩盖，不等于可检测。</p>
+  </div>
+</div>
+
+<span class="source">[1] 第 4 章故障敏化与 ATPG，印刷页 161–248；第 7 章诊断反向追踪，印刷页 405–409</span>
+
+---
+
 # 结构裁剪：先用扇入锥删掉“根本到不了输出”的门
 
 <div class="grid-2">
@@ -701,6 +910,24 @@ footer: '第 5 章 · 逻辑诊断'
     <p>B=1 是非控制输入，不应仅因在同一门上就被保留。</p>
   </div>
 </div>
+
+---
+
+# 门级敏化表：先让其他输入保持非控制值
+
+| 门 | 输入控制值 | 传播某输入故障效应时，其他输入 |
+| --- | ---: | ---: |
+| AND | 0 | 1 |
+| NAND | 0 | 1 |
+| OR | 1 | 0 |
+| NOR | 1 | 0 |
+| XOR | 无单一控制值 | 由差分条件决定 |
+
+<div class="callout">
+  控制值会强制输出，使故障效应不易穿过；非控制值让其他输入保持敏化。反向追踪时再结合当前 CUD 值判断哪些扇入真正维持输出。
+</div>
+
+<span class="source">[1] 第 4 章门级敏化与 ATPG，印刷页 161–248；7.2.2.2 节，印刷页 408–409</span>
 
 ---
 
@@ -794,6 +1021,34 @@ footer: '第 5 章 · 逻辑诊断'
 </div>
 
 <div class="callout warning">在该向量下，候选不是“可修复向量”。它虽然解释了一部分效应，却制造了新效应，必须降权。</div>
+
+---
+
+# 注入分数是比较指标，不是物理概率
+
+<div class="grid-3">
+  <div class="concept">
+    <h3>可修复向量数</h3>
+    <p>严格满足“修复全部原失配且不增加新失配”的向量数量，优先级最高。</p>
+  </div>
+  <div class="concept">
+    <h3>可修复输出数</h3>
+    <p>候选改善了多少具体失配输出，可作为次级证据。</p>
+  </div>
+  <div class="concept">
+    <h3>新增失配惩罚</h3>
+    <p>候选制造了芯片未表现的新错误，应降低排序。</p>
+  </div>
+</div>
+
+<div class="formula">
+  <span class="formula-label">教材启发式</span>
+  score = 可修复输出数 − 0.5 × 新增失配输出数
+</div>
+
+<div class="callout warning">分数来自当前注入模型和目标函数，不自动等于“候选为真实缺陷的概率”。</div>
+
+<span class="source">[1] 7.2.2.3 节、Definitions 7.4–7.7 与例 7.10，印刷页 409–416</span>
 
 ---
 
@@ -909,6 +1164,29 @@ footer: '第 5 章 · 逻辑诊断'
 </div>
 
 <div class="callout">诊断向量解决的是“证据设计”，不是提高制造测试覆盖率。</div>
+
+---
+
+# 桥接故障不只是“两个节点都卡住”
+
+<div class="grid-3">
+  <div class="concept">
+    <h3>AND 型桥接</h3>
+    <p>被短接信号表现为逻辑 AND 的投票关系。一个强 0 可能覆盖其他节点的 1。</p>
+  </div>
+  <div class="concept">
+    <h3>OR 型桥接</h3>
+    <p>被短接信号表现为逻辑 OR 的投票关系。一个强 1 可能覆盖其他节点的 0。</p>
+  </div>
+  <div class="concept">
+    <h3>Dominant 桥接</h3>
+    <p>某个驱动器占主导，使另一个受害节点跟随其值；故障可能随输入条件改变表现。</p>
+  </div>
+</div>
+
+<div class="callout warning">桥接缺陷在不同向量、驱动强度和方向上可能产生不同受害者信号，因此单固定型签名经常无法精确解释。</div>
+
+<span class="source">[1] 7.2.5 节与练习 7.3，印刷页 427、451</span>
 
 ---
 
@@ -1045,6 +1323,27 @@ footer: '第 5 章 · 逻辑诊断'
 
 ---
 
+# 扫描触发器内部：功能输入与移位输入共用一个触发器
+
+<div class="figure-explainer">
+  <figure>
+    <img src="assets/ch05/scan-cell.svg" alt="MUX-D 扫描触发器的功能输入、扫描输入、扫描使能和输出">
+  </figure>
+  <div class="readout">
+    <h3>如何读图</h3>
+    <ul>
+      <li><code>SE=0</code> 时选择功能输入 D，正常捕获组合逻辑。</li>
+      <li><code>SE=1</code> 时选择扫描输入 SI，逐拍形成移位链。</li>
+      <li>Q 既驱动功能逻辑，也连接到下一个扫描单元。</li>
+    </ul>
+    <p>扫描链诊断必须先明确故障发生在 MUX、触发器、Q 路径还是下一段互连。</p>
+  </div>
+</div>
+
+<span class="source">[1] 扫描结构基础见第 2 章，印刷页 55–69；扫描链诊断环境见 7.3.1 节，印刷页 427–429</span>
+
+---
+
 # 为什么扫描链故障会破坏整个诊断问题？
 
 <div class="grid-3">
@@ -1090,6 +1389,24 @@ footer: '第 5 章 · 逻辑诊断'
 
 ---
 
+# 位序约定错了，观察图像就会整体错位
+
+<div class="bitstream">
+  <span class="label">shift-in order</span>SI → q1 → q2 → q3 → q4 → SO<br>
+  <span class="label">shift-out order</span>q4 先移出，q1 最后移出<br>
+  <span class="label">compared vector</span>SO[0..3] 必须按同一方向与期望对齐
+</div>
+
+<div class="grid-3">
+  <div class="concept"><h3>物理方向</h3><p>链连接方向由 SI 到 SO，不能只凭位图的从左到右猜测。</p></div>
+  <div class="concept"><h3>仿真方向</h3><p>仿真必须使用与 ATPG/ATE 相同的移位和比较约定。</p></div>
+  <div class="concept"><h3>报告方向</h3><p>候选位置要写清单元编号、链号和移位周期，避免“左边附近”。</p></div>
+</div>
+
+<span class="source">[1] 7.3.1 节，扫描命令与观测图像，印刷页 428–430</span>
+
+---
+
 # 扫描链故障先分“功能”与“时序”，再分永久与间歇
 
 <div class="grid-3">
@@ -1108,6 +1425,22 @@ footer: '第 5 章 · 逻辑诊断'
 </div>
 
 <div class="callout">分类不是命名游戏。故障类型决定后续应选反相实验、注入模型还是统计信号剖面。</div>
+
+---
+
+# 一个链内故障为什么会污染很长一段位流？
+
+<div class="bitstream">
+  <span class="label">expected</span>1 0 1 1 0 0 1 0 1 1 0 0<br>
+  <span class="label">observed</span>1 0 1 <span class="fault-bit">0 0 0 0 0 0 0</span> 1 0 0<br>
+  <span class="label">candidate</span>错误在 SI-to-SO 路径上，后续移位位继续经过故障点
+</div>
+
+<div class="callout">
+  不能把每个异常位都当成一个独立组合逻辑故障。先判断位流是否呈现“从某个边界开始持续失真”的链传播模式。
+</div>
+
+<span class="source">[1] 7.3.1 节，快照与观测图像，印刷页 427–430</span>
 
 ---
 
@@ -1242,6 +1575,29 @@ footer: '第 5 章 · 逻辑诊断'
 
 ---
 
+# 签名为什么可能“碰巧正确”或“无法唯一定位”？
+
+<div class="grid-3">
+  <div class="concept">
+    <h3>混叠 Aliasing</h3>
+    <p>错误响应序列经过压缩后得到与无故障签名相同的值，单个最终签名可能漏报。</p>
+  </div>
+  <div class="concept">
+    <h3>多对一压缩</h3>
+    <p>不同时间、不同扫描单元的错误可能被映射到同一个签名，仅从签字无法反推来源。</p>
+  </div>
+  <div class="concept">
+    <h3>重复运行</h3>
+    <p>改变种子、区间或掩码，让同一候选在多次签名中接受独立检验。</p>
+  </div>
+</div>
+
+<div class="callout warning">混叠概率模型依赖测试长度、响应分布和签名器结构；不能把一次签名匹配当作零风险证明。</div>
+
+<span class="source">[1] 7.4.1 节，印刷页 442–443</span>
+
+---
+
 # MISR 签名丢失的是哪一维信息？
 
 <div class="compare">
@@ -1294,6 +1650,20 @@ footer: '第 5 章 · 逻辑诊断'
 </div>
 
 <span class="source">[1] 7.4.2 节，例 7.21–7.22，印刷页 443–446</span>
+
+---
+
+# 诊断成本三角：运行次数、存储、定位分辨率
+
+<div class="grid-3">
+  <div class="metric"><h3>运行次数</h3><strong>↓</strong><p>二分搜索可能需要多次 BIST 重跑；区间卸载尝试减少重跑。</p></div>
+  <div class="metric"><h3>测试存储</h3><strong>↑</strong><p>保存非压缩响应或多个区间签名增加 ATE 存储和后处理。</p></div>
+  <div class="metric"><h3>分辨率</h3><strong>↑</strong><p>更多分区、更多掩码或更多响应位可以恢复位置，但提高代价。</p></div>
+</div>
+
+<div class="callout">BIST 诊断没有免费午餐：三种资源不能同时最省。方案选择取决于 FA 时间预算、测试设备能力和需要的定位粒度。</div>
+
+<span class="source">[1] 7.4.2–7.4.3 节，印刷页 443–449</span>
 
 ---
 
@@ -1358,6 +1728,22 @@ footer: '第 5 章 · 逻辑诊断'
 <div class="callout warning">这是特定确定性分区方案的上界，不是所有 BIST 诊断工具的运行时间承诺。</div>
 
 <span class="source">[1] 7.4.3 节，印刷页 446–449</span>
+
+---
+
+# 先选可观测证据，再选诊断算法
+
+| 现场限制 | 优先证据 | 合理方法 | 仍不能证明 |
+| --- | --- | --- | --- |
+| 可修改扫描单元 | 图像边界与硬件模式 | 反相辅助 | 物理缺陷机制 |
+| 无额外硬件 | 完整位流映射 | scan-capture-scan 注入 | 模型外桥接行为 |
+| 多张功能快照 | 频率剖面 | 平滑与边缘检测 | 单次测量的因果性 |
+| 只保存区间签名 | 失败时间窗口 | 二分或区间卸载 | 精确扫描单元位置 |
+| 可控制链与切片掩码 | 空间分区证据 | 确定性掩码 | 协议外或间歇故障 |
+
+<div class="callout question">方法选择由“还能观察到什么”决定，不由算法名称的复杂度决定。</div>
+
+<span class="source">[1] 7.3.2–7.4.3 节，印刷页 430–449</span>
 
 ---
 
